@@ -1,5 +1,5 @@
 <head>
-<meta http-equiv="Refresh" content="3; url=https://play.google.com/store/apps/details?id=com.appseleration.android.selfcare">
+<!--meta http-equiv="Refresh" content="3; url=https://play.google.com/store/apps/details?id=com.appseleration.android.selfcare"-->
 </head>
 <body>
 <img id='imagePixel' src=""/>
@@ -11,7 +11,8 @@ Please wait to be redirected to the Google Play Store
 
     var email = getURLParameter("ck");
     var linkParams = encodeURI('app://meinvodafone/install?ck=' + email + '&email=' + email); 
-    document.getElementById('imagePixel').src = 'https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams;
+    alert(linkParams);
+    //document.getElementById('imagePixel').src = 'https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams;
     //window.location = "https://play.google.com/store/apps/details?id=com.appseleration.android.selfcare;"
 </script>
 </body> 
