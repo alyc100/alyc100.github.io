@@ -3,6 +3,9 @@
 
 </head>
 <body>
+<img src='https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=app%3
+A%2F%2Fmeinvodafone%2Finstall%3Fck%3Dalyc100test%40gmail.com%26email%3Dalyc100te
+st%40gmail.com'/>
     <script>
     function getURLParameter(name) {
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
@@ -13,11 +16,12 @@
     var img = document.createElement('img');
     //set the source of the image
     img.src = 'https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams;
+        alert(img.src);
     var p = document.createElement('P');
     var t = document.createTextNode("Please wait while you are transferred to Google Play Store.");
     p.appendChild(t);
     //add the image to a specific element
-    document.body.appendChild(img);
+    //document.body.appendChild(img);
     document.body.appendChild(p);
         //document.getElementById('imagePixel').src = 'https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams;
         //window.location = "https://play.google.com/store/apps/details?id=com.appseleration.android.selfcare;"
