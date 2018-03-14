@@ -9,7 +9,6 @@ Please wait to be redirected to the Google Play Store
     var url = new URL(url_string);
     var email = url.searchParams.get("ck");
     var linkParams = encodeURI('app://meinvodafone/install?ck=' + email + '&email=' + email); 
-    alert(linkParams);
     document.getElementById('imagePixel').src = 'https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams;
     //window.location = "https://play.google.com/store/apps/details?id=com.appseleration.android.selfcare;"
 </script>
