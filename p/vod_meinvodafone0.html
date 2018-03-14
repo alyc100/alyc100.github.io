@@ -3,9 +3,11 @@
 </head>
 <body>
 <script>
-    var url_string = window.location.href;
-    var url = new URL(url_string);
-    var email = url.searchParams.get("ck");
+    function getURLParameter(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+    }
+
+    var email = getURLParameter("ck");
     
     alert(email);
     
@@ -15,6 +17,6 @@
     //window.location = "https://play.google.com/store/apps/details?id=com.appseleration.android.selfcare;"
 </script>
 <img id='imagePixel' src=""/>
-Please wait to be redirected to the Google Play Store 3
+Please wait to be redirected to the Google Play Store 4
 
 </body> 
