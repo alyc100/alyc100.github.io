@@ -1,4 +1,5 @@
 <head>
+<script src="jquery-3.3.1.min.js"></script>
 <!--meta http-equiv="Refresh" content="3; url=https://play.google.com/store/apps/details?id=com.appseleration.android.selfcare"-->
 </head>
 <body>
@@ -11,9 +12,10 @@ Please wait to be redirected to the Google Play Store
 
     var email = getURLParameter("ck");
     var linkParams = encodeURIComponent('app://meinvodafone/install?ck=' + email + '&email=' + email); 
-    document.getElementById('imagePixel').src = 'https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams;
+    $('#imagePixel').attr('src','https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams);
+    //document.getElementById('imagePixel').src = 'https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams;
     
-    alert('done');
+    alert('done2');
     //window.location = "https://play.google.com/store/apps/details?id=com.appseleration.android.selfcare;"
 </script>
 </body> 
