@@ -10,12 +10,15 @@ Please wait to be redirected to the Google Play Store
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
     }
 
-    var email = getURLParameter("ck");
-    var linkParams = encodeURIComponent('app://meinvodafone/install?ck=' + email + '&email=' + email); 
-    $('#imagePixel').attr('src','https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams);
-    //document.getElementById('imagePixel').src = 'https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams;
+    $(document).ready(function () {
+        var email = getURLParameter("ck");
+        var linkParams = encodeURIComponent('app://meinvodafone/install?ck=' + email + '&email=' + email); 
+        $('#imagePixel').attr('src','https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams);
+        //document.getElementById('imagePixel').src = 'https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams;
     
-    alert('done2');
+        alert('done2');
+    });
+    
     //window.location = "https://play.google.com/store/apps/details?id=com.appseleration.android.selfcare;"
 </script>
 </body> 
