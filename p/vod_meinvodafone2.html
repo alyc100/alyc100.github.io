@@ -13,18 +13,8 @@ Please wait to be redirected to the Google Play Store
     $(document).ready(function () {
         var email = getURLParameter("ck");
         var linkParams = encodeURIComponent('app://meinvodafone/install?ck=' + email + '&email=' + email); 
-        //$('#imagePixel').attr('src','https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams);
+        $('#imagePixel').attr('src','https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams);
         
-        $.ajax({ 
-        type: "POST",
-        url: 'https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/events',
-        data: JSON.stringify({uri: "app://meinvodafone/install", properties: [{name: "ck", value: email}, {name: "email", value: email}]}),
-        contentType: "application/json; charset=utf-8",
-        dataType: "jsonp",
-        success: function(data){        
-                alert(data);
-            }
-        });
         //document.getElementById('imagePixel').src = 'https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams;
     });
     
