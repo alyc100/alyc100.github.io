@@ -14,9 +14,15 @@ Please wait to be redirected to the Google Play Store
         var email = getURLParameter("ck");
         var linkParams = encodeURIComponent('app://meinvodafone/install?ck=' + email + '&email=' + email); 
         $('#imagePixel').attr('src','https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams);
+        $.ajax({ 
+            type: "GET",
+            dataType: "jsonp",
+            url: "https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=" + linkParams,
+            success: function(data){        
+                alert(data);
+            }
+        });
         //document.getElementById('imagePixel').src = 'https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams;
-    
-        alert('done2');
     });
     
     //window.location = "https://play.google.com/store/apps/details?id=com.appseleration.android.selfcare;"
