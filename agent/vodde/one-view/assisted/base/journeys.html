@@ -1,0 +1,121 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/crm.css">
+	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="js/angular.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+	<script src="../../sdk/one-sdk.src.js"></script>
+	<script src="js/one-sdk-bridge.js"></script>
+	<script src="../harness/js/one-sdk-harness.js"></script>
+    
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../../dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../../../plugins/ionslider/ion.rangeSlider.css">
+    
+  <style>
+    body {
+      font-family: 'Source Sans Pro','Helvetica Neue','Helvetica','Arial',sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      background-color: #fff;
+      width: 100%;
+      height: 250px;
+      margin-top: 10px;
+    }
+
+    #main {
+      float: left;
+      width: 100%;
+    }
+
+    </style>
+    </head>
+
+  <body ng-app="CrmApp" ng-controller="CrmAppCtrl" class="hold-transition skin-blue sidebar-mini" style="word-wrap: break-word;">
+     <div id="main">
+      <div class="row" style="padding-left:15px">
+            <div class="box-body">
+                hello
+                <div ng-repeat="entry in structure.entries">
+                    {{entry.city}}
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    (function () {
+        "use strict";
+
+        var app = angular.module('CrmApp', ['OneSdkBridge', 'CrmService']);
+
+        app.controller('CrmAppCtrl', function ($scope, $window, $q, sdk, crmInitializer) {
+
+            /**
+             * Sets the 'notification' object used by &lt;notification-shade&gt; to display progress, errors & warnings
+             * @param severity
+             * @param summary
+             * @param detail
+             */
+            function setNotification(severity, summary, detail) {
+                $scope.notification = (!severity) ? null : {
+                    severity: severity,
+                    summary: summary,
+                    detail: detail
+                };
+            }
+
+            // show the loading spinner
+            setNotification("in-progress");
+
+            crmInitializer().then(function(crmService) {
+
+                var structureServiceName = crmService.getPanelSetting('structure');
+                var structureFormat = crmService.getPanelSetting('format');
+
+                // get the customer key or tid to initialize the customerApi
+                var customer = crmService.getCustomerInitObj();
+
+                if (!customer) {
+                    setNotification("error", "No customer identifer provided", "Panel requires a customer key (or tid) to operate");
+                    return;
+                }
+
+                var one = sdk(crmService);
+
+                var customerApi = one.customerApi(customer);
+
+                customerApi.getStructureData(structureServiceName, structureFormat).then(function (response) {
+
+                    // clear notitication shade
+                    setNotification(null);
+
+                    $scope.structure = response;
+
+                }).catch(function (response) {
+
+                    setNotification("error", "Error occurred for Structure: " + structureServiceName, response.statusMessage);
+
+                });
+
+            }).catch(function (response) {
+
+                setNotification("error", "Error initializing CRM integration. " + response.statusMessage);
+
+            });
+
+        });
+
+    }());
+</script>
+	  	  <!--<script src="controllers/journeyCtrl.js"></script>-->
+
+</body>
+</html>

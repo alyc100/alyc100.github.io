@@ -1,0 +1,183 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" standardController="Contact">
+
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"></link>
+	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+	<c:ONE_JS_SDK interaction="/nbc" customerKey="{!contact.id}"/>
+</head>
+<body ng-app="CrmApp" ng-controller="CrmAppCtrl" style="margin: 20px;">
+
+<div class="container-fluid">
+
+	<div class="row">
+		<notification-shade/>
+	</div>
+
+	<div class="row" ng-repeat="optimization in optimizations" ng-hide="notification">
+
+		<div class="row">
+			<div class="col-md-3 text-center" ng-repeat="action in optimization.data.actions">
+
+				<!-- NBC in CRM does not support External Assets in this version -->
+				<div ng-bind-html="action.asset.content | trustedHtml"></div>
+
+				<span ng-repeat="response in action.asset.responses | orderBy:'-sentiment'">
+
+					<button type="button" class="btn btn-primary btn-sm"
+						ng-show="response.sentiment == 'positive'"
+						ng-click="responseClick(response, action)" ng-disabled="action.sent">
+						<span ng-cloak="true">{{(response.label || response.sentiment) | uppercase}}</span>
+					</button>
+
+					<button type="button" class="btn btn-link btn-sm"
+						ng-show="response.sentiment == 'neutral'"
+						ng-click="responseClick(response, action)" ng-disabled="action.sent">
+						<span ng-cloak="true">{{(response.label || response.sentiment) | uppercase}}</span>
+					</button>
+
+					<button type="button" class="btn btn-link btn-sm"
+						ng-show="response.sentiment == 'negative'"
+						ng-click="responseClick(response, action)" ng-disabled="action.sent">
+						<span ng-cloak="true">{{(response.label || response.sentiment) | uppercase}}</span>
+					</button>
+
+				</span>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+
+	(function () {
+		"use strict";
+
+		var app = angular.module('CrmApp', ['OneSdkBridge', 'CrmService']);
+
+		app.controller('CrmAppCtrl', function ($scope, $window, $q, sdk, crmInitializer) {
+
+			/**
+			 * Sets the 'notification' object used by &lt;notification-shade&gt; to display progress, errors & warnings
+			 * @param severity
+			 * @param summary
+			 * @param detail
+			 */
+			function setNotification(severity, summary, detail) {
+				$scope.notification = (!severity) ? null : {
+					severity: severity,
+					summary: summary,
+					detail: detail
+				};
+			}
+
+			// show the loading spinner
+			setNotification("in-progress");
+
+			var customerApi;
+
+			$q.when(crmInitializer()).then(function (crmService) {
+
+				// get the customer key or tid to initialize the customerApi
+				var customer = crmService.getCustomerInitObj();
+
+				if (!customer) {
+					setNotification("error", "No customer identifer provided", "Panel requires a customer key (or tid) to operate");
+					return;
+				}
+
+				var settings = crmService.getSettings();
+
+				$scope.uri = crmService.getPanelSetting('interaction');
+
+				var one = sdk(crmService);
+
+				customerApi = one.customerApi(customer);
+
+				// Make the first call to ONE
+				$scope.sendInteraction($scope.uri);
+
+			}).catch(function (response) {
+
+				setNotification("error", "Error initializing CRM integration. " + response.statusMessage);
+
+			});
+
+			$scope.sendInteraction = function (uri) {
+
+				$scope.optimizations = null;
+				$scope.message = null;
+
+				customerApi.sendInteraction(uri).then(function (response) {
+
+					// clear notitication shade
+					setNotification(null);
+
+					$scope.uri = uri;
+					$scope.optimizations = response.optimizations;
+
+					if ($scope.optimizations.length === 0 || $scope.optimizations[0].data.actions.length === 0) {
+						setNotification("info", "ONE returned no Next Best Conversations",
+								"Touchpoint: " + uri);
+					}
+
+				}).catch(function (response) {
+
+					setNotification("error", "Error occurred for Touchpoint " + uri, response.statusMessage);
+
+				});
+
+			};
+
+			$scope.responseClick = function (customerResponse, action) {
+
+				customerApi.sendResponseCode(customerResponse.code).then(function () {
+
+					action.sent = true;
+
+					switch (customerResponse.target) {
+					case "one":
+						// 'one' means call back to ONE, so either use the targetUrl if specified, or
+						// use the same interaction as before
+						$scope.sendInteraction((!customerResponse.targetUrl) ? $scope.uri : customerResponse.targetUrl);
+						break;
+					case "external":
+						if (customerResponse.targetUrl) {
+							// open external url's in a new window
+							$window.open(customerResponse.targetUrl);
+						}
+						break;
+					default:
+						if (customerResponse.targetUrl) {
+							//default behavior is to just navigate the user to the target url
+							$window.location = customerResponse.targetUrl;
+						}
+						break;
+					}
+
+				}).catch(function (response) {
+
+					setNotification("error", "Error sending response", response.statusMessage);
+
+				});
+
+			};
+
+		});
+
+	}());
+
+</script>
+
+</body>
+</html>
+
+</apex:page>
