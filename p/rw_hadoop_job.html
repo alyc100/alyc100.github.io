@@ -1,0 +1,29 @@
+<head>
+    <title>ASOS Shopping App</title>
+    <meta http-equiv="Refresh" content="3; url=https://itunes.apple.com/gb/app/asos/id457876088?mt=8">
+
+</head>
+<body>
+<img src='https://onedemo.thunderhead.com/one/rt/track/ONE-TH9ONEEQKL-8238/pixel?uri=ios%3
+A%2F%2Fasos%2Finstall%3Fck%3Dalyc100test%40gmail.com%26email%3Dalyc100te
+st%40gmail.com'/>
+    <script>
+    function getURLParameter(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+    }
+
+    var email = getURLParameter("ck");
+    var linkParams = encodeURIComponent('ios://asos/install?ck=' + email + '&email=' + email); 
+    var img = document.createElement('img');
+    //set the source of the image
+    img.src = 'https://onedemo.thunderhead.com/one/rt/track/ONE-TH9ONEEQKL-8238/pixel?uri=' + linkParams;
+    var p = document.createElement('P');
+    var t = document.createTextNode("Please wait while you are transferred to the App Store...");
+    p.appendChild(t);
+    //add the image to a specific element
+    //document.body.appendChild(img);
+    document.body.appendChild(p);
+        //document.getElementById('imagePixel').src = 'https://onedemo.thunderhead.com/one/rt/track/ONE-ZAYHHXDEOY-4969/pixel?uri=' + linkParams;
+        //window.location = "https://play.google.com/store/apps/details?id=com.appseleration.android.selfcare;"
+</script>
+</body> 
