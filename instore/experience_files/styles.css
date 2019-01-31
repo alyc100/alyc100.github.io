@@ -6896,6 +6896,7 @@ select {
       top: 50%;
       width: 50px; }
     .viewport .beacon.entrance {
+      background-image: url("dynamics.png");
       height: 40px;
       left: 22%;
       top: 40%;
