@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"></link>
+        <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+        <script src="../../sdk/one-sdk.js"></script>
+        <script src="js/one-sdk-bridge.js"></script>
+        <!-- NOTE: This harness js file needs to be removed when this panel is not being used in the harness -->
+        <script src="../harness/js/one-sdk-harness.js"></script>
+
+
+        <!-- ASHLEYAC CUSTOM - CSS (START) -->
+            <style type="text/css">
+                .interest-item{
+                    text-align: center;
+                }
+            </style>
+        <!-- ASHLEYAC CUSTOM - CSS (END) -->
+    
+
+    </head>
+    <body ng-app="CrmApp" ng-controller="CrmAppCtrl" style="margin: 20px;">
+
+
+        <!-- ASHLEYAC CUSTOM - HTML (START) -->
+            <div class="container-fluid">
+                <div class="row">
+                    <notification-shade/>
+                </div>
+                <div class="row" ng-hide="notification">
+                    <div id="interest-item-container">
+                        <div class="interest-item">
+                            <div id="interest-item-name"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- ASHLEYAC CUSTOM - HTML (START) -->
+
+
+        <script>
+            (function () {
+                "use strict";
+
+                var app = angular.module('CrmApp', ['OneSdkBridge', 'CrmService']);
+
+                /**
+                 * Utility filter to convert the Action types to prettier glyph+text pairs
+                 */
+                app.filter('responsetype', ['$sce', function ($sce) {
+                    return function (type) {
+                        var type_image = {
+                            'POSITIVE_CLICK': '<i class="glyphicon glyphicon-thumbs-up"></i> Positive',
+                            'NEGATIVE_CLICK': '<i class="glyphicon glyphicon-thumbs-down"></i> Negative',
+                            'NEUTRAL_CLICK': '<i class="glyphicon glyphicon-pushpin"></i> Neutral'
+                        }
+
+                        if (type_image[type]) {
+                            return $sce.trustAsHtml(type_image[type]);
+                        }
+                        else {
+                            return $sce.trustAsHtml('<i class="glyphicon glyphicon-eye-open"> View</i>');
+                        }
+                    };
+                }]);
+
+                app.controller('CrmAppCtrl', function ($scope, $window, $q, sdk, crmInitializer) {
+                    /**
+                     * Sets the 'notification' object used by &lt;notification-shade&gt; to display progress, errors & warnings
+                     * @param severity
+                     * @param summary
+                     * @param detail
+                     */
+                    function setNotification(severity, summary, detail) {
+                        $scope.notification = (!severity) ? null : {
+                            severity: severity,
+                            summary: summary,
+                            detail: detail
+                        };
+                    }
+
+                    // show the loading spinner
+                    setNotification("in-progress");
+
+                    crmInitializer().then(function(crmService) {
+                        var structureServiceName = crmService.getPanelSetting('structure');
+                        var structureFormat = crmService.getPanelSetting('format');
+
+                        // get the customer key or tid to initialize the customerApi
+                        var customer = crmService.getCustomerInitObj();
+                        if (!customer) {
+                            setNotification("error", "No customer identifer provided", "Panel requires a customer key (or tid) to operate");
+                            return;
+                        }
+
+                        var one = sdk(crmService);
+                        var customerApi = one.customerApi(customer);
+                        customerApi.getStructureData(structureServiceName, structureFormat).then(function (response) {
+                            $scope.structure = response;
+                            
+                            // clear notitication shade
+                            setNotification(null);
+                            
+
+                            /*****************************************
+                             * ASHLEYAC CUSTOM - METHOD CODE (START)
+                            *****************************************/
+                                // Cached values for the final output
+                                var mostInterestPropName = "";
+                                var mostInterestPropCode = "";
+                                var mostInterestPropCount = 0;
+
+                                // Base and accepted proposition nodes
+                                var baseNode = "/Renault";
+                                var acceptedNodes = [
+                                    "/Renault/Offers & Finance/Finance - Battery Hire",
+                                    "/Renault/Offers & Finance/Finance - Business",
+                                    "/Renault/Offers & Finance/Finance - Personal",
+                                    "/Renault/Offers & Finance/Finance - Renault Hire Purchase",
+                                    "/Renault/Offers & Finance/Finance - Renault Selections",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Accident Future Payments",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Cancel Agreement",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Card Payments",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Change of Address",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Discuss Agreement",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Discuss another Agreement",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Early Settlement",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Enter IVA",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Exceeded Milage",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Finance another person none payment",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Holiday Payment",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Lump Sum",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Missed Payment",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Nearing end of Agreement",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Online Payment not Appearing",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Payment Struggle",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Purchase Another Car",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Reduce Payment Increase Term",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Sell my Car",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Settlement Figure",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Transfer Agreement",
+                                    // "/Renault/Offers & Finance/Finance - FAQ/FAQ Voluntary Termination",
+                                    "/Renault/Motability/Motability Contract Hire",
+                                    "/Renault/Motability/Motability Conversions",
+                                    "/Renault/Business/Business - Finance/Business - Contract Hire",
+                                    "/Renault/Business/Business - Finance/Business - Finance Lease",
+                                    "/Renault/Business/Business - Finance/Business - Hire Purchase",
+                                    "/Renault/Business/Business - Finance/Business - Lease Purchase"
+                                ]
+
+                                // For each proposition in the customer history
+                                for(var i = 0; i < Object.keys($scope.structure.propositions).length; i++){
+                                    // Default, don't ignore node
+                                    var propIgnoreFlag = false;
+
+                                    // Ensure the proposition starts with the base requirement (/Renault/), allowing us to jump over anything that is not important
+                                    if($scope.structure.propositions[i].prop_name.startsWith(baseNode)) {
+                                        // Filter parent props, we only want offers and finance!
+                                        console.log("checking", $scope.structure.propositions[i].prop_name);
+                                        for(var c = 0; c < acceptedNodes.length; c++) {
+                                            if($scope.structure.propositions[i].prop_name === acceptedNodes[c]) {
+                                                // If our current node exists in the list, break and compare.
+                                                console.log("accepted!");
+                                                propIgnoreFlag = false;
+                                                break;
+                                            }
+                                            else {
+                                                // Only flag for this result, a next result could be "true".
+                                                propIgnoreFlag = true;
+                                            }
+                                        }
+
+                                        // Decide if we should log this result based on if it existed or its interest level is higher
+                                        if(!propIgnoreFlag) {
+                                            if($scope.structure.propositions[i].interest > mostInterestPropCount) {
+                                                // In the case the interest level is higher than the last know result, cache it
+                                                console.log("high!");
+                                                mostInterestPropName = $scope.structure.propositions[i].prop_name;
+                                                mostInterestPropCount = $scope.structure.propositions[i].interest;
+                                            }
+                                            else {
+                                                console.log("low!");
+                                            }
+                                        }
+                                    }
+                                }
+
+                                // Finally after looking through the list, 
+                                if(mostInterestPropName === "") {
+                                    setNotification("info", "Not enough activity to suggest Finance offers.", "");
+                                }
+                                else {
+                                    // Return the finance offer to the view
+                                    let finalName = mostInterestPropName.split("/")[mostInterestPropName.split("/").length-1];
+
+                                    $("#interest-item-name").append(`<p>Shown interest in:<br>${finalName}</p>`);
+                                }
+                            /*****************************************
+                             * ASHLEYAC CUSTOM - METHOD CODE (END)
+                            *****************************************/
+
+
+                        }).catch(function (response) {
+                            setNotification("error", "Error occurred for Structure: " + structureServiceName, response.statusMessage);
+                        });
+                    }).catch(function (response) {
+                        setNotification("error", "Error initializing CRM integration. " + response.statusMessage);
+                    });
+                });
+            }());
+        </script>
+    </body>
+</html>
