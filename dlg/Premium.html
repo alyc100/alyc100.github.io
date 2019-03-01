@@ -410,7 +410,8 @@ try{(new g(100,"r","QSI_S_SI_8jZR1J2p1VQ4avX","https://zn5hcucjwkaxicwbd-directl
 <script type="text/javascript">
 function showSsoErrorMessage() {
     var $htmlMarkup = $('<div class="sso-overlay"><div class="sso-error-message">' +
-        '<p>My Dashboard not available at the moment</p>' +
+        '<div class="sso_form-element "><label for="sso_sign-in-username" class="sso_form-label ">Email address</span></label><div class="sso_form-input"><input data-recording-mask="" type="text" id="sso_sign-in-username" name="sso_sign-in-username" data-di-field-id="sso_sign-in-username" autocomplete="sso_sign-in-username" placeholder="name@email.com" class="ng-untouched ng-pristine ng-invalid" data-di-id="#sso_sign-in-username"></div></div>' +
+        '<div class="input-button btn-center initialized"><a href="https://www.directline.com" class="button link secondary">Save Quote</a></div>' +
         '<a class="sprite-close-icon close-sso-error"></a>' +
         '</div></div>'),
   $content = $('#content');
@@ -6920,6 +6921,7 @@ $('[href="#save"], .sso-save').removeAttr('href');
 <script type="text/javascript">
 function showSsoErrorMessage() {
     var $htmlMarkup = $('<div class="sso-overlay"><div class="sso-error-message">' +
+        '<button class="sso_button-primary" type="submit">Save Quote</button>' +
         '<p>My Dashboard not available at the moment</p>' +
         '<a class="sprite-close-icon close-sso-error"></a>' +
         '</div></div>'),
