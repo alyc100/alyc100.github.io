@@ -78,7 +78,7 @@
 					var $row = $(row);
 
 					if ($("#activity-view-item-" + x)[0].children[4].innerHTML.toLowerCase().indexOf('help') > -1 || $(
-							"#activity-view-item-" + x)[0].children[4].innerHTML.toLowerCase().indexOf('crm') > -1) {
+							"#activity-view-item-" + x)[0].children[1].innerHTML.toLowerCase().indexOf('assisted.png') > -1) {
 						activityHistoryRows[Object.keys(activityHistoryRows).length] = {
 							type: row.innerHTML,
 							row: $("#activity-view-item-" + x)[0].classList.add('help')
