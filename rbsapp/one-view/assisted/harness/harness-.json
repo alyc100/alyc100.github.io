@@ -1,0 +1,32 @@
+{
+	"sdkSettings" : {
+		"version" : "2.0",
+		"host" : "https://eu2.thunderhead.com",
+		"touchpoint" : "assisted://agent-companion",
+		"sk" : "ONE-JPT2UCNNA9-1399",
+		"oauth1" : {
+			"apiKey" : "849636b8-6c7b-4593-9e1f-789ca39fccbb",
+			"sharedSecret" : "96926297-498f-4930-8c90-4b4dc5b94b1d",
+			"loginId" : "ascott@services-oeh"
+		}
+	},
+	"aepPanelDef" : {
+		"structure" : "history",
+		"format" : "json"
+	},
+	"devicePanelDef" : {
+		"structure" : "devices",
+		"format" : "json"
+	},
+	"historyPanelDef" : {
+		"structure" : "history",
+		"format" : "json"
+	},
+	"nbcPanelDef" : {
+		"interaction" : "/nbc"
+	},
+	"scjPanelDef" : {
+		"dataStructure": "SingleCustomerJourney",
+		"configStructure": "Configuration"
+	}
+}
