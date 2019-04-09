@@ -6897,10 +6897,10 @@ select {
       width: 50px; }
     .viewport .beacon.entrance {
       background-image: url("sfdccloud_icon.png");
-      height: 40px;
-      left: 69%;
-      top: 65%;
-      width: 40px; }
+      height: 100px;
+      left: 67%;
+      top: 63%;
+      width: 100px; }
 
 @-webkit-keyframes pulse {
   0% {
