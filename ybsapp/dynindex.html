@@ -11,7 +11,7 @@ var tid = 12345;
 <!--END OF ONE TAG -->
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <title>Salesforce</title><!-- Tell the browser to be responsive to screen width -->
+    <title>Microsoft Dynamics 365</title><!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"><!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous"><!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"><!-- Ionicons -->
@@ -24,7 +24,6 @@ var tid = 12345;
     <link href="plugins/datepicker/datepicker3.css" rel="stylesheet"><!-- Daterange picker -->
     <link href="plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet"><!-- bootstrap wysihtml5 - text editor -->
     <link href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet"><!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <link href="https://ntoretailforce.lightning.force.com/img/one/favicon.ico" type="image/ico" rel="shortcut icon" sizes="16x16 24x24 32x32">
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
                 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -35,27 +34,64 @@ var tid = 12345;
             height: 100px;
             text-align: center;
         }
-        
-        .box.box-primary {
-            border-top-color: #0070D2;
-        }
     </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
     <div class="wrapper" style="background-color:#333">
         <header class="main-header">
             <!--Dynamics 365 Header Image -->
-            <img src="./images/sfdc_header.png" width="100%" />
+            <img src="./images/dynamics365_header.png" width="100%" />
         </header><!-- Left side column. contains the logo and sidebar -->
-        <div class="content-wrapper" style="margin-left:0px!important;background-image:url(./images/lightning_blue_background.png),linear-gradient(to top, rgba(160, 180, 206, 0.0) 0, rgb(176, 196, 223));background-repeat:no-repeat;background-size: auto;background-color: rgba(176, 196, 223, 1);">
+        <aside class="main-sidebar" style="background-color: #333">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image" ><img alt="User Image" class="img-circle" src="images/default_org_thumb.png"></div>
+                    <div class="pull-left info">
+                        <p>YBS.co.uk</p><a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div><!-- search form -->
+                <form action="index.html" class="sidebar-form" id="search-form" method="get" name="search-form" style="border:0px;">
+                    <div style="border:2px solid #EEEEEE;" class="input-group">
+                        <input class="form-control" id="cust_id" name="q" placeholder="Search..." type="text"> <span class="input-group-btn"><button class="btn btn-flat" id="search-btn" type="submit"><span><i class="fa fa-search"></i></span></button></span>
+                    </div>
+                    <div class="input-group" style="margin-left:10px;">
+                        <div class="radio">
+                            <label style="color: #000000;"><input id="tid_option" name="optionsRadios" type="radio" value="tid"> Thunderhead ID</label>
+                        </div>
+                        <div class="radio">
+                            <label style="color: #000000;"><input id="ck_option" name="optionsRadios" type="radio" value="ck"> Customer Key</label>
+                        </div>
+                    </div>
+                </form><!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="active">
+                        <a href="index.html" style="border-left-color: #00B7C3;background-color: #000"><i class="fa fa-dashboard" style="color:white"></i> <span>Dashboard</span></a>
+                    </li>
+                </ul>
+            </section><!-- /.sidebar -->
+        </aside><!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
             <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <img src="images/customer.png" style="width:40px"/>
+                <h1 style="display:inline-block;font-size: 2em;position: absolute;bottom:0;left:100;">&nbsp;Customer</h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#"><i class="fa fa-dashboard"></i> Home</a>
+                    </li>
+                </ol>
+            </section><!-- Main content -->
             <section id="no-key-message" class="content">
                 <div class="row">
                     <section class="col-md-12 connectedSortable ui-sortable">
                         <div class="box box-primary">
-                            <div class="box-header ui-sortable-handle" style="cursor: move;background:rgb(243, 242, 242);">
-                                <img src="./images/leads_120.png" width="39px"/>
-                                <h3 class="box-title"><b>Leads</b></h3>
+                            <div class="box-header ui-sortable-handle" style="cursor: move;">
+                                <i class="fa fa-history"></i>
+                                <h3 class="box-title">Leads</h3>
                             </div>
                             <div class="box-body">
                                 <!--<h4>Get started by entering a TID or Customer Key on the left-hand side.</h4>-->
@@ -76,7 +112,7 @@ var tid = 12345;
       <th scope="row">1</th>
       <td>Ciaran</td>
       <td>McCarthy</td>
-      <td>Booked online appointment</td>
+      <td>Completed Appointment Form</td>
       <td>Administrator</td>
       <td><a id="ybsrecord_1" href="#">View Record</a></td>
     </tr>
@@ -84,7 +120,7 @@ var tid = 12345;
       <th scope="row">2</th>
       <td>Matthew</td>
       <td>Smith</td>
-      <td>High interest in Cash ISAs</td>
+      <td>Interest in Mortgage</td>
       <td>Administrator</td>
       <td><a id="ybsrecord_2" href="#">View Record</a></td>
     </tr>
@@ -92,7 +128,7 @@ var tid = 12345;
       <th scope="row">3</th>
       <td>Alex</td>
       <td>Lee</td>
-      <td>Fixed Mortgage Term near expiry</td>
+      <td>Completed Appointment Form</td>
       <td>Administrator</td>
       <td><a id="ybsrecord_3" href="#">View Record</a></td>
     </tr>
@@ -108,10 +144,9 @@ var tid = 12345;
                 <div class="row">
                     <section class="col-md-12 connectedSortable ui-sortable">
                         <div class="box box-primary">
-                            <div class="box-header ui-sortable-handle" style="cursor: move;background:rgb(243, 242, 242);">
-                                <div style="width:50%;float: left;"><img src="./images/person_account_120.png" width="39px"/>
-                                <h5 style="display:inline-block;margin-top:0px;"><b>Ciaran McCarthy</b></h5></div>
-                                <div style="text-align: right;width:50%;float: left;"><img src="./images/customerpanel_menu.png" width="450px" /></div>
+                            <div class="box-header ui-sortable-handle" style="cursor: move;">
+                                <i class="fa fa-history"></i>
+                                <h2 style="display:inline-block;margin-top:0px">Ciaran McCarthy</h2>
                             </div>
                             <div class="box-body">
                                 <iframe frameborder="0" height="200px" src="one-view/assisted/base/customerview.html?panel-def=customer" width="100%"></iframe>
@@ -136,35 +171,10 @@ var tid = 12345;
                         <div class="box box-primary">
                             <div class="box-header">
                                 <i class="fa fa-user"></i>
-                                <h3 class="box-title">Customer Interaction</h3>
-                            </div>
-                            <div class="box-body">
-                                <iframe frameborder="0" height="450px" src="one-view/assisted/base/customerreason.html?panel-def=reason" width="100%"></iframe>
-                            </div>
-                        </div>
-                    </div><!-- ./col -->
-                </div><!-- /.row -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <!-- small box -->
-                        <div class="box box-primary">
-                            <div class="box-header">
-                                <i class="fa fa-comments-o"></i>
                                 <h3 class="box-title">Interest Profile</h3>
                             </div>
                             <div class="box-body">
-                                <iframe class="embed-responsive-item" frameborder="0" height="450px" src="one-view/assisted/base/new_aep.html?panel-def=aep" width="100%"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="box box-primary">
-                            <div class="box-header">
-                                <i class="fa fa-user"></i>
-                                <h3 class="box-title">Latest Quotes</h3>
-                            </div>
-                            <div class="box-body">
-                                <iframe frameborder="0" height="450px" src="one-view/assisted/base/customerquote.html?panel-def=customer" width="100%"></iframe>
+                                <iframe frameborder="0" height="450px" src="one-view/assisted/base/new_aep.html?panel-def=aep" width="100%"></iframe>
                             </div>
                         </div>
                     </div><!-- ./col -->
