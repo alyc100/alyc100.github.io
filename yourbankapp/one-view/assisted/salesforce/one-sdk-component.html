@@ -1,0 +1,67 @@
+<apex:component access="global">
+	<apex:attribute name="interaction" type="String" required="false" description="The interaction to query" access="global"/>
+	<apex:attribute name="structure" type="String" required="false" description="The structure to query" access="global"/>
+	<apex:attribute name="format" type="String" default="json" required="false" description="The data format to return" access="global"/>
+	<apex:attribute name="customerKey" type="String" required="false" description="The customer key" access="global"/>
+
+	<script src="{!URLFOR($Resource.one_js_sdk, 'one-sdk.js')}"></script>
+	<script src="{!URLFOR($Resource.one_sdk_salesforce, 'js/one-sdk-bridge.js')}"></script>
+	<script>
+
+		(function () {
+			'use strict';
+
+			var module = angular.module('CrmService', ['OneSdkBridge']);
+
+			module.factory('crmInitializer', function ($q) {
+
+				return function () {
+
+					var panelSettings = {
+						interaction: "{!interaction}",
+						structure: "{!structure}",
+						format: "{!format}"
+					};
+
+					var sdkSettings = {
+						version: "2.0",
+						host: "{!$Setup.th4__Application_Custom_Settings__c.th4__OFM_API_Host__c}",
+						touchpoint: "{!$Setup.th4__Application_Custom_Settings__c.th4__OFM_Touchpoint_URI__c}",
+						sk: "{!$Setup.Application_Custom_Settings__c.th4__OFM_Site_Key__c}",
+						oauth1: {
+							apiKey: "{!$Setup.th4__Application_Custom_Settings__c.th4__API_Access_Key__c}",
+							sharedSecret: "{!$Setup.th4__Application_Custom_Settings__c.th4__API_Secret__c}",
+							loginId: "{!$Setup.th4__Application_Custom_Settings__c.th4__API_Username__c}"
+						}
+					};
+
+					var customerKey = "{!customerKey}";
+
+					var service = {
+						getSettings: function () {
+							return sdkSettings;
+						},
+
+						getCustomerKey: function () {
+							return customerKey;
+						},
+
+						getCustomerInitObj: function () {
+							return {
+								customerKey: customerKey
+							};
+						},
+
+						getPanelSetting: function (name) {
+							return panelSettings[name];
+						}
+					};
+
+					return $q.when(service);
+
+				};
+			});
+		}());
+
+	</script>
+</apex:component>

@@ -1,0 +1,38 @@
+{
+	"sdkSettings" : {
+		"version" : "2.0",
+		"host" : "https://eu2.thunderhead.com",
+		"touchpoint" : "oeh://assisted",
+		"sk" : "ONE-I2NZYMH8JO-1757",
+		"oauth1" : {
+			"apiKey" : "cabd0276-5ac1-4d56-9833-0df6f11488b0",
+			"sharedSecret" : "6262bd4e-65bb-4427-a685-fdce4a4bb767",
+			"loginId" : "alee@kpmg"
+		}
+	},
+	"aepPanelDef" : {
+		"structure" : "history",
+		"format" : "json"
+	},
+	"devicePanelDef" : {
+		"structure" : "devices",
+		"format" : "json"
+	},
+	"historyPanelDef" : {
+		"structure" : "history",
+		"format" : "json"
+	},
+    "customerPanelDef" : {
+		"structure" : "aep",
+		"format" : "json"
+	},
+	"nbcPanelDef" : {
+		"interaction" : "/nbc"
+	},
+	"scjPanelDef" : {
+		"dataStructure": "SingleCustomerJourney",
+		"configStructure": "Configuration"
+	}
+    
+    
+}
