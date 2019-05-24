@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Test Harness - ONE SDK Dynamics Panels</title>
+	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+	<script>
+		// TESTING USE ONLY - set the global html maskup vars that SAP C4C panels read from when loading from the C4C origin
+
+		var sap = {};
+		sap.byd = {};
+		sap.byd.ui = {};
+		sap.byd.ui.mashup = {};
+		sap.byd.ui.mashup.context = {};
+		sap.byd.ui.mashup.context.inport = {};
+		var mashupVars = sap.byd.ui.mashup.context.inport;
+
+		mashupVars.InteractionPath = '/nbc';
+		mashupVars.StructureApiName = 'aep';
+		mashupVars.StructureFormat = 'html';
+
+		mashupVars.Server = 'https://onedemo.thunderhead.com';
+		mashupVars.DefaultTouchPoint = 'assist://callcenter';
+		mashupVars.SiteKey = 'ONE-JSDXCSSS7N-4353';
+
+		mashupVars.APIKey = 'eff883bb-d4e5-4d0e-bba0-7c7094c3c112';
+		mashupVars.SecretKey = 'f22413d6-1667-46e5-bfcb-e0f9c61cb445'
+		mashupVars.UserName = 'dr@onedemo-presales';
+
+		mashupVars.CustomerKey = 'F4DF445E-B9AB-E411-80E2-C4346BAD1548';
+
+		window.sap = sap;
+
+	</script>
+</head>
+<body>
+<h2>Agent Companion</h2>
+
+<div class="container-fluid">
+
+	<div class="col-md-8 panel panel-default">
+
+		<div class="panel-body">
+
+			<!--
+			The "panel-def" parameter is used to determine which properties to use in assisted/base/harness.json.
+
+			The "panel-def" is the prefix value is the pulled from the URL in one-sdk-harness.js
+
+			"nbc" stands for "Next Best Conversation"
+			-->
+			<iframe class="embed-responsive-item" height="450px" width="100%" frameborder="0"
+				src="nbc.html?panel-def=nbc">
+			</iframe>
+
+		</div>
+
+	</div>
+
+	<div class="col-md-4 panel panel-default">
+
+		<div class="panel-body">
+
+			<!--
+			The "panel-def" parameter is used to determine which properties to use in assisted/base/harness.json.
+
+			The "panel-def" is the prefix value is the pulled from the URL in one-sdk-harness.js
+
+			"aep" stands for "Adaptive Engagement Profile"
+			-->
+				<iframe src="structure.html?panel-def=aep"
+					height="450px" width="100%" frameborder="0">
+				</iframe>
+
+		</div>
+
+	</div>
+
+	<div class="col-md-12 panel panel-default">
+
+		<div class="panel-body">
+
+			<!--
+			The "panel-def" parameter is used to determine which properties to use in assisted/base/harness.json.
+
+			The "panel-def" is the prefix value is the pulled from the URL in one-sdk-harness.js
+			-->
+			<iframe src="history.html?panel-def=history"
+				height="300px" width="100%" frameborder="0">
+			</iframe>
+
+		</div>
+
+	</div>
+
+</div>
+	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Single Customer Journey</h3>
+			</div>
+			<div class="panel-body">
+				<iframe src="single-customer-journey.html?panel-def=scj" height="400px" width="100%" frameborder="0">
+				</iframe>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

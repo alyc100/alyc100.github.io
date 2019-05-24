@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"></link>
+        <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+        <script src="../../sdk/one-sdk.js"></script>
+        <script src="js/one-sdk-bridge.js"></script>
+        <!-- NOTE: This harness js file needs to be removed when this panel is not being used in the harness -->
+        <script src="../harness/js/one-sdk-harness.js"></script>
+
+
+        <!-- ASHLEYAC CUSTOM - CSS (START) -->
+            <style type="text/css">
+                .vehicle-item{
+                    text-align: center;
+                }
+            </style>
+        <!-- ASHLEYAC CUSTOM - CSS (END) -->
+
+
+    </head>
+    <body ng-app="CrmApp" ng-controller="CrmAppCtrl" style="margin: 20px;">
+
+
+        <!-- ASHLEYAC CUSTOM - HTML (START) -->
+            <div class="container-fluid">
+                <div class="row">
+                    <notification-shade/>
+                </div>
+
+                <div class="row" ng-hide="notification">
+                    <div id="vehicle-item-container">
+                        <div class="vehicle-item">
+                            <div id="vehicle-item-code"></div>
+                            <div id="vehicle-item-name"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- ASHLEYAC CUSTOM - HTML (START) -->
+
+
+        <script>
+            (function () {
+                "use strict";
+
+                var app = angular.module('CrmApp', ['OneSdkBridge', 'CrmService']);
+
+                /**
+                 * Utility filter to convert the Action types to prettier glyph+text pairs
+                 */
+                app.filter('responsetype', ['$sce', function ($sce) {
+                    return function (type) {
+                        var type_image = {
+                            'POSITIVE_CLICK': '<i class="glyphicon glyphicon-thumbs-up"></i> Positive',
+                            'NEGATIVE_CLICK': '<i class="glyphicon glyphicon-thumbs-down"></i> Negative',
+                            'NEUTRAL_CLICK': '<i class="glyphicon glyphicon-pushpin"></i> Neutral'
+                        }
+
+                        if (type_image[type]) {
+                            return $sce.trustAsHtml(type_image[type]);
+                        }
+                        else {
+                            return $sce.trustAsHtml('<i class="glyphicon glyphicon-eye-open"> View</i>');
+                        }
+                    };
+                }]);
+
+                app.controller('CrmAppCtrl', function ($scope, $window, $q, sdk, crmInitializer) {
+                    /**
+                     * Sets the 'notification' object used by &lt;notification-shade&gt; to display progress, errors & warnings
+                     * @param severity
+                     * @param summary
+                     * @param detail
+                     */
+                    function setNotification(severity, summary, detail) {
+                        $scope.notification = (!severity) ? null : {
+                            severity: severity,
+                            summary: summary,
+                            detail: detail
+                        };
+                    }
+
+
+                    /**
+                     * ASHLEYAC CUSTOM - METHOD CODE (START)
+                     * Converts the 4th level proposition name to the 5th level proposition code.
+                     * This is due to the 5th level proposition containing the code which matches up with the images.
+                     * @param code, the proposition name at the 4th level under "/Renault/Vehicles/TYPE/NAME"
+                     */
+                        function parseVehicleCode(code) {
+                            switch(code) {
+                                case "CLIO": return "new-clio"; break;
+                                case "Grand SCENIC": return "all-new-grand-scenic"; break;
+                                case "MEGANE": return "megane"; break;
+                                case "MEGANE Sport Tourer": return "all-new-megane-sport-tourer"; break;
+                                case "SCENIC": return "all-new-scenic"; break;
+                                case "TWINGO": return "twingo"; break;
+                                case "CAPTUR": return "new-captur"; break;
+                                case "KADJAR": return "kadjar"; break;
+                                case "KOLEOS": return "koleos"; break;
+                                case "FLUENCE": return "used-fluence-ze"; break;
+                                case "TWIZY": return "twizy"; break;
+                                case "ZOE": return "zoe-250"; break;
+                                case "New KANGOO Z.E.": return "kangoo-ze"; break;
+                                case "New MEGANE Renault Sport": return "megane-renault-sport"; break;
+                                case "ESPACE": return "used-espace"; break;
+                                case "LAGUNA": return "used-laguna"; break;
+                                case "MODUS": return "used-modus"; break;
+                                case "Wind Roadste": return "used-wind-roadster"; break;
+                                case "KANGOO": return "kangoo"; break;
+                                case "MASTER": return "master"; break;
+                                case "Renault CONVERSIONS": return "conversions"; break;
+                                case "TRAFIC": return "trafic"; break;
+                                case "TRAFIC Passenger": return "trafic-passenger"; break;
+                            }
+                        }
+                    /**
+                     * ASHLEYAC CUSTOM - METHOD CODE (END)
+                     */
+
+
+                    // show the loading spinner
+                    setNotification("in-progress");
+
+                    crmInitializer().then(function(crmService) {
+                        var structureServiceName = crmService.getPanelSetting('structure');
+                        var structureFormat = crmService.getPanelSetting('format');
+
+                        // get the customer key or tid to initialize the customerApi
+                        var customer = crmService.getCustomerInitObj();
+                        if (!customer) {
+                            setNotification("error", "No customer identifer provided", "Panel requires a customer key (or tid) to operate");
+                            return;
+                        }
+
+                        var one = sdk(crmService);
+                        var customerApi = one.customerApi(customer);
+                        customerApi.getStructureData(structureServiceName, structureFormat).then(function (response) {
+                            $scope.structure = response;
+
+                            // clear notitication shade
+                            setNotification(null);
+
+
+                            /*****************************************
+                                ASHLEYAC CUSTOM - MAIN CODE (START)
+                            *****************************************/
+                                // Cached values for the final output
+                                var mostInterestPropName = "";
+                                var mostInterestPropCode = "";
+                                var mostInterestPropCount = 0;
+
+                                // Base and accepted proposition nodes
+                                var baseNode = "/Renault/Vehicles";
+                                var acceptedNodes = [
+                                    "/Renault/Vehicles/Cars/CLIO", 
+                                    "/Renault/Vehicles/Cars/Grand SCENIC", 
+                                    "/Renault/Vehicles/Cars/MEGANE", 
+                                    "/Renault/Vehicles/Cars/MEGANE Sport Tourer", 
+                                    "/Renault/Vehicles/Cars/SCENIC", 
+                                    "/Renault/Vehicles/Cars/TWINGO", 
+                                    "/Renault/Vehicles/Crossovers/CAPTUR", 
+                                    "/Renault/Vehicles/Crossovers/KADJAR", 
+                                    "/Renault/Vehicles/Crossovers/KOLEOS", 
+                                    "/Renault/Vehicles/Electric Vehicles/FLUENCE", 
+                                    "/Renault/Vehicles/Electric Vehicles/TWIZY", 
+                                    "/Renault/Vehicles/Electric Vehicles/ZOE", 
+                                    "/Renault/Vehicles/Future Models/New KANGOO Z.E.", 
+                                    "/Renault/Vehicles/Future Models/New MEGANE Renault Sport", 
+                                    "/Renault/Vehicles/Older Models/ESPACE", 
+                                    "/Renault/Vehicles/Older Models/LAGUNA", 
+                                    "/Renault/Vehicles/Older Models/MODUS", 
+                                    "/Renault/Vehicles/Older Models/Wind Roadster",
+                                    "/Renault/Vehicles/Vans/KANGOO", 
+                                    "/Renault/Vehicles/Vans/MASTER", 
+                                    "/Renault/Vehicles/Vans/Renault CONVERSIONS", 
+                                    "/Renault/Vehicles/Vans/TRAFIC", 
+                                    "/Renault/Vehicles/Vans/TRAFIC Passenger"
+                                ];
+
+                                // For each proposition in the customer history
+                                for(var i = 0; i < Object.keys($scope.structure.propositions).length; i++){
+                                    // Default, don't ignore node
+                                    var propIgnoreFlag = false;
+
+                                    // Ensure the proposition starts with the base requirement (/Renault/Vehicles/), allowing us to jump over anything that is not important
+                                    if($scope.structure.propositions[i].prop_name.startsWith(baseNode)) {
+                                        // Filter parent props, we only want vehicles!
+                                        for(var c = 0; c < acceptedNodes.length; c++) {
+                                            if($scope.structure.propositions[i].prop_name === acceptedNodes[c]) {
+                                                // If our current node exists in the list, break and compare.
+                                                propIgnoreFlag = false;
+                                                break;
+                                            }
+                                            else {
+                                                // Only flag for this result, a next result could be "true".
+                                                propIgnoreFlag = true;
+                                            }
+                                        }
+
+                                        // Decide if we should log this result based on if it existed or its interest level is higher
+                                        if(!propIgnoreFlag) {
+                                            if($scope.structure.propositions[i].interest > mostInterestPropCount) {
+                                                // In the case the interest level is higher than the last know result, cache it
+                                                mostInterestPropName = $scope.structure.propositions[i].prop_name;
+                                                mostInterestPropCount = $scope.structure.propositions[i].interest;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                // Finally after looking through the list, 
+                                if(mostInterestPropName === "") {
+                                    setNotification("info", "Not enough activity to show vehicle interest.", "");
+                                }
+                                else {
+                                    // Display the vehicle image and name for the most interest vehicle type
+                                    let vehicleName = mostInterestPropName.split("/")[mostInterestPropName.split("/").length-1];
+
+                                    $("#vehicle-item-name").text(vehicleName);
+                                    $("#vehicle-item-code").append(`<img alt="${parseVehicleCode(vehicleName)}" src="./images/vehicles/${parseVehicleCode(vehicleName)}.png"/>`);
+
+                                    // clear notitication shade
+                                    setNotification(null);
+                                }
+                            /**
+                             * ASHLEYAC CUSTOM - MAIN CODE (END)
+                             */
+
+
+                        }).catch(function (response) {
+                            setNotification("error", "Error occurred for Structure: " + structureServiceName, response.statusMessage);
+                        });
+                    }).catch(function (response) {
+                        setNotification("error", "Error initializing CRM integration. " + response.statusMessage);
+                    });
+                });
+            }());
+        </script>
+    </body>
+</html>
