@@ -26,12 +26,56 @@
 <script src="js/custom.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function(){    
+$(document).ready(function(){   
+    
+    var destinationData = [
+    {
+        "destination_name": "Jamaica, Caribbean",
+        "code": "holidays-caribbean-jamaica",
+    },
+    {
+        "destination_name": "Dominican Republic, Caribbean",
+        "code": "holidays-caribbean-dominican_republic",
+    },
+    {
+        "destination_name": "Cuba, Caribbean",
+        "code": "holidays-caribbean-cuba",
+    },
+    {
+        "destination_name": "Mexico, Caribbean",
+        "code": "holidays-caribbean-mexico",
+    },
+    {
+        "destination_name": "Anitgua, Caribbean",
+        "code": "holidays-caribbean-antigua",
+    },
+    {
+        "destination_name": "St Vincent and the Grenadines, Caribbean",
+        "code": "holidays-caribbean-st_vincent",
+    },
+    {
+        "destination_name": "Barbados, Caribbean",
+        "code": "holidays-caribbean-barbados",
+    },
+    {
+        "destination_name": "Saint Lucia, Caribbean",
+        "code": "holidays-caribbean-stlucia",
+    },
+    {
+        "destination_name": "Dominica, Caribbean",
+        "code": "holidays-caribbean-dominica",
+    },
+    {
+        "destination_name": "Trinidad and Tobago, Caribbean",
+        "code": "holidays-caribbean-trinida_tobago",
+    }
+ ];
+    
     // Constructing the suggestion engine
     var destinations = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('destination_name'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        remote: 'js/destinations.json'
+        local: destinationData
     });
     
     destinations.initialize();
@@ -47,7 +91,7 @@ $(document).ready(function(){
         displayKey: 'destination_name',
         source: destinations.ttAdapter()
     }).on('typeahead:selected', function(event, data) {
-        $('.typeahead').val(data.code);
+        $('#destinationId').val(data.code);
     });
 });
 </script>
@@ -215,7 +259,7 @@ $(document).ready(function(){
 						<form action="search.html" id="find_form" class="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap">
 							<div class="find_item">
 								<div>Destination:</div>
-								<input type="text" name="destination" id="destination" class="destination find_input typeahead" required="required" placeholder="Keyword here" autocomplete="off">
+								<input name="destination" id="destination" class="destination find_input typeahead" required="required" placeholder="Keyword here" autocomplete="off">
 							</div>
 							<div class="find_item">
 								<div>Adventure type:</div>
@@ -241,6 +285,7 @@ $(document).ready(function(){
 									<option>£1000</option>
 								</select>
 							</div>
+                            <input id="destinationId" name="destinationId" type="hidden">
 							<button class="button find_button">Find</button>
 						</form>
 					</div>
