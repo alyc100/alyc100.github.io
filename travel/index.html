@@ -26,16 +26,15 @@
 <script src="js/custom.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function(){
-// Defining the local dataset
-    var cars = ['Jamaica, Caribbean', 'Dominican Republic, Caribbean', 'Cuba, Caribbean', 'Mexico, Caribbean', 'Anitgua, Caribbean', 'St Vincent and the Grenadines, Caribbean', 'Barbados, Caribbean', 'Saint Lucia, Caribbean', 'Dominica, Caribbean', 'Trinidad and Tobago, Caribbean'];
-    
+$(document).ready(function(){    
     // Constructing the suggestion engine
     var destinations = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('destination_name'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: cars
+        remote: 'js/destinations.json'
     });
+    
+    destinations.initialize();
     
     // Initializing the typeahead
     $('.typeahead').typeahead({
@@ -45,7 +44,10 @@ $(document).ready(function(){
     },
     {
         name: 'destinations',
-        source: destinations
+        displayKey: 'destination_name',
+        source: destinations.ttAdapter()
+    }).on('typeahead:selected', function(event, data) {
+        $('.typeahead').val(data.code);
     });
 });
 </script>
