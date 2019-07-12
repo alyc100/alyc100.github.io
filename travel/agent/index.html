@@ -77,7 +77,52 @@
 			Can be placed anywhere in the markup.
 		-->
 		<one-notification-shade></one-notification-shade>
-            
+        
+        <div class="row">
+
+			<!-- Widget Sart - nba-->
+			<div class="col-xs-12 col-md-12">
+				<script>
+					angular.module('myApp')
+						.controller('AppCtrlNBA', function ($scope) {
+							$scope.colsize = function (actions) {
+								return actions.length;
+							};
+						});
+				</script>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">NBC</h3>
+					</div>
+					<div class="panel-body">
+						<one-interaction path="/nbc">
+							<div ng-repeat="optimization in oneInteraction.optimizations" class="row" ng-cloak
+								ng-controller="AppCtrlNBA">
+								<div ng-repeat="action in optimization.data.actions"
+									ng-class="{1:'col-xs-12', 2:'col-xs-6', 3:'col-xs-4', 4:'col-xs-2'}[colsize(optimization.data.actions)]"
+									class="text-center" style="width:450px;">
+									<div ng-bind-html="action.asset.content"></div>
+									<div class="row">
+										<div class="col-xs-4"
+											ng-repeat="response in action.asset.responses | orderBy: '-sentiment'">
+											<button type="button" class="btn btn-sm"
+												ng-class="{ true: 'btn-primary', false: 'btn-link' }[response.sentiment === 'positive']"
+												ng-bind="(response.label || response.sentiment) | uppercase"
+												ng-click="action.sent = true" ng-disabled="action.sent"
+												one-interaction-response="response">
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</one-interaction>
+					</div>
+				</div>
+			</div>
+			<!-- Widget End-->
+
+		</div>
+        
 		<div class="row widget-row" style="clear:both">
 
 			<!-- Widget Sart - aep-->
@@ -588,66 +633,7 @@
 			<!-- Widget End-->
 		</div>
     
-        <div class="row widget-row">
-            <!-- Widget Start - Live Agent-->
-			<div class="col-xs-12 col-md-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Live Agent Chat</h3>
-					</div>
-                            
-                    <div class="panel-body">
-                        <iframe frameborder="0" src="https://uk.mylivechat.com/webconsole/" height="600px" width="100%"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-		<div class="row">
-
-			<!-- Widget Sart - nba-->
-			<div class="col-xs-12 col-md-12">
-				<script>
-					angular.module('myApp')
-						.controller('AppCtrlNBA', function ($scope) {
-							$scope.colsize = function (actions) {
-								return actions.length;
-							};
-						});
-				</script>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">NBC</h3>
-					</div>
-					<div class="panel-body">
-						<one-interaction path="/nbc">
-							<div ng-repeat="optimization in oneInteraction.optimizations" class="row" ng-cloak
-								ng-controller="AppCtrlNBA">
-								<div ng-repeat="action in optimization.data.actions"
-									ng-class="{1:'col-xs-12', 2:'col-xs-6', 3:'col-xs-4', 4:'col-xs-2'}[colsize(optimization.data.actions)]"
-									class="text-center" style="width:450px;">
-									<div ng-bind-html="action.asset.content"></div>
-									<div class="row">
-										<div class="col-xs-4"
-											ng-repeat="response in action.asset.responses | orderBy: '-sentiment'">
-											<button type="button" class="btn btn-sm"
-												ng-class="{ true: 'btn-primary', false: 'btn-link' }[response.sentiment === 'positive']"
-												ng-bind="(response.label || response.sentiment) | uppercase"
-												ng-click="action.sent = true" ng-disabled="action.sent"
-												one-interaction-response="response">
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</one-interaction>
-					</div>
-				</div>
-			</div>
-			<!-- Widget End-->
-			
-
-		</div>
+		
 		<div class="row">
 
 			<!-- Widget Start - History-->
