@@ -87,14 +87,14 @@
 	// Wait until dom is ready...
 	$( document ).ready(function() {
 
-		var TidCookie = getCookie("_one_MTIxODc5");
-		var OneSpaceID = "ONE-YUDMSP0RPX-3967";
-		var CustomerID = "ddofferhoff@thunderhead.com";
-		var SiteURL = "http://instore.com";
+		var TidCookie = getCookie("_one_MTYwODgx");
+		var OneSpaceID = "ONE-5YBOIDFQMO-3638";
+		var CustomerID = "1903713010";
+		var SiteURL = "physical://store";
 		var AttName= "storeID";
-		var AttValue = "Voorschoten-2252HC";
+		var AttValue = "London-W1K5QP";
 		var SiteURL = "http://instore.com";
-		var AttName2= "QRcode-ID";
+		var AttName2= "QRcodeID";
 		var AttValue2 = "QR123456-MD12342";
 
 		function getCookie(name) {
@@ -105,7 +105,7 @@
 
 		function showAlert() {
 			jAlert({
-				headingText		:	"Shop location detected: " + AttValue, 
+				headingText		:	"Store location detected: " + AttValue, 
 				contentText		:	"Customer record is updated",
 				buttonColor		:	"#3498db"  // default	
 			},"top"); 
@@ -113,7 +113,7 @@
 
 		function showScanAlert() {
 			jAlert({
-				headingText		:	"QR Scanevent has happened: " + AttValue2, 
+				headingText		:	"QR Scanevent detected: " + AttValue2, 
 				contentText		:	"Customer record is updated",
 				buttonColor		:	"#3498db"  // default	
 			},"top"); 
