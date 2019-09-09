@@ -263,11 +263,11 @@ $(document).ready(function(){
 						<form action="search.html" id="find_form" method="get" class="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap">
 							<div class="find_item">
 								<div>Destination:</div>
-								<input name="destination" id="destination" class="destination find_input typeahead" required="required" placeholder="Keyword here" autocomplete="off">
+								<input id="destination" class="destination find_input typeahead" required="required" placeholder="Keyword here" autocomplete="off">
 							</div>
 							<div class="find_item">
 								<div>Adventure type:</div>
-								<select name="adventure" id="adventure" class="dropdown_item_select find_input">
+								<select id="adventure" class="dropdown_item_select find_input">
 									<option>Beach</option>
 									<option>Family</option>
 									<option>City</option>
@@ -275,7 +275,7 @@ $(document).ready(function(){
 							</div>
 							<div class="find_item">
 								<div>Min price (£)</div>
-								<select name="min_price" id="min_price" class="dropdown_item_select find_input">
+								<select id="min_price" class="dropdown_item_select find_input">
 									<option>&nbsp;</option>
 									<option>No Min</option>
 									<option>100</option>
@@ -285,7 +285,7 @@ $(document).ready(function(){
 							</div>
 							<div class="find_item">
 								<div>Max price (£)</div>
-								<select name="max_price" id="max_price" class="dropdown_item_select find_input">
+								<select nid="max_price" class="dropdown_item_select find_input">
 									<option>&nbsp;</option>
 									<option>No Max</option>
 									<option>500</option>
