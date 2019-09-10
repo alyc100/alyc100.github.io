@@ -1,8 +1,8 @@
 window.channel = {
-    "assisted": ["Destino CRM", "CEP"],
+    "assisted": ["Demo CRM", "CEP"],
     "social": ["Twitter Ad", "YouTube Organic", "Facebook Ad", "YouTube Ad", "Facebook", "Twitter"],
     "outbound": ["Google Org", "Google SEA", "Email"],
-    "web": ["Destino Web"],
-    "physical": ["Destino Travelstore"], 
+    "web": ["Marstons Inn", "Guestline", "Boundary Stone Pub"],
+    "physical": ["Marstons Pub"], 
     "mobile": []
 };
