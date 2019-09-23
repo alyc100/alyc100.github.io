@@ -103,7 +103,7 @@
 
                             // clear notitication shade
                             setNotification(null);
-                            $("#customer-data-container").append('<div class="column"><table class="table table-striped" style="font-size:0.7em"><tr><th scope="row">Customer Number</th><td>' + $scope.structure.email + '</td></tr><tr><th scope="row">Age</th><td>' + $scope.structure.age + '</td></tr><tr><th scope="row">Registered Branch</th><td>' + $scope.structure.localBranch + '</td></tr><tr><th scope="row">Years of Loyalty</th><td>' + $scope.structure.yearsOfLoyalty + '</td></tr></table></div><div class="column"><table class="table table-striped" style="font-size:0.7em"><tr><th scope="row">First Interaction</th><td>' + new Date($scope.structure.behavior.firstInteraction) + '</td></tr><tr><th scope="row">Recognised?</th><td>' + ($scope.structure.recognized ? 'Yes' : 'No') +'</td></tr></table></div>');
+                            $("#customer-data-container").append('<div class="column"><table class="table table-striped" style="font-size:0.7em"><tr><th scope="row">Membership Number</th><td>' + $scope.structure.email + '</td></tr><tr><th scope="row">Highest Product Interest</th><td>Stonehenge</td></tr></table></div><div class="column"><table class="table table-striped" style="font-size:0.7em"><tr><th scope="row">First Interaction</th><td>' + new Date($scope.structure.behavior.firstInteraction) + '</td></tr><tr><th scope="row">Recognised?</th><td>' + ($scope.structure.recognized ? 'Yes' : 'No') +'</td></tr></table></div>');
                             /**
                              * ASHLEYAC CUSTOM - MAIN CODE (END)
                              */
