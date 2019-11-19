@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+/*         BACKGROUND IMAGE        */
+/* =============================== */
+img.bg {
+  min-height: 100%;
+  min-width: 600px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+	}
+
+/*         EVENT FRAMEWORK         */
+/* =============================== */
+	.viewport {
+		background-color: #393939;
+		/* position: relative; */
+	}
+	.viewport .canvas {
+
+	}
+
+/*  IPHONE SIZE AND POSITIONING    */
+/* =============================== */
+	.viewport .iphone {
+    left: 10px;
+    top: 130px;
+    height: 500px;
+    width: auto; 
+    position: absolute;
+	}
+	.viewport .iphone-screen {
+    left: 18px;
+    top: 177px;
+    height: 396px;
+    width: auto;
+    cursor: pointer;
+    position: absolute;
+	}	
+
+/*       GENERIC CLICK DESIGN      */
+/* =============================== */
+
+	.viewport .instore {
+		background-image: url("/img/beacon.png");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+		cursor: pointer;
+		position: absolute;
+		width: auto; }
+	.viewport .instore.clicked {
+		-webkit-animation: pulse 0.5s 1;
+		animation: pulse 0.5s 1; }		
+
+/*         SPECIFIC CLICKS         */
+/* =============================== */
+
+	.viewport .instore.product {
+	  background-image: url("/img/icon-beacon.png");
+	  height: 70px;
+	  width: 70px;
+	  left: 43%;
+	  top: 35%;
+		}
+	.viewport .instore.entrance {
+	  background-image: url("/img/icon-geofence.png");
+	  height: 70px;
+	  width: 70px;
+	  left: 60%;
+	  top: 85%;
+		}
+	.viewport .instore.scanner {
+	  background-image: url("/img/icon-scanner.png");
+	  height: 70px;
+	  width: 70px;
+	  left: 90%;
+	  top: 45%;
+		}
+	.viewport .instore.checkout {
+	  background-image: url("/img/icon-checkout.png");
+	  height: 70px;
+	  width: 70px;
+	  left: 33%;
+	  top: 40%;
+		}
