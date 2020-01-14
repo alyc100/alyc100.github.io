@@ -1,0 +1,12 @@
+{
+    "version": "2.0",
+    "host": "https://onedemo.thunderhead.com",
+    "touchpoint": "assist://callcenter",
+    "sk": "ONE-VA6IJEANRO-1702",
+    "oauth2": {
+        "clientId": "6d261c2f-d821-4157-a36a-d6013daa7475",
+        "clientSecret": "eb45c758-28c6-4492-9377-ce3b7247d99b",
+        "accessTokenUri": "https://eu2.thunderhead.com/one/oauth2token",
+        "authorizationUri": "https://eu2.thunderhead.com/one/oauth2authorize"
+    }
+}
