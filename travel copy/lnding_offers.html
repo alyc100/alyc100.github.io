@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>News</title>
+<title>Offers on our most popular beach destinations</title>
 <meta name="robots" content="noindex,nofollow">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Destino project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <!--ONE TAG -->        
-<script>(function(o,n,e){var l='link',s='script',c='createElement',i='insertBefore',f=o.getElementsByTagName(s)[0],p=f.parentNode,x=o[c](l),y=o[c](l),z=o[c](s);x.rel='preconnect';x.href=n;y.rel='preload';y.href=e;y.as=s;z.id='thxTag';z.src=e;p[i](x,f);p[i](y,f);p[i](z,f);})(document,'https://onedemo.thunderhead.com','https://onedemo.cdn.thunderhead.com/one/rt/js/one-tag.js?siteKey=ONE-7QK8CTEN4I-1458');</script> 
+<script>(function(o,n,e){var l='link',s='script',c='createElement',i='insertBefore',f=o.getElementsByTagName(s)[0],p=f.parentNode,x=o[c](l),y=o[c](l),z=o[c](s);x.rel='preconnect';x.href=n;y.rel='preload';y.href=e;y.as=s;z.id='thxTag';z.src=e;p[i](x,f);p[i](y,f);p[i](z,f);})(document,'https://onedemo.thunderhead.com','https://onedemo.cdn.thunderhead.com/one/rt/js/one-tag.js?siteKey=ONE-5YBOIDFQMO-3638');</script> 
     
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/news_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/news_responsive.css">
+
 </head>
 <body>
 
+<div id="livechat_container"></div>
+    
 <div class="super_container">
 	
 	<!-- Header -->
@@ -41,8 +45,8 @@
 							<ul class="main_nav_list">
 								<li class="main_nav_item"><a href=".">Home</a></li>
 								<li class="main_nav_item"><a href="about.html">About us</a></li>
-								<li class="main_nav_item"><a href="offers.html">Offers</a></li>
-								<li class="main_nav_item active"><a href="#">News</a></li>
+								<li class="main_nav_item active"><a href="offers.html">Offers</a></li>
+								<li class="main_nav_item"><a href="news.html">News</a></li>
 								<li class="main_nav_item"><a href="contact.html">Contact</a></li>
 							</ul>
 						</nav>
@@ -83,10 +87,10 @@
 					</form>
 				</div>
 				<ul class="menu_list menu_mm">
-					<li class="menu_item menu_mm"><a href="index.html">Home</a></li>
+					<li class="menu_item menu_mm"><a href=".">Home</a></li>
 					<li class="menu_item menu_mm"><a href="about.html">About us</a></li>
 					<li class="menu_item menu_mm"><a href="offers.html">Offers</a></li>
-					<li class="menu_item menu_mm"><a href="#">News</a></li>
+					<li class="menu_item menu_mm"><a href="news.html">News</a></li>
 					<li class="menu_item menu_mm"><a href="contact.html">Contact</a></li>
 				</ul>
 
@@ -108,87 +112,28 @@
 		</div>
 
 	</div>
+    
+    <!-- Hero -->
+    
+    <div id="hero" class="home">
+		<div class="home_background" style="background-image:url(images/landing_hero.jpg)"></div>
+		<div class="home_content" style="width:80%;height:0px;">
+			<div class="home_content_inner" style="text-align: center;">
+				<div class="home_text_large">imagine</div>
+				<div class="home_text_small">Imagine yourself here</div>
+			</div>
+		</div>
+	</div>
+
 	
-	<!-- Home -->
-
-	<div class="home">
-		<!-- Image by https://unsplash.com/@peecho -->
-		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/news.jpg" data-speed="0.8"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="home_content">
-						<div class="home_content_inner">
-							<div class="home_title">News</div>
-							<div class="home_breadcrumbs">
-								<ul class="home_breadcrumbs_list">
-									<li class="home_breadcrumb"><a href="index.html">Home</a></li>
-									<li class="home_breadcrumb">News</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>		
-	</div>
-
-	<!-- Find Form -->
-
-	<div class="find">
-		<!-- Image by https://unsplash.com/@garciasaldana_ -->
-		<div class="find_background_container prlx_parent">
-			<div class="find_background prlx" style="background-image:url(images/find.jpg)"></div>
-		</div>
-		<!-- <div class="find_background parallax-window" data-parallax="scroll" data-image-src="images/find.jpg" data-speed="0.8"></div> -->
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="find_title text-center">Find the Adventure of a lifetime</div>
-				</div>
-				<div class="col-12">
-					<div class="find_form_container">
-						<form action="#" id="find_form" class="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap">
-							<div class="find_item">
-								<div>Destination:</div>
-								<input type="text" class="destination find_input" required="required" placeholder="Keyword here">
-							</div>
-							<div class="find_item">
-								<div>Adventure type:</div>
-								<select name="adventure" id="adventure" class="dropdown_item_select find_input">
-									<option>Categories</option>
-									<option>Categories</option>
-									<option>Categories</option>
-								</select>
-							</div>
-							<div class="find_item">
-								<div>Min price</div>
-								<select name="min_price" id="min_price" class="dropdown_item_select find_input">
-									<option>&nbsp;</option>
-									<option>Price</option>
-									<option>Price</option>
-								</select>
-							</div>
-							<div class="find_item">
-								<div>Max price</div>
-								<select name="max_price" id="max_price" class="dropdown_item_select find_input">
-									<option>&nbsp;</option>
-									<option>Price</option>
-									<option>Price</option>
-								</select>
-							</div>
-							<button class="button find_button">Find</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- News -->
+    
+    
 
-	<div class="news">
+	<div class="news" style="padding-top:0px;">
 		<div class="container">
+            
 			<div class="row">
 
 				<!-- News Posts -->
@@ -197,31 +142,34 @@
 						
 						<!-- News Post -->
 						<div class="news_post">
-							<div class="post_title"><a href="#">Top destinations in Europe</a></div>
-							<div class="post_meta">
-								<ul>
-									<li><a href="#">by admin</a></li>
-									<li>january 31, 2018</li>
-									<li><a href="#">3 comments</a></li>
-								</ul>
-							</div>
-							<div class="post_image">
-								<img src="images/news_1.jpg" alt="https://unsplash.com/@simonmigaj">
-								<a href="#"><div class="post_image_box text-center">+</div></a>
-							</div>
+							
+                            <br/>
+				<div class="last_col">
+						<div class="last_item_content">
+							<div class="last_subtitle">most popular - Jamaica</div>
+							<div class="last_percent">£1188<span style="font-size: 0.5em;">pp</span></div>
+							<div class="last_title">Last Minute Offer</div>
+							<div class="last_text">There's plenty to keep you entertained on your Jamaica holiday; with reggae, jerk chicken and rum on tap, Jamaica is a large and lively gem of the Caribbean where the Blue Mountains and Dunn’s River Falls enchant everyone who visits.</div>
+							<div class="button last_button"><a href="holiday/jamaica/grand-pineapple-beach-negril.html">See Offer</a></div>
+						</div>
+				</div>
+							
 							<div class="post_text">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla lectus nec diam auctor, ut fringilla diam sagittis. Quisque vel est id justo faucibus dapibus id a nibh. Aenean suscipit consequat lacus, sit amet mollis nulla. Morbi sagittis orci id lacus convallis tempus eget sit amet metus.</p>
+								<p>Grand Pineapple Negril sits on a prime spot on Negril's Seven Mile Beach, which has been voted many times over as one of the best in the world. Legendary for its dramatic sunsets, silky white sands, clear turquoise waters, and spontaneous island spirit, the natural attributes of this phenomenal beach are alluring to the soul.</p>
 							</div>
 						</div>
+                        
+
+                        
+                        
+                        
 
 						<!-- News Post -->
 						<div class="news_post">
 							<div class="post_title"><a href="#">Tips & tricks to have a perfect vacation</a></div>
 							<div class="post_meta">
 								<ul>
-									<li><a href="#">by admin</a></li>
-									<li>january 31, 2018</li>
-									<li><a href="#">3 comments</a></li>
+									<li><a href="#">by Destino</a></li>
 								</ul>
 							</div>
 							<div class="post_image">
@@ -235,12 +183,10 @@
 
 						<!-- News Post -->
 						<div class="news_post">
-							<div class="post_title"><a href="#">Top destinations in Europe</a></div>
+							<div class="post_title"><a href="#">Top destinations in the Caribbean</a></div>
 							<div class="post_meta">
 								<ul>
-									<li><a href="#">by admin</a></li>
-									<li>january 31, 2018</li>
-									<li><a href="#">3 comments</a></li>
+									<li><a href="#">by Destino</a></li>
 								</ul>
 							</div>
 							<div class="post_image">
@@ -261,74 +207,42 @@
 						<div class="sidebar_search">
 							<input type="search" class="sidebar_search_input" placeholder="Search">
 						</div>
-
-						<!-- Featured Posts -->
-						<div class="sidebar_featured">
-
-							<!-- Featured Post -->
-							<div class="sidebar_featured_post">
-								<div class="sidebar_featured_image"><img src="images/sidebar_featured_1.jpg" alt=""></div>
-								<div class="sidebar_featured_title"><a href="#">Top destinations in Europe</a></div>
-								<div class="sidebar_featured_meta">
-									<ul>
-										<li><a href="#">by admin</a></li>
-										<li>january 31, 2018</li>
-										<li><a href="#">3 comments</a></li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- Featured Post -->
-							<div class="sidebar_featured_post">
-								<div class="sidebar_featured_image"><img src="images/sidebar_featured_2.jpg" alt=""></div>
-								<div class="sidebar_featured_title"><a href="#">Best beaches in the world</a></div>
-								<div class="sidebar_featured_meta">
-									<ul>
-										<li><a href="#">by admin</a></li>
-										<li>january 31, 2018</li>
-										<li><a href="#">3 comments</a></li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- Featured Post -->
-							<div class="sidebar_featured_post">
-								<div class="sidebar_featured_image"><img src="images/sidebar_featured_3.jpg" alt=""></div>
-								<div class="sidebar_featured_title"><a href="#">Best beaches in the world</a></div>
-								<div class="sidebar_featured_meta">
-									<ul>
-										<li><a href="#">by admin</a></li>
-										<li>january 31, 2018</li>
-										<li><a href="#">3 comments</a></li>
-									</ul>
-								</div>
-							</div>
-
-						</div>
-
+						
 						<!-- Offers -->
 						<div class="sidebar_offers">
 
 							<!-- Offer -->
 							<div class="sidebar_offer">
-								<div class="sidebar_offer_background" style="background-image:url(images/offer_1.jpg)"></div>
+								<div class="sidebar_offer_background" style="background-image:url(images/top_6.png)"></div>
 								<div class="sidebar_offer_content">
-									<div class="sidebar_offer_destination">bali</div>
-									<div class="sidebar_offer_percent">38%</div>
+									<div class="sidebar_offer_destination">Dominican Republic</div>
+									<div class="sidebar_offer_percent" style="font-size:3.0em">£1080pp</div>
 									<div class="sidebar_offer_title">Last Minute Offer</div>
-									<div class="sidebar_offer_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pulvinar sed mauris.</div>
+									<div class="sidebar_offer_text">The large and lively Dominican Republic is an enthralling land of modern attractions alongside an authentic and fascinating island culture.</div>
 									<div class="sidebar_offer_button"><a href="offers.html">See Offer</a></div>
 								</div>
 							</div>
 
 							<!-- Offer -->
 							<div class="sidebar_offer">
-								<div class="sidebar_offer_background" style="background-image:url(images/offer_2.jpg)"></div>
+								<div class="sidebar_offer_background" style="background-image:url(images/top_7.png)"></div>
 								<div class="sidebar_offer_content">
-									<div class="sidebar_offer_destination">bali</div>
-									<div class="sidebar_offer_percent">25%</div>
+									<div class="sidebar_offer_destination">Thailand</div>
+									<div class="sidebar_offer_percent" style="font-size:3.0em">£1028pp</div>
 									<div class="sidebar_offer_title">Last Minute Offer</div>
-									<div class="sidebar_offer_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pulvinar sed mauris.</div>
+									<div class="sidebar_offer_text">Discover a blend of lively beach living and urban energy with our Thailand holidays and packages suited for families, couples and solo travellers alike.</div>
+									<div class="sidebar_offer_button"><a href="offers.html">See Offer</a></div>
+								</div>
+							</div>
+                            
+                            <!-- Offer -->
+							<div class="sidebar_offer">
+								<div class="sidebar_offer_background" style="background-image:url(images/hotel_3.jpeg)"></div>
+								<div class="sidebar_offer_content">
+									<div class="sidebar_offer_destination">Hawaii</div>
+									<div class="sidebar_offer_percent" style="font-size:3.0em">£1890pp</div>
+									<div class="sidebar_offer_title">Last Minute Offer</div>
+									<div class="sidebar_offer_text">From soaring volcanoes and spectacular sunsets to palm-fringed lagoons, Hawaii is a treasure trove of flora, fauna and fun. </div>
 									<div class="sidebar_offer_button"><a href="offers.html">See Offer</a></div>
 								</div>
 							</div>
@@ -343,30 +257,6 @@
 					</div>
 				</div>
 
-			</div>
-		</div>
-	</div>
-
-	<!-- Newsletter -->
-
-	<div class="newsletter">
-		<!-- Image by https://unsplash.com/@garciasaldana_ -->
-		<div class="newsletter_background" style="background-image:url(images/newsletter.jpg)"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1">
-					<div class="newsletter_content">
-						<div class="newsletter_title text-center">Subscribe to our Newsletter</div>
-						<div class="newsletter_form_container">
-							<form action="#" id="newsletter_form" class="newsletter_form">
-								<div class="d-flex flex-md-row flex-column align-content-center justify-content-between">
-									<input type="email" id="newsletter_input" class="newsletter_input" placeholder="Your E-mail Address">
-									<button type="submit" id="newsletter_button" class="newsletter_button">Subscribe</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -428,8 +318,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					<div class="tags footer_tags">
 						<div class="footer_title">Useful Links</div>
 						<ul class="tags_content d-flex flex-row flex-wrap align-items-start justify-content-start">
-							<li class="tag"><a href="#">Agent Companion</a></li>
-							<li class="tag"><a href="#">Instore Experience</a></li>
+							<li class="tag"><a id="companion_link" href="#">Agent Companion</a></li>
+							<li class="tag"><a id="experience_link" href="#">Instore Experience</a></li>
 						</ul>
 					</div>
 				</div>
