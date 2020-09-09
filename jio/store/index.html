@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mobilli In-store Experience</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/instorecore.css" />
+<link rel="shortcut icon" href="https://eu-west-1.tchyn.io/thunderhead-production-v2/uploads/2016/01/cropped-Thunderhead_favicon.png?fit=32,32">
+<!-- INSERT ONE TAG / SITEKEY HERE if needed -->
+<!-- ===================================== -->
+<script>(function(o,n,e){var l='link',s='script',c='createElement',i='insertBefore',f=o.getElementsByTagName(s)[0],p=f.parentNode,x=o[c](l),y=o[c](l),z=o[c](s);x.rel='preconnect';x.href=n;y.rel='preload';y.href=e;y.as=s;z.id='thxTag';z.src=e;p[i](x,f);p[i](y,f);p[i](z,f);})(document,'https://onedemo.thunderhead.com','https://onedemo.thunderhead.com/one/rt/js/one-tag.js?siteKey=ONE-Y92NHAGXFJ-1876');</script> 
+</head>
+<style>
+	.viewport .instore.entrance {
+	  background-image: url("img/icon-geofence.png");
+	  height: 70px;
+	  width: 70px;
+	  left: 13%;
+	  top: 45%;
+		}	
+	.viewport .instore.beacon {
+	  background-image: url("img/icon-beacon.png");
+	  height: 70px;
+	  width: 70px;
+	  left: 55%;
+	  top: 65%;
+		}
+</style>
+<body>
+
+<!-- SHOP IMAGE HERE  -->
+<!-- ================ -->	
+<img src="img/instore-telcofront.jpg" class="bg">
+
+<div class="container-fluid viewport">
+<div class="canvas">
+
+<!-- SHOWING THE ICONS -->
+<!-- ===================================== -->
+<div class="instore beacon" data-location="beacon" draggable="false" data-toggle="tooltip" data-placement="right" title="Beacon"></div>
+<div class="instore entrance" data-location="entrance" draggable="false" data-toggle="tooltip" data-placement="right" title="Entrance"></div> 
+</div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jAlerts.js"></script>
+	
+<script type="text/javascript">
+	// Wait until dom is ready...
+	$( document ).ready(function() {
+
+	// PARAMETERS TO SET OR MAKE DYNAMIC...
+		var TidCookie = getCookie("_one_MjMzODc3");
+		// This Attribute Value is hadcoded in the ONE-Tag 
+		var AttValue = "51.5140835/-0.1344462";
+		var ck= "267";
+
+		function getCookie(name) {
+		  var re = new RegExp(name + "=([^;]+)");
+		  var value = re.exec(document.cookie);
+		  return (value != null) ? unescape(value[1]) : null;
+		} 
+
+		function showAlert() {
+			jAlert({
+				headingText		:	"Geolocation Event: " + AttValue, 
+				contentText		:	"Push Notification Triggered",
+				buttonColor		:	"#3498db"  // default	
+			},"top"); 
+		};
+
+
+		function GoOnline(e) {
+			console.log("TID=" + TidCookie);
+			console.log("ck=" + ck);
+			var url = "index-enter.html";
+			console.log(url);
+			window.location.href = url;
+		}
+
+
+  (() => {
+    $('[data-toggle="tooltip"]').tooltip();
+    $('.instore').on('click', (e) => {
+      $(e.target).addClass('clicked');
+      setTimeout(() => {
+        $(e.target).removeClass('clicked');
+      }, 600);
+
+      const location = $(e.target).data('location');
+
+      if (location === 'entrance') {
+        $('.screen-start').addClass('hide');
+        $('.screen-notification').removeClass('hide');
+        $('.screen-voucher').addClass('hide');
+        $('.screen-application').addClass('hide');
+        $('.screen-start').addClass('hide');
+				console.log("clicked=" + location);
+				GoOnline();
+      }
+
+      if (location === 'beacon') {
+        $('.screen-start').addClass('hide');
+        $('.screen-notification').removeClass('hide');
+        $('.screen-voucher').removeClass('hide');
+        $('.screen-application').addClass('hide');
+        $('.screen-start').addClass('hide');
+				console.log("clicked=" + location);
+				showAlert();
+      }
+
+      if (location === 'checkout') {
+        $('.screen-start').addClass('hide');
+        $('.screen-notification').addClass('hide');
+        $('.screen-voucher').addClass('hide');
+        $('.screen-application').removeClass('hide');
+        $('.screen-start').addClass('hide');
+				console.log("clicked=" + location);
+      }
+    });
+
+// CLICK based on MOBILE SCREEN will SHOW or HIDE CLASSES/IMAGES //
+// ===================================== //
+
+    $('.screen-notification').on('click', (e) => {
+      $('.screen-start').addClass('hide');
+      $('.screen-notification').addClass('hide');
+      $('.screen-voucher').removeClass('hide');
+      $('.screen-application').addClass('hide');
+      $('.screen-start').addClass('hide');
+    });
+
+    $('.screen-qrpass').on('click', (e) => {
+      $('.screen-start').addClass('hide');
+      $('.screen-notification').addClass('hide');
+      $('.screen-voucher').removeClass('hide');
+      $('.screen-application').addClass('hide');
+      $('.screen-start').addClass('hide');
+    });
+
+    $('.screen-voucher').on('click', (e) => {
+      $('.screen-start').addClass('hide');
+      $('.screen-notification').addClass('hide');
+      $('.screen-voucher').removeClass('hide');
+      $('.screen-application').addClass('hide');
+      $('.screen-start').addClass('hide');
+    });
+
+    $('.screen-application').on('click', (e) => {
+      $('.screen-start').addClass('hide');
+      $('.screen-notification').addClass('hide');
+      $('.screen-voucher').addClass('hide');
+      $('.screen-application').addClass('hide');
+      $('.screen-start').removeClass('hide');
+    });
+  })();
+	});
+</script>
+
+
+</body>
+</html>
