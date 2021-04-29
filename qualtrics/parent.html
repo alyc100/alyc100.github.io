@@ -1,7 +1,7 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo="><title>Chatbot UI iFrame Example</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></head><body><div class="container-fluid"><h1>Lex Chatbot UI Sample Parent Page</h1><p class="lead">Use the chatbot UI to drive your bot. This page will dynamically update using the associated Lex variables as the bot dialog progresses.</p><div class="row"><div class="col-md-6"><div class="panel panel-primary"><div class="panel-heading">Send "Buy Flowers" utterance to iframe</div><div class="panel-body"><div><button id="send-intent" type="button" class="btn btn-default" disabled="disabled">Send</button></div></div></div></div></div><div class="row"><div class="col-md-6"><div class="panel panel-primary"><div class="panel-heading">Lex Dialog State</div><div class="panel-body"><div><strong>dialogState:</strong> <span id="dialog-state"></span></div></div></div></div></div><div class="row"><div class="col-md-6"><div class="panel panel-primary"><div class="panel-heading">Lex Slots</div><div class="panel-body"><div id="slots"></div></div></div></div></div><div class="row"><div class="col-md-6"><div class="panel panel-primary"><div class="panel-heading">Lex Intent Name</div><div class="panel-body"><div><strong>Intent Name:</strong> <span id="intent-name"></span></div></div></div></div></div><div class="row"><div class="col-md-6"><div class="panel panel-primary"><div class="panel-heading">Lex Session Attributes</div><div class="panel-body"><div><pre id="session-attributes"></pre></div></div></div></div></div><div class="row"><div class="col-md-6"><div class="panel panel-primary"><div class="panel-heading">Lex Response Card</div><div class="panel-body"><div><pre id="response-card"></pre></div></div></div></div></div><div class="row"><div class="col-md-6"><div class="panel panel-warning"><div class="panel-heading">NOTE</div><div class="panel-body"><p>This application was created using the <a href="https://github.com/awslabs/aws-lex-web-ui">aws-lex-web-ui</a> project.</p></div></div></div></div></div><script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     
     
-    <script src="http://localhost/webprojects/lex-chat/lex-web-ui-loader.min.js"></script>
+    <script src="https://alyc100.github.io/lex-chat/lex-web-ui-loader.min.js"></script>
     <script>// The loader constructor supports various configurable options used to
       // control how the component configuration and dependencies are retrieved.
       var loaderOpts = {
@@ -10,7 +10,7 @@
         // In this example, the base URL is relative to the root path
         // You can also use full URLs:
         //    baseUrl: 'https://iframe-host.example.org/lex-web-ui/'
-        baseUrl: 'http://localhost/webprojects/lex-chat/',
+        baseUrl: 'https://alyc100.github.io/lex-chat/',
 
         // enable receiving chatbot UI config from event
         // the event is used as an alternative to passing the chatbot
@@ -33,11 +33,11 @@
       
         ui: {
           // origin of the parent site where you are including the chatbot UI
-          parentOrigin: 'http://localhost'
+          parentOrigin: 'https://alyc100.github.io'
         },
         iframe: {
           // origin hosting the HTML file that will be embedded in the iframe
-          iframeOrigin: 'http://localhost'
+          iframeOrigin: 'https://alyc100.github.io'
         }
         
       };
