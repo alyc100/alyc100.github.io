@@ -29,7 +29,7 @@
   },
   "ui": {
     "parentOrigin": "https://alyc100.github.io",
-    "toolbarTitle": "Qualtrics Chat",
+    "toolbarTitle": "Qualtrics Assistance",
     "positiveFeedbackIntent": "",
     "negativeFeedbackIntent": "",
     "helpIntent": "Help",
