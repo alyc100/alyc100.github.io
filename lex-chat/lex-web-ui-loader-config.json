@@ -20,7 +20,12 @@
     "reInitSessionAttributesOnRestart": false,
     "region": "eu-west-1",
     "retryOnLexPostTextTimeout": "false",
-    "retryCountPostTextTimeout": "1"
+    "retryCountPostTextTimeout": "1",
+    "sessionAttributes": {
+      "q_token": "XaYakTV3GV9pCBaqy2Satc2oBXqqmYHWcQkJkQEy",
+      "q_data_centre": "ca1",
+      "q_survey_id": "SV_bI8ia5LivekvshM"
+    }
   },
   "ui": {
     "parentOrigin": "https://alyc100.github.io",
