@@ -1,7 +1,7 @@
 {
   "region": "eu-west-1",
   "cognito": {
-    "poolId": "eu-west-1:2cb87149-91f2-4c31-8346-137667132d39",
+    "poolId": "eu-west-1:e79396c2-0833-4d94-9ef7-d010f2a02fdb",
     "appUserPoolClientId": "74rsp33kfuf790fjqupqb00mdn",
     "appUserPoolName": "eu-west-1_r0umtNGqn",
     "appDomainName": "lexkwebkuikidentitypoolconfigkbebjodscdaxhv996187701394.auth.eu-west-1.amazoncognito.com",
