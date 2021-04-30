@@ -14,7 +14,7 @@
     "v2BotLocaleId": "en_US",
     "botName": "QualtricsSurvey",
     "botAlias": "$LATEST",
-    "initialText": "Do you need assistance? Just type \"Start\" or click on the mic and say it.",
+    "initialText": "Tell us how we can make your experience with Dolphin Telecom better? Just type \"Start\" or click on the mic and say it.",
     "initialSpeechInstruction": "Say 'Start' to get started.",
     "initialUtterance": "",
     "reInitSessionAttributesOnRestart": false,
@@ -29,7 +29,7 @@
   },
   "ui": {
     "parentOrigin": "https://alyc100.github.io",
-    "toolbarTitle": "Qualtrics Assistance",
+    "toolbarTitle": "Qualtrics Feedback",
     "positiveFeedbackIntent": "",
     "negativeFeedbackIntent": "",
     "helpIntent": "Help",
