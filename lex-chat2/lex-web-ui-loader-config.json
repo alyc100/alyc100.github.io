@@ -28,7 +28,7 @@
     }
   },
   "ui": {
-    "parentOrigin": "https://telcospa.telco-xm-spa.demo.hybris.com/",
+    "parentOrigin": "https://telcospa.telco-xm-spa.demo.hybris.com",
     "toolbarTitle": "Qualtrics Feedback",
     "positiveFeedbackIntent": "",
     "negativeFeedbackIntent": "",
