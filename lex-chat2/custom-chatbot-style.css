@@ -2,7 +2,7 @@
  adjust as needed.
 */
 .toolbar.theme--dark {
-    background-color: #dd0041 !important;
+    background-color: #f8cf00 !important;
 }
 
 .toolbar__title {
@@ -85,8 +85,8 @@ button.min-button {
 }
 
 button.theme--dark {
-    background-color: #dd0041 !important;
-    border-color: #dd0041 !important;
+    background-color: #f8cf00 !important;
+    border-color: #f8cf00 !important;
 }
 
 .message-button {
