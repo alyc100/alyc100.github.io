@@ -1,0 +1,63 @@
+{
+  "region": "eu-west-1",
+  "cognito": {
+    "poolId": "eu-west-1:e79396c2-0833-4d94-9ef7-d010f2a02fdb",
+    "appUserPoolClientId": "74rsp33kfuf790fjqupqb00mdn",
+    "appUserPoolName": "eu-west-1_r0umtNGqn",
+    "appDomainName": "lexkwebkuikidentitypoolconfigkbebjodscdaxhv996187701394.auth.eu-west-1.amazoncognito.com",
+    "aws_cognito_region": "eu-west-1",
+    "region": "eu-west-1"
+  },
+  "lex": {
+    "v2BotId": "",
+    "v2BotAliasId": "",
+    "v2BotLocaleId": "en_US",
+    "botName": "QualtricsSurvey",
+    "botAlias": "$LATEST",
+    "initialText": "Tell us how we can make your experience with Dolphin Telecom better? Just type \"Start\" or click on the mic and say it.",
+    "initialSpeechInstruction": "Say 'Start' to get started.",
+    "initialUtterance": "",
+    "reInitSessionAttributesOnRestart": false,
+    "region": "eu-west-1",
+    "retryOnLexPostTextTimeout": "false",
+    "retryCountPostTextTimeout": "1",
+    "sessionAttributes": {
+      "q_token": "XaYakTV3GV9pCBaqy2Satc2oBXqqmYHWcQkJkQEy",
+      "q_data_centre": "ca1",
+      "q_survey_id": "SV_bI8ia5LivekvshM"
+    }
+  },
+  "ui": {
+    "parentOrigin": "https://www.forex.com",
+    "toolbarTitle": "Qualtrics Feedback",
+    "positiveFeedbackIntent": "",
+    "negativeFeedbackIntent": "",
+    "helpIntent": "Help",
+    "toolbarLogo": "",
+    "helpIntent": "Help",
+    "enableLogin": false,
+    "forceLogin": false,
+    "AllowSuperDangerousHTMLInMessage": true,
+    "shouldDisplayResponseCardTitle": false,
+    "saveHistory": false,
+    "minButtonContent": "",
+    "hideInputFieldsForButtonResponse": false,
+    "pushInitialTextOnRestart": false,
+    "directFocusToBotInput": false,
+    "showDialogStateIcon": false,
+    "backButton": false,
+    "messageMenu": true,
+    "hideButtonMessageBubble": false
+  },
+  "polly": {
+    "voiceId": "Salli"
+  },
+  "recorder": {
+    "preset": "speech_recognition"
+  },
+  "iframe": {
+    "iframeOrigin": "https://alyc100.github.io",
+    "shouldLoadIframeMinimized": true,
+    "iframeSrcPath": "/lex-chat-forex/index.html#/?lexWebUiEmbed=true"
+  }
+}
