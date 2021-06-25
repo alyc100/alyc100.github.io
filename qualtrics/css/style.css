@@ -181,7 +181,7 @@ li {
 }
 .btn-one:hover{
     color: #ffffff;
-    background: #dd0041;
+    background: #1A5AAC;
 }
 .btn-two{
     position: relative;
@@ -533,7 +533,7 @@ li {
     right: 30px;
     width: 30px;
     height: 30px;
-    background: #dd0041;
+    background: #1A5AAC;
     border-radius: 50%;
     color: #ffffff;
     content: "\f10b";
@@ -886,7 +886,7 @@ select:focus {
     transition: all 500ms ease;
 }
 .sociallinks-style-one li a:hover i{
-    color: #dd0041;
+    color: #1A5AAC;
 }
 
 .sociallinks-style-two{
@@ -1016,7 +1016,7 @@ select:focus {
 .top-contact-info li span:before {
     position: relative;
     left: 1px;
-    color: #dd0041;
+    color: #1A5AAC;
     font-size: 14px;
     line-height: 14px;
     display: inline-block;
@@ -1126,7 +1126,7 @@ select:focus {
     background: #01b2ec;
 }
 .main-header .header-right .button a:hover{
-    background: #dd0041;    
+    background: #1A5AAC;    
 }
 
 .main-header.style2 .border-box{
@@ -1527,7 +1527,7 @@ select:focus {
     display: block;
     width: 100%;
     height: 100%;
-    background: #dd0041;
+    background: #1A5AAC;
     border-radius: 50%;
     text-align: center !important;
     padding: 44px 0 !important;
@@ -1551,7 +1551,7 @@ select:focus {
 .featured-area{
     position: relative;
     display: block;
-    background: #dd0041;
+    background: #1A5AAC;
 }
 .featured-box{
     position: relative;
@@ -1676,7 +1676,7 @@ select:focus {
     margin-bottom: 48px;
 }
 .welcome-content-box .inner-content ul li{
-    color: #dd0041;
+    color: #1A5AAC;
 }
 .welcome-content-box .inner-content .button{
     position: relative;
@@ -1751,7 +1751,7 @@ select:focus {
     font-weight: 500;
 }
 .single-service-style1 .icon-holder li span.clr2:before{
-    color: #dd0041;    
+    color: #1A5AAC;    
 }
 .single-service-style1 .icon-holder li span.clr3:before{
     color: #ffa200;    
@@ -1886,7 +1886,7 @@ select:focus {
     display: block;    
 }
 .single-testimonial-item .client-name h5{
-    color: #dd0041;
+    color: #1A5AAC;
     font-size: 20px;
     font-weight: 600;
     text-transform: capitalize;
@@ -1992,7 +1992,7 @@ select:focus {
     display: block;
     width: 100%;
     height: 100%;
-    background: #dd0041;
+    background: #1A5AAC;
     border-radius: 50%;
     text-align: center;
     padding: 44px 0;
@@ -2069,7 +2069,7 @@ select:focus {
     top: 14px;
     left: 0;
     content: "\f10e";
-    color: #dd0041;
+    color: #1A5AAC;
     font-size: 12px;
     line-height: 12px;
 }
@@ -2258,7 +2258,7 @@ select:focus {
     background: #01b2ec;    
 }
 .tv-bundles-button a:hover{
-    background: #dd0041;
+    background: #1A5AAC;
 }
 
 
@@ -2354,7 +2354,7 @@ select:focus {
     margin: 0;
 }
 .speed-content-box ul li .text-box p span{
-    color: #dd0041;
+    color: #1A5AAC;
     text-decoration: underline;
 }
 
@@ -2430,7 +2430,7 @@ select:focus {
     display: block;
 }
 .single-package-item .icon-holder li span.clr2:before{
-    color: #dd0041;    
+    color: #1A5AAC;    
 }
 .single-package-item .icon-holder li span.clr3:before{
     color: #ffa200;    
@@ -2460,7 +2460,7 @@ select:focus {
     text-transform: uppercase;
 }
 .single-package-item .details-box .single-box li.top.clr2{
-    color: #dd0041;
+    color: #1A5AAC;
 }
 .single-package-item .details-box .single-box li.top.clr3{
     color: #ffa200;
@@ -2471,7 +2471,7 @@ select:focus {
     padding-top: 10px;
 }
 .single-package-item:hover .button a{
-    background: #dd0041;    
+    background: #1A5AAC;    
 }
 
 
@@ -2550,7 +2550,7 @@ select:focus {
     margin: 0 11px;
 }
 .single-blog-post .meta-box .meta-info li a{
-    color: #dd0041;
+    color: #1A5AAC;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: .2em;
@@ -2800,12 +2800,12 @@ select:focus {
     transition: all 700ms ease;
 }
 .single-footer-widget .newsletter-form input[type="email"]:focus {
-    border: 1px solid #dd0041;
+    border: 1px solid #1A5AAC;
 }
 .single-footer-widget .newsletter-form input[type="email"]:focus + button, 
 .single-footer-widget .newsletter-form button:hover {
     color: #fff;
-    background: #dd0041;
+    background: #1A5AAC;
 }
 
 
@@ -2874,7 +2874,7 @@ select:focus {
     font-weight: 700;
 }
 .footer-bottom-contact-info ul li i {
-    color: #dd0041;
+    color: #1A5AAC;
     font-size: 13px;
     display: inline-block;
     width: 25px;
@@ -2884,7 +2884,7 @@ select:focus {
     transition: all 500ms ease;
 }
 .footer-bottom-contact-info ul li a:hover{
-    color: #dd0041;
+    color: #1A5AAC;
 }
 
 .footer-social-links{
@@ -3028,7 +3028,7 @@ select:focus {
     display: block;
     width: 100%;
     height: 100%;
-    background: #dd0041;
+    background: #1A5AAC;
     font-size: 20px;
     line-height: 110px;
     border-radius: 50%;
@@ -3234,7 +3234,7 @@ select:focus {
     display: block;
     width: 100%;
     height: 100%;
-    background: #dd0041;
+    background: #1A5AAC;
     font-size: 50px;
     line-height: 114px;
     border-radius: 50%;
@@ -3305,7 +3305,7 @@ select:focus {
     margin: 0 0 32px;
 }
 .company-info-left .text a{
-    color: #dd0041;
+    color: #1A5AAC;
     font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
@@ -3327,7 +3327,7 @@ select:focus {
     display: block;
     width: 100%;
     height: 100%;
-    background: #dd0041;
+    background: #1A5AAC;
     border-radius: 50%;
     text-align: center;
     padding: 42px 0;
@@ -3678,7 +3678,7 @@ select:focus {
     border-right: none;
 }
 .choose-content-box .inner-content ul li h1{
-    color: #dd0041;
+    color: #1A5AAC;
     font-size: 50px;
     line-height: 40px;
     margin: 0 0 13px;
@@ -3729,7 +3729,7 @@ select:focus {
     display: block;
     width: 16px;
     height: 16px;
-    background: #dd0041;
+    background: #1A5AAC;
     border-radius: 50%; 
     cursor: pointer;
     z-index: 3;
@@ -3751,7 +3751,7 @@ select:focus {
     content: "\f0d7";
     bottom: -12px;
     left: 3px;
-    color: #dd0041;
+    color: #1A5AAC;
     font-size: 16px;
     opacity: 1;
     font-family: 'FontAwesome';
@@ -3962,7 +3962,7 @@ select:focus {
     line-height: 44px;
 }
 .single-service-content .inner-content ul li i{
-    color: #dd0041;
+    color: #1A5AAC;
     font-size: 16px;
     line-height: 14px;
     display: inline-block;
@@ -4006,7 +4006,7 @@ select:focus {
     display: block;
 }
 .single-service-content .icon-holder li span.clr2:before{
-    color: #dd0041;    
+    color: #1A5AAC;    
 }
 .single-service-content .icon-holder li span.clr3:before{
     color: #ffa200;    
@@ -4052,7 +4052,7 @@ select:focus {
     font-weight: 600;
 }
 .super-sale-content.style2 .inner-content h6 span {
-    color: #dd0041;
+    color: #1A5AAC;
 }
 .super-sale-content.style2 .inner-content .button{
     display: block;
@@ -4243,8 +4243,8 @@ select:focus {
 }
 .blog-single-area .tag-box .right .sociallinks-style-two li a:hover i{
     color: #ffffff;
-    background: #dd0041;
-    border-color: #dd0041;
+    background: #1A5AAC;
+    border-color: #1A5AAC;
 }
 
 .blog-single-area .author-box {
@@ -4341,7 +4341,7 @@ select:focus {
 }
 .blog-single-area .inner-comment-box .single-comment-box .text-holder .top .name-date span {
     display: block;
-    color: #dd0041;
+    color: #1A5AAC;
     font-size: 14px;
     line-height: 18px;
     font-weight: 700;
@@ -4440,7 +4440,7 @@ select:focus {
     display: block;
     padding: 30px 50px;
     width: 100%;
-    background: #dd0041;
+    background: #1A5AAC;
     border-radius: 7px;
 }
 .sidebar-search-box .search-form input[type="text"] {
@@ -4579,7 +4579,7 @@ select:focus {
 }
 
 .single-sidebar .lat-posts li .title-holder p{
-    color: #dd0041;
+    color: #1A5AAC;
     font-size: 14px;
     line-height: 14px;
     font-weight: 600;
@@ -4603,7 +4603,7 @@ select:focus {
     transition: all 500ms ease;
 }
 .single-sidebar .lat-posts li .title-holder .post-title a:hover{
-    color: #dd0041;
+    color: #1A5AAC;
 }
 
 
@@ -4796,7 +4796,7 @@ select:focus {
     display: block;
 }
 .single-info-box .icon-holder li span.clr2:before{
-    color: #dd0041;    
+    color: #1A5AAC;    
 }
 .single-info-box .icon-holder li span.clr3:before{
     color: #ffa200;    
