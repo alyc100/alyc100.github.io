@@ -14,7 +14,7 @@
     "v2BotLocaleId": "en_US",
     "botName": "QualtricsSurvey",
     "botAlias": "$LATEST",
-    "initialText": "Tell us how we can make your experience with Dolphin Telecom better? Just type \"Start\" or click on the mic and say it.",
+    "initialText": "Tell us how we can make your experience with ABN Amro better? Just type \"Start\" or click on the mic and say it.",
     "initialSpeechInstruction": "Say 'Start' to get started.",
     "initialUtterance": "",
     "reInitSessionAttributesOnRestart": false,
@@ -22,13 +22,13 @@
     "retryOnLexPostTextTimeout": "false",
     "retryCountPostTextTimeout": "1",
     "sessionAttributes": {
-      "q_token": "XaYakTV3GV9pCBaqy2Satc2oBXqqmYHWcQkJkQEy",
-      "q_data_centre": "ca1",
-      "q_survey_id": "SV_bI8ia5LivekvshM"
+      "q_token": "wgk56ErmcCsNhzjMhIKVKouJxTCmGAUoIocWDCDq",
+      "q_data_centre": "eu",
+      "q_survey_id": "SV_38GD2zLaztiaFLw"
     }
   },
   "ui": {
-    "parentOrigin": "https://www.forex.com",
+    "parentOrigin": "https://www.abnamro.com/",
     "toolbarTitle": "Qualtrics Feedback",
     "positiveFeedbackIntent": "",
     "negativeFeedbackIntent": "",
