@@ -29,7 +29,7 @@
   },
   "ui": {
     "parentOrigin": "https://www.abnamro.com/",
-    "toolbarTitle": "Qualtrics Feedback",
+    "toolbarTitle": "ABN Amro Chat Feedback Demo with Qualtrics",
     "positiveFeedbackIntent": "",
     "negativeFeedbackIntent": "",
     "helpIntent": "Help",
