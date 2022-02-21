@@ -29,7 +29,7 @@
   },
   "ui": {
     "parentOrigin": "https://www.iglucruise.com",
-    "toolbarTitle": "ABN Amro Chat Feedback Demo with Qualtrics",
+    "toolbarTitle": "Iglu Cruise Feedback Demo with Qualtrics",
     "positiveFeedbackIntent": "",
     "negativeFeedbackIntent": "",
     "helpIntent": "Help",
