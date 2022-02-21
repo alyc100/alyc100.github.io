@@ -28,7 +28,7 @@
     }
   },
   "ui": {
-    "parentOrigin": "https://www.iglucruise.com/",
+    "parentOrigin": "https://www.iglucruise.com",
     "toolbarTitle": "ABN Amro Chat Feedback Demo with Qualtrics",
     "positiveFeedbackIntent": "",
     "negativeFeedbackIntent": "",
