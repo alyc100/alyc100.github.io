@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)https://www.abnamro.nl/portal/my-abnamro/authentication/login/index.html -->
+<html lang="en"><script type="text/javascript" async="" charset="utf-8" id="utag_22" src="./index_files/js"></script><script src="./index_files/utag.js" type="text/javascript" async=""></script><script>(function() {
+		window.addEventListener('message', function(event) {
+			if (
+				event.data &&
+				event.data.id &&
+				typeof event.data.id.startsWith === 'function' &&
+				event.data.id.startsWith('adobeExperienceCloudDebuggerContentMessagingIdentifier-')
+			) {
+				event.stopImmediatePropagation();
+			}
+		},
+		{capture: true});
+	})();</script><script>
+		(function() {
+			const contentScriptEventTrigger = function(data) {
+				window.postMessage({ id:'adobeExperienceCloudDebuggerContentMessagingIdentifier-1', data: data });
+			}
+			const DATA_LAYER_LOCAL_STORAGE_KEY =
+  "com.adobe.experiencePlatformDebugger.dataLayer.key";
+const dataLayerKey = window.localStorage.getItem(DATA_LAYER_LOCAL_STORAGE_KEY);
+
+if (dataLayerKey) {
+  // sindresorhus/on-change
+  // MIT - License
+  // https://github.com/sindresorhus/on-change
+  const PATH_SEPARATOR = ".";
+  const TARGET = Symbol("target");
+  const UNSUBSCRIBE = Symbol("unsubscribe");
+
+  const isPrimitive = value =>
+    value === null ||
+    (typeof value !== "object" && typeof value !== "function");
+
+  const isBuiltinWithoutMutableMethods = value =>
+    value instanceof RegExp || value instanceof Number;
+
+  const isBuiltinWithMutableMethods = value => value instanceof Date;
+
+  const concatPath = (path, property) => {
+    let ret = path;
+    if (property && property.toString) {
+      if (path) {
+        ret += PATH_SEPARATOR;
+      }
+
+      ret += property.toString();
+    }
+
+    return ret;
+  };
+
+  const walkPath = (path, callback) => {
+    let index;
+    let remainingPath = path;
+    while (remainingPath) {
+      index = remainingPath.indexOf(PATH_SEPARATOR);
+
+      if (index === -1) {
+        index = remainingPath.length;
+      }
+
+      callback(remainingPath.slice(0, index));
+
+      remainingPath = remainingPath.slice(index + 1);
+    }
+  };
+
+  const shallowClone = value => {
+    if (Array.isArray(value)) {
+      return value.slice();
+    }
+
+    return { ...value };
+  };
+
+  const onChange = (object, updateDataLayer, options = {}) => {
+    const proxyTarget = Symbol("ProxyTarget");
+    let inApply = false;
+    let changed = false;
+    let applyPath;
+    let applyPrevious;
+    let isUnsubscribed = false;
+    const equals = options.equals || Object.is;
+    let propCache = new WeakMap();
+    let pathCache = new WeakMap();
+    let proxyCache = new WeakMap();
+    let boundUpdateDataLayer;
+
+    const handleChange = (path, property, previous, value) => {
+      if (isUnsubscribed) {
+        return;
+      }
+
+      if (!inApply) {
+        boundUpdateDataLayer(concatPath(path, property), value, previous);
+        return;
+      }
+
+      if (
+        inApply &&
+        applyPrevious &&
+        previous !== undefined &&
+        value !== undefined &&
+        property !== "length"
+      ) {
+        let item = applyPrevious;
+
+        if (path !== applyPath) {
+          const appliedPath = path.replace(applyPath, "").slice(1);
+
+          walkPath(appliedPath, key => {
+            item[key] = shallowClone(item[key]);
+            item = item[key];
+          });
+        }
+
+        item[property] = previous;
+      }
+
+      changed = true;
+    };
+
+    const getOwnPropertyDescriptor = (target, property) => {
+      let props = propCache ? propCache.get(target) : undefined;
+
+      if (props) {
+        return props;
+      }
+
+      props = new Map();
+      propCache.set(target, props);
+
+      let prop = props.get(property);
+      if (!prop) {
+        prop = Reflect.getOwnPropertyDescriptor(target, property);
+        props.set(property, prop);
+      }
+
+      return prop;
+    };
+
+    const invalidateCachedDescriptor = (target, property) => {
+      const props = propCache ? propCache.get(target) : undefined;
+
+      if (props) {
+        props.delete(property);
+      }
+    };
+
+    const buildProxy = (value, path) => {
+      if (isUnsubscribed) {
+        return value;
+      }
+
+      pathCache.set(value, path);
+
+      let proxy = proxyCache.get(value);
+
+      if (proxy === undefined) {
+        proxy = new Proxy(value, handler);
+        proxyCache.set(value, proxy);
+      }
+
+      return proxy;
+    };
+
+    const unsubscribe = target => {
+      isUnsubscribed = true;
+      propCache = null;
+      pathCache = null;
+      proxyCache = null;
+
+      return target;
+    };
+
+    const ignoreChange = property =>
+      isUnsubscribed ||
+      (options.ignoreSymbols === true && typeof property === "symbol");
+
+    const handler = {
+      get(target, property, receiver) {
+        if (property === proxyTarget || property === TARGET) {
+          return target;
+        }
+
+        if (property === UNSUBSCRIBE && pathCache.get(target) === "") {
+          return unsubscribe(target);
+        }
+
+        const value = Reflect.get(target, property, receiver);
+        if (
+          isPrimitive(value) ||
+          isBuiltinWithoutMutableMethods(value) ||
+          property === "constructor" ||
+          options.isShallow === true
+        ) {
+          return value;
+        }
+
+        // Preserve invariants
+        const descriptor = getOwnPropertyDescriptor(target, property);
+        if (descriptor && !descriptor.configurable) {
+          if (descriptor.set && !descriptor.get) {
+            return undefined;
+          }
+
+          if (descriptor.writable === false) {
+            return value;
+          }
+        }
+
+        return buildProxy(value, concatPath(pathCache.get(target), property));
+      },
+
+      set(target, property, value, receiver) {
+        const proxyTargetValue =
+          value && value[proxyTarget] !== undefined
+            ? value[proxyTarget]
+            : value;
+
+        const ignore = ignoreChange(property);
+        const previous = ignore
+          ? null
+          : Reflect.get(target, property, receiver);
+        const result = Reflect.set(
+          target[proxyTarget] || target,
+          property,
+          proxyTargetValue
+        );
+
+        if (!ignore && !equals(previous, proxyTargetValue)) {
+          handleChange(
+            pathCache.get(target),
+            property,
+            previous,
+            proxyTargetValue
+          );
+        }
+
+        return result;
+      },
+
+      defineProperty(target, property, descriptor) {
+        const result = Reflect.defineProperty(target, property, descriptor);
+
+        if (!ignoreChange(property)) {
+          invalidateCachedDescriptor(target, property);
+
+          handleChange(
+            pathCache.get(target),
+            property,
+            undefined,
+            descriptor.value
+          );
+        }
+
+        return result;
+      },
+
+      deleteProperty(target, property) {
+        if (!Reflect.has(target, property)) {
+          return true;
+        }
+
+        const ignore = ignoreChange(property);
+        const previous = ignore ? null : Reflect.get(target, property);
+        const result = Reflect.deleteProperty(target, property);
+
+        if (!ignore) {
+          invalidateCachedDescriptor(target, property);
+
+          handleChange(pathCache.get(target), property, previous);
+        }
+
+        return result;
+      },
+
+      apply(target, thisArg, argumentsList) {
+        const compare = isBuiltinWithMutableMethods(proxyTargetThisArg);
+
+        const proxyTargetThisArg = compare ? thisArg[proxyTarget] : thisArg;
+
+        if (!inApply) {
+          inApply = true;
+
+          if (compare) {
+            applyPrevious = proxyTargetThisArg.valueOf();
+          }
+
+          if (
+            Array.isArray(proxyTargetThisArg) ||
+            toString.call(proxyTargetThisArg) === "[object Object]"
+          ) {
+            applyPrevious = shallowClone(proxyTargetThisArg[proxyTarget]);
+          }
+
+          applyPath = pathCache.get(target);
+          applyPath = applyPath.slice(
+            0,
+            Math.max(applyPath.lastIndexOf(PATH_SEPARATOR), 0)
+          );
+
+          const result = Reflect.apply(
+            target,
+            proxyTargetThisArg,
+            argumentsList
+          );
+
+          inApply = false;
+
+          if (
+            changed ||
+            (compare && !equals(applyPrevious, proxyTargetThisArg.valueOf()))
+          ) {
+            handleChange(
+              applyPath,
+              "",
+              applyPrevious,
+              proxyTargetThisArg[proxyTarget] || proxyTargetThisArg
+            );
+            applyPrevious = null;
+            changed = false;
+          }
+
+          return result;
+        }
+
+        return Reflect.apply(target, proxyTargetThisArg, argumentsList);
+      }
+    };
+
+    const proxy = buildProxy(object, "");
+    boundUpdateDataLayer = updateDataLayer.bind(proxy);
+
+    return proxy;
+  };
+
+  onChange.target = proxy => proxy[TARGET] || proxy;
+  onChange.unsubscribe = proxy => proxy[UNSUBSCRIBE] || proxy;
+
+  let proxy;
+  let previousDataLayer;
+
+  function _serialize(dataLayer) {
+    try {
+      return JSON.stringify({ ...dataLayer }, null, 2);
+    } catch (e) {
+      return JSON.stringify(dataLayer, null, 2);
+    }
+  }
+
+  function _notify(dataLayer) {
+    contentScriptEventTrigger({
+      data: {
+        dataLayer
+      },
+      timestamp: Date.now(),
+      timeSincePageLoad: window.performance.now()
+    });
+  }
+
+  function onDataLayerUpdate() {
+    const dataLayer = _serialize(this);
+
+    if (previousDataLayer !== dataLayer) {
+      previousDataLayer = dataLayer;
+      _notify(dataLayer);
+    }
+  }
+
+  function onDataLayerSet(newDataLayer) {
+    const dataLayer = _serialize(newDataLayer);
+    if (!previousDataLayer || previousDataLayer !== dataLayer) {
+      previousDataLayer = dataLayer;
+      _notify(dataLayer);
+    }
+  }
+
+  Object.defineProperty(window, dataLayerKey, {
+    get() {
+      return proxy;
+    },
+    set(newDataLayer) {
+      onDataLayerSet(newDataLayer);
+      proxy = onChange(newDataLayer, onDataLayerUpdate);
+    },
+    enumerable: true,
+    configurable: true
+  });
+
+  const oldObjectDefine = Object.defineProperty.bind(Object);
+  Object.defineProperty = (obj, prop, descriptor) => {
+    if (prop === dataLayerKey) {
+      console.debug(
+        "Data layer being overwritten by Object.defineProperty(). Falling back to polling..."
+      );
+
+      function pollForChanges() {
+        const dataLayer = _serialize(window[dataLayerKey]);
+        if (previousDataLayer !== dataLayer) {
+          previousDataLayer = dataLayer;
+          _notify(dataLayer);
+        }
+        window.requestAnimationFrame(pollForChanges);
+      }
+
+      window.requestAnimationFrame(pollForChanges);
+    }
+    return oldObjectDefine(obj, prop, descriptor);
+  };
+}
+
+		})();
+	</script><script>
+		(function() {
+			const contentScriptEventTrigger = function(data) {
+				window.postMessage({ id:'adobeExperienceCloudDebuggerContentMessagingIdentifier-2', data: data });
+			}
+			// https://github.com/adobe/alloy/wiki/Monitoring-Hooks
+
+// This script is run within an immediately executed function, so variables declared here
+// are local to this script only.
+const orgIdsByInstanceName = {};
+
+window.__alloyMonitors = window.__alloyMonitors || [];
+window.__alloyMonitors.push({
+  onBeforeNetworkRequest(data) {
+    setTimeout(() => {
+      contentScriptEventTrigger({
+        name: "onAlloyNetworkRequest",
+        data: {
+          ...data,
+          orgId: orgIdsByInstanceName[data.instanceName]
+        }
+      });
+    });
+  },
+  onNetworkResponse(data) {
+    // There are fields in data that don't serialize well, so we only include parsedBody
+    setTimeout(() => {
+      contentScriptEventTrigger({
+        name: "onAlloyNetworkResponse",
+        data: {
+          parsedBody: data.parsedBody,
+          orgId: orgIdsByInstanceName[data.instanceName]
+        }
+      });
+    });
+  },
+  onNetworkError(data) {
+    setTimeout(() => {
+      contentScriptEventTrigger({ name: "onAlloyNetworkError", data });
+    });
+  },
+  onInstanceConfigured(data) {
+    // We keep a cache of orgIdsByInstanceNames here because the response to getLibraryInfo
+    // may happen after a network request already occurred.
+    orgIdsByInstanceName[data.instanceName] = data.config.orgId;
+    setTimeout(() => {
+      window[data.instanceName]("getLibraryInfo").then(response => {
+        // The configuration section uses debugEnabled to know the initial state
+        const debugEnabledSessionStorage = window.sessionStorage.getItem(
+          `com.adobe.alloy.instance.${data.instanceName}.debug`
+        );
+        const debugEnabled =
+          debugEnabledSessionStorage === "true" ||
+          (data.config.debugEnabled && debugEnabledSessionStorage === null);
+
+        contentScriptEventTrigger({
+          name: "onInstanceConfigured",
+          data: {
+            libraryInfo: response.libraryInfo,
+            namespace: data.instanceName,
+            edgeConfigId: data.config.edgeConfigId,
+            edgeDomain: data.config.edgeDomain,
+            orgId: data.config.orgId,
+            debugEnabled
+          }
+        });
+      });
+    });
+  }
+});
+
+		})();
+	</script><script>
+		(function() {
+			const contentScriptEventTrigger = function(data) {
+				window.postMessage({ id:'adobeExperienceCloudDebuggerContentMessagingIdentifier-3', data: data });
+			}
+			/**
+ * Hooks into both DTM's and Launch's logging mechanisms in order to capture all log messages and
+ * send them to the UI to display to the user
+ */
+function notifyContentScript(log) {
+  contentScriptEventTrigger({
+    data: log,
+    timestamp: Date.now(),
+    timeSincePageLoad: window.performance.now()
+  });
+}
+
+window._satellite = window._satellite || {};
+window._satellite.override = window._satellite.override || {};
+
+// Hook into _satellite in order to capture DTM logs
+if (window.Object && window.Object.defineProperty) {
+  window.Object.defineProperty(
+    window._satellite.override,
+    "adobe.aepDebugger.dtmInitHook",
+    {
+      enumerable: true,
+      get() {
+        onSatelliteInit();
+        return "";
+      },
+      set() {}
+    }
+  );
+}
+
+function onSatelliteInit() {
+  // This function will run when DTM is loaded on the page. We use it to hook into DTM logs
+  const _satellite = window._satellite;
+  if (_satellite.Logger) {
+    _satellite.Logger.keepLimit = 9999;
+  }
+
+  // override notify
+  // Reason: we want to intercept messages that go through here
+  // without worrying about limits or messing anything up internally
+  const originalNotify = _satellite.notify;
+  _satellite.notify = (message, level) => {
+    const logLevel = ["log", "log", "log", "info", "warn", "error"];
+
+    // call original
+    originalNotify(message, level);
+
+    const log = {
+      solution: "dtm",
+      solutions: ["dtm"],
+      level: logLevel[level] || "log",
+      message: ""
+    };
+
+    // make sure that we have a message
+    if (message && typeof message === "string") {
+      // only add it
+      log.message = message;
+
+      // check to see what solution it came from
+      if (message.indexOf("Adobe Analytics:") !== -1) {
+        log.solutions.push("analytics");
+      } else if (message.indexOf("Test & Target:") !== -1) {
+        log.solutions.push("target");
+      } else if (message.indexOf("Visitor ID:") !== -1) {
+        log.solutions.push("visitorService");
+      } else if (message.indexOf("AdLens:") !== -1) {
+        log.solutions.push("mediaOptimizer");
+      }
+    }
+    notifyContentScript(log);
+  };
+}
+
+function _overrideConsoleLogFunction(prefix, solution, level) {
+  const originalFunction = console[level];
+  console[level] = (...args) => {
+    const argsAsArray = Array.prototype.slice.call(args);
+    originalFunction.apply(console, argsAsArray);
+    const mappedArgs = argsAsArray.map(arg => {
+      let result = "";
+      if (arg && typeof arg.toString === "function") {
+        result = arg.toString();
+      }
+      if (!result || result === "[object Object]") {
+        try {
+          result = JSON.stringify(arg);
+        } catch (e) {
+          return "";
+        }
+      }
+      return result;
+    });
+
+    const message = mappedArgs.join(" ");
+
+    if (typeof message === "string") {
+      if (message.indexOf(prefix) === 0) {
+        const log = {
+          solution,
+          solutions: [solution],
+          level,
+          message,
+          searchIndex: message,
+          params: mappedArgs
+        };
+
+        // check to see what solution it came from
+        if (message.indexOf("[Adobe Analytics]") !== -1) {
+          log.solutions.push("analytics");
+        } else if (message.indexOf("[Adobe Target]") !== -1) {
+          log.solutions.push("target");
+        } else if (message.indexOf("[Experience Cloud ID Service]") !== -1) {
+          log.solutions.push("visitorService");
+        } else if (message.indexOf("[Adobe Media Optimizer]") !== -1) {
+          log.solutions.push("mediaOptimizer");
+        }
+        notifyContentScript(log);
+      }
+    }
+  };
+}
+
+/**
+ * Overrides the various console.* methods in order to intercept messages that
+ * are sent to the console by launch. A message was sent be launch if it starts
+ * with the rocket emoji 🚀. Note that this is a somewhat brittle solution
+ * since if the emoji ever changes this integration will break. However this
+ * is the only solution that works for now.
+ *
+ * Any messages that are not prefixed with the rocket emoji are ignored and passed
+ * through to the original console function
+ */
+function _overrideConsoleForLaunch() {
+  const prefix = "\uD83D\uDE80";
+  ["error", "info", "log", "warn"].forEach(
+    _overrideConsoleLogFunction.bind(null, prefix, "launch")
+  );
+}
+
+/**
+ * Intercepts console messages made by alloy (prefixed with [alloy]) and notifies content script about each one.
+ * Note that this is a brittle solution and should not be used long term.
+ *
+ * Ideally there will be some debugging hooks built into alloy itself that we can connect to
+ */
+function _overrideConsoleForAlloy() {
+  window.__alloyNS = [];
+  const originalPush = window.__alloyNS.push;
+  window.__alloyNS.push = (namespace, ...rest) => {
+    ["error", "info", "log", "warn"].forEach(
+      _overrideConsoleLogFunction.bind(null, `[${namespace}]`, "alloy")
+    );
+
+    originalPush.apply(
+      window.__alloyNS,
+      Array.prototype.slice.call([namespace, ...rest])
+    );
+  };
+}
+
+_overrideConsoleForLaunch();
+_overrideConsoleForAlloy();
+
+// Once the page has finished loading, remove _satellite if both DTM and Launch were not found
+window.addEventListener("load", () => {
+  if (!_hasDtm() && !_hasLaunch()) {
+    delete window._satellite;
+  }
+});
+
+/**
+ * @returns {boolean} whether launch is present on the page
+ */
+function _hasLaunch() {
+  return !!(window._satellite && window._satellite._container);
+}
+
+/**
+ * @returns {boolean} whether DTM is present on the page
+ */
+function _hasDtm() {
+  return !!(window._satellite && window._satellite.configurationSettings);
+}
+
+		})();
+	</script><script>
+		(function() {
+			const contentScriptEventTrigger = function(data) {
+				window.postMessage({ id:'adobeExperienceCloudDebuggerContentMessagingIdentifier-4', data: data });
+			}
+			window.___target_traces = window.___target_traces || [];
+const originalPush = window.___target_traces.push;
+
+window.___target_traces.push = function targetTracePush(trace) {
+  contentScriptEventTrigger({ trace });
+  originalPush.call(this, trace);
+};
+
+		})();
+	</script><script type="text/javascript" src="chrome-extension://ffljdddodmkedhkcjhpmdajhjdbkogke/js/datalayer-checker.js"></script><head>
+    <!--BEGIN QUALTRICS WEBSITE FEEDBACK SNIPPET-->
+<script type='text/javascript'>
+(function(){var g=function(e,h,f,g){
+this.get=function(a){for(var a=a+"=",c=document.cookie.split(";"),b=0,e=c.length;b<e;b++){for(var d=c[b];" "==d.charAt(0);)d=d.substring(1,d.length);if(0==d.indexOf(a))return d.substring(a.length,d.length)}return null};
+this.set=function(a,c){var b="",b=new Date;b.setTime(b.getTime()+6048E5);b="; expires="+b.toGMTString();document.cookie=a+"="+c+b+"; path=/; "};
+this.check=function(){var a=this.get(f);if(a)a=a.split(":");else if(100!=e)"v"==h&&(e=Math.random()>=e/100?0:100),a=[h,e,0],this.set(f,a.join(":"));else return!0;var c=a[1];if(100==c)return!0;switch(a[0]){case "v":return!1;case "r":return c=a[2]%Math.floor(100/c),a[2]++,this.set(f,a.join(":")),!c}return!0};
+this.go=function(){if(this.check()){var a=document.createElement("script");a.type="text/javascript";a.src=g;document.body&&document.body.appendChild(a)}};
+this.start=function(){var t=this;"complete"!==document.readyState?window.addEventListener?window.addEventListener("load",function(){t.go()},!1):window.attachEvent&&window.attachEvent("onload",function(){t.go()}):t.go()};};
+try{(new g(100,"r","QSI_S_ZN_b2buzylw6AJecPI","https://znb2buzylw6ajecpi-techsalesemea.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_b2buzylw6AJecPI")).start()}catch(i){}})();
+</script><div id='ZN_b2buzylw6AJecPI'><!--DO NOT REMOVE-CONTENTS PLACED HERE--></div>
+<!--END WEBSITE FEEDBACK SNIPPET-->
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style><style type="text/css">.uib-time input{width:50px;}</style><style type="text/css">[uib-tooltip-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-bottom > .tooltip-arrow,[uib-popover-popup].popover.top-left > .arrow,[uib-popover-popup].popover.top-right > .arrow,[uib-popover-popup].popover.bottom-left > .arrow,[uib-popover-popup].popover.bottom-right > .arrow,[uib-popover-popup].popover.left-top > .arrow,[uib-popover-popup].popover.left-bottom > .arrow,[uib-popover-popup].popover.right-top > .arrow,[uib-popover-popup].popover.right-bottom > .arrow,[uib-popover-html-popup].popover.top-left > .arrow,[uib-popover-html-popup].popover.top-right > .arrow,[uib-popover-html-popup].popover.bottom-left > .arrow,[uib-popover-html-popup].popover.bottom-right > .arrow,[uib-popover-html-popup].popover.left-top > .arrow,[uib-popover-html-popup].popover.left-bottom > .arrow,[uib-popover-html-popup].popover.right-top > .arrow,[uib-popover-html-popup].popover.right-bottom > .arrow,[uib-popover-template-popup].popover.top-left > .arrow,[uib-popover-template-popup].popover.top-right > .arrow,[uib-popover-template-popup].popover.bottom-left > .arrow,[uib-popover-template-popup].popover.bottom-right > .arrow,[uib-popover-template-popup].popover.left-top > .arrow,[uib-popover-template-popup].popover.left-bottom > .arrow,[uib-popover-template-popup].popover.right-top > .arrow,[uib-popover-template-popup].popover.right-bottom > .arrow{top:auto;bottom:auto;left:auto;right:auto;margin:0;}[uib-popover-popup].popover,[uib-popover-html-popup].popover,[uib-popover-template-popup].popover{display:block !important;}</style><style type="text/css">.uib-datepicker-popup.dropdown-menu{display:block;float:none;margin:0;}.uib-button-bar{padding:10px 9px 2px;}</style><style type="text/css">.uib-position-measure{display:block !important;visibility:hidden !important;position:absolute !important;top:-9999px !important;left:-9999px !important;}.uib-position-scrollbar-measure{position:absolute !important;top:-9999px !important;width:50px !important;height:50px !important;overflow:scroll !important;}.uib-position-body-scrollbar-measure{overflow:scroll !important;}</style><style type="text/css">.uib-datepicker .uib-title{width:100%;}.uib-day button,.uib-month button,.uib-year button{min-width:100%;}.uib-left,.uib-right{width:100%}</style><style type="text/css">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><title>Internet Banking - ABN AMRO</title><link rel="shortcut icon" href="https://www.abnamro.nl/portal/my-abnamro/authentication/login/index.html"><link href="./index_files/style.css" rel="stylesheet"><link href="./index_files/myabnamro-compatability.css" rel="stylesheet"><script src="./index_files/jquery.min.js"></script><script src="./index_files/webcomponents-loader.js"></script><script src="./index_files/tealium-environment.js"></script><script src="./index_files/index.183be78c.js"></script><script>
+			window.SBX_dlc=window.SBX_dlc||{};
+			window.SBX_dlc.settings=JSON.parse("{\"consoleLog\":false,\"eventColors\":true,\"eventCustomColors\":{\"custom1\":\"\",\"custom2\":\"\",\"custom3\":\"\"},\"gtmInjectId\":\"\",\"gtmInjectRule\":\"\",\"preventDefault\":false,\"jsonDefaultViewMode\":true}");
+		</script><script charset="utf-8" src="./index_files/vendors_index.01fc58b0.js"></script><link rel="stylesheet" type="text/css" href="./index_files/0.59b72370.css"><script charset="utf-8" src="./index_files/index.718a6b49.js"></script><style type="text/css"></style><script type="text/javascript" src="./index_files/header-panel.js"></script><script type="text/javascript" src="./index_files/footer-panel.js"></script><script src="./index_files/lit-element.js"></script><script src="./index_files/sc-aab-search.js"></script><script src="./index_files/aab-analytics-event-handler.js"></script><script src="./index_files/lit-element.js"></script><script src="./index_files/lit-element.js"></script><script type="text/javascript" async="" charset="utf-8" id="tealium_visitor_service_57udh-production_1" src="./index_files/017ff9fc2530000327245aaad93805079002a07100b7e"></script><script type="text/javascript" async="" charset="utf-8" id="tealium_visitor_service_57udh-production_2" src="./index_files/017ff9fc2530000327245aaad93805079002a07100b7e"></script><script type="text/javascript" async="" charset="utf-8" id="tealium_visitor_service_57udh-production_3" src="./index_files/017ff9fc2530000327245aaad93805079002a07100b7e(1)"></script><script type="text/javascript" async="" charset="utf-8" id="tealium_visitor_service_57udh-production_4" src="./index_files/017ff9fc2530000327245aaad93805079002a07100b7e(2)"></script><script type="text/javascript" async="" charset="utf-8" id="tealium_visitor_service_57udh-production_5" src="./index_files/017ff9fc2530000327245aaad93805079002a07100b7e(3)"></script><script type="text/javascript" async="" charset="utf-8" id="tealium_visitor_service_57udh-production_6" src="./index_files/017ff9fc2530000327245aaad93805079002a07100b7e(4)"></script><script type="text/javascript" async="" charset="utf-8" id="tealium_visitor_service_57udh-production_7" src="https://visitor-service.tealiumiq.com/abn-amro/udh-production/017ff9fc2530000327245aaad93805079002a07100b7e?callback=utag.ut%5B%22writevaudh-production%22%5D&amp;rnd=1649187623538"></script></head><body class="page" onload="authenticationLoginIndex.default()"><header-panel active-menu-item=""></header-panel><main id="main" role="main" class="em-page"><div class="container-fluid em-page-grid spx-2 px-md-3 em-overflow-show"><div class="row"><div class="col-lg-9 px-0 spx-md-2 d-flex flex-column-reverse flex-md-column"><div class="em-page-title position-sticky bottom-0 em-z-index-2"><div class="float-none float-md-right mx-2 mx-md-0"></div><h2 id="longTitle" class="d-md-block d-none mb-0">Feedback</h2></div><aab-notification class="pb-3 d-none" id="ie11-banner" type="info" title=""><p></p><a href="https://www.abnamro.nl/portal/my-abnamro/authentication/login/index.html"></a></aab-notification><div id="innerPage" class="ng-scope"><aab-widget ng-controller="LoginWidgetController" class="em-oca ng-scope"><div data-ng-class="widget.context.getTemplateSettings().container.style" class="container-fluid"><div data-ng-class="widget.context.getTemplateSettings().panel.style" cg-busy="{promise:widget.spinner.widgetPromise,message:widget.spinner.message,backdrop:widget.spinner.backdrop,templateUrl:widget.spinner.templateUrl,wrapperClass:widget.spinner.wrapperClass,delay:widget.spinner.delay,minDuration:widget.spinner.minDuration}" class="panel panel-default" style="position: relative;"><!-- ngIf: widget.context.getTemplateSettings().panel.header.show --><div data-ng-if="widget.context.getTemplateSettings().panel.header.show" data-ng-class="widget.context.getTemplateSettings().panel.header.style" data-ng-hide="widget.context.hideHeader" class="ng-scope ng-hide panel-heading"><!-- ngIf: !widget.context.error || widget.context.error.isRecoverable --><button type="submit" data-ng-class="widget.context.getHeaderSettings().leftButton.class" data-ng-click="widget.handleGoBackClick()" data-ng-show="widget.context.getHeaderSettings().leftButton.show" data-ng-if="!widget.context.error || widget.context.error.isRecoverable" class="ng-scope ng-hide btn btn-default ocf-btn-back"><span data-translate="Button-Back" data-translate-values="" data-translate-default="terug." class="ng-scope">back</span></button><!-- end ngIf: !widget.context.error || widget.context.error.isRecoverable --><!-- ngIf: (!widget.context.error || widget.context.error.isRecoverable) && widget.context.getHeaderSettings().rightButton.show --><h2 data-ng-show="widget.context.getHeaderSettings().general.title" class="panel-title ng-binding ng-hide" data-ng-class="{&#39;mb-0&#39;: widget.context.getHeaderSettings().general.title}" data-ng-bind="widget.context.getHeaderSettings().general.title"></h2><h2 data-ng-hide="widget.context.getHeaderSettings().general.title" class="panel-title ng-scope mb-0" data-ng-class="{&#39;mb-0&#39;: !widget.context.getHeaderSettings().general.title}" data-translate="title:login" data-translate-default="">Feedback</h2></div><!-- end ngIf: widget.context.getTemplateSettings().panel.header.show --><div data-ng-class="widget.context.getTemplateSettings().panel.body.style" class="panel-body"><aab-sdm data-sdm="widget.context.sdm" class="ng-isolate-scope"><!-- ngIf: emerald --><div ng-if="emerald" class="alert em-alert-warning px-sm-2 ng-scope ng-hide" role="alert" data-ng-show="sdm.showSdmLabel"><div class="d-flex flex-row"><span class="float-left flex-shrink-0 mr-1 em-icon-size-3 sy-notification-warning"></span> <span class="sr-only">Error:</span><div><!-- ngIf: sdm.title && (sdm.title | translate) --><p class="mb-0 ng-binding" data-ng-bind-html="sdm.text | translate | aabTrustedHtml"></p></div></div></div><!-- end ngIf: emerald --><!-- ngIf: !emerald --></aab-sdm><aab-alert data-error="widget.context.error" data-ng-hide="widget.context.isStateModalOpen &amp;&amp; widget.context.error &amp;&amp; widget.context.error.isRecoverable" class="ng-isolate-scope"><!-- ngIf: emerald --><div ng-if="emerald" class="alert em-alert-warning px-sm-2 ng-scope ng-isolate-scope ng-hide" role="alert" data-ng-click="isCollapsed = !isCollapsed" aria-live="assertive" data-ng-show="error" data-aab-scroll-to="error !== undefined" data-testid="alert-container"><!-- ngIf: error.faultCode --><div class="d-flex flex-row"><span class="float-left flex-shrink-0 mr-1 em-icon-size-3 sy-notification-warning"></span> <span class="sr-only">Error:</span><div><!-- ngIf: error.title && (error.title | translate) --><p class="mb-0 ng-binding" data-ng-bind-html="error.text | translate | aabTrustedHtml" data-translate-default="Er is een fout opgetreden" data-testid="second-alert-warning-text"></p></div></div><!-- ngIf: error.options.button --></div><!-- end ngIf: emerald --><!-- ngIf: !emerald --></aab-alert><aab-step-counter data-steps="widget.context.steps" data-ng-hide="widget.context.error &amp;&amp; !widget.context.error.isRecoverable"></aab-step-counter><aab-update-loader class="ng-isolate-scope"><div class="ocf-update-loader ng-hide" data-ng-show="vm.show"><span class="glyphicon glyphicon-ok-circle ocf-icon-large ng-hide" data-ng-show="vm.successIcon"></span> <span data-us-spinner="{&quot;lines&quot;:12,&quot;length&quot;:6,&quot;width&quot;:3,&quot;radius&quot;:8,&quot;color&quot;:&quot;#fff&quot;,&quot;speed&quot;:1,&quot;trail&quot;:100,&quot;shadow&quot;:false,&quot;left&quot;:&quot;20px&quot;,&quot;top&quot;:&quot;50%&quot;}" data-spinner-key="spinner-wrapper" class="ng-scope"></span><h3 aria-role="alert" translate="" class="ng-scope"></h3></div></aab-update-loader><!-- uiView: --><ui-view data-ng-hide="widget.context.error &amp;&amp; !widget.context.error.isRecoverable" class="ng-scope"><aab-widget-module ng-controller="LoginController as login" data-ng-class="{&#39;em-login&#39;: login.isEmerald || true}" class="ng-scope em-login"><a id="scrollIntoView" class="scroll-xs scroll-xxs"></a><aab-information-block ng-show="login.showInfoBlock" icon-image="" icon-class="" title="" hidden-xxs="" default-logo-size="true" small-title-margin="true" class="ng-isolate-scope ng-hide"><div class="well"><div class="row"><div class="col-xs-3 col-xxs-3" data-ng-class="hiddenXxs ? &#39;hidden-xxs&#39; : &#39;col-xxs-3&#39;"><div class="glyphicon  ocf-icon-fluid aab-information-block-default-size" data-ng-class="{&#39;aab-information-block-default-size&#39; : defaultLogoSize}"><img class="center-image-infoblock aab-information-block-default-size" data-ng-class="{&#39;aab-information-block-default-size&#39; : defaultLogoSize}" ng-src=""></div></div><div class="col-xs-9 col-xxs-9" data-ng-class="{ &#39;col-xxs-9&#39; : !hiddenXxs }"><!-- ngIf: title --><div data-ng-transclude=""><p data-testid="paratext" class="ng-binding ng-scope"></p></div></div></div></div></aab-information-block>
+    <div id="surveyBlock">Hello</div>
+    </aab-widget-module></ui-view></div><div class="cg-busy cg-busy-backdrop cg-busy-backdrop-animation ng-hide ng-scope" ng-show="$cgBusyIsActive()"></div><div class="undefined ng-hide ng-scope" ng-show="$cgBusyIsActive()"><div class="cg-busy-default-wrapper" style="position: absolute; inset: 0px;">
+
+   <div class="cg-busy-default-sign">
+
+      <div class="cg-busy-default-spinner">
+         <div class="bar1"></div>
+         <div class="bar2"></div>
+         <div class="bar3"></div>
+         <div class="bar4"></div>
+         <div class="bar5"></div>
+         <div class="bar6"></div>
+         <div class="bar7"></div>
+         <div class="bar8"></div>
+         <div class="bar9"></div>
+         <div class="bar10"></div>
+         <div class="bar11"></div>
+         <div class="bar12"></div>
+      </div>
+
+      <div class="cg-busy-default-text ng-binding"></div>
+
+   </div>
+
+</div></div></div></div></aab-widget></div><div class="em-page-title"><h2 id="shortTitle" class="d-md-none d-block mb-0">Internet Banking</h2></div></div><div class="col-lg-3 em-pt-sidebar"></div></div></div></main><footer-panel languageswitchurl="../../../mijn-abnamro/authenticatie/inloggen/index.html"></footer-panel><script type="text/javascript" src="./index_files/CU-Bjg"></script><div id="viewport-toolkit"><div class="device-xl d-none d-xl-block">&nbsp;</div><div class="device-lg d-none d-lg-block d-xl-none">&nbsp;</div><div class="device-md d-none d-md-block d-lg-none">&nbsp;</div><div class="device-sm d-none d-sm-block d-md-none">&nbsp;</div><div class="device-xs d-block d-sm-none">&nbsp;</div></div></body></html>
