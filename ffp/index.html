@@ -1,0 +1,68 @@
+<html>
+<head> 
+    <link rel="stylesheet" type="text/css" href="./styles/soccer.css">
+</head>
+<body>
+    
+<div class="league-container">
+    <div class="league-table"></div>
+</div> 
+
+<script type="text/javascript" src="./scripts/soccer.js"></script>
+
+<script type="application/javascript">
+//Get FF Data
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://fantasy.premierleague.com/api/leagues-classic/1405669/standings/", false); 
+xhr.onload = function (e) {
+  if (xhr.readyState === 4) {
+    if (xhr.status === 200) {
+      console.log(xhr.responseText);
+      var response = JSON.parse(xhr.responseText);
+      soccer.addTeam(['Gandalf Academical', 'Frodo City', 'Aragorn Wanderers', 'Bilbo United']);
+    
+soccer.updateTeam([{
+        name: 'Gandalf Academical',
+        player: "John Doe",
+        gamesweek: 10,
+        points: 10
+    },
+    {
+        name: 'Frodo City',
+        player: "John Doe",
+        gamesweek: 10,
+        points: 6
+        },
+    {
+        name: 'Aragorn Wanderers',
+        player: "John Doe",
+        gamesweek: 11,
+        points: 31
+    },
+    {
+        name: 'Bilbo United',
+        player: "John Doe",
+        gamesweek: 11,
+        points: 24    
+    }]);
+        
+soccer.renderLeague({
+    leagueName: 'Middle Earth League 1',
+    dropdown: 5,
+    zones: [1, 8]
+});    
+    } else {
+      console.error(xhr.statusText);
+    }
+  }
+};
+xhr.onerror = function (e) {
+  console.error(xhr.statusText);
+};
+xhr.send(null);
+
+</script>
+</body>
+
+
+</html>
