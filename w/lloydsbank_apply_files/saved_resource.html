@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!-- saved from url=(0089)https://qdemo.ca1.qualtrics.com/jfe/form/SV_aXJGbZUnSVVx6su?Q_CHL=si&Q_CanScreenCapture=1 -->
+<html class="JFEScope" lang="EN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Online Survey Software | Qualtrics Survey Solutions</title>
+    
+        <link rel="dns-prefetch" href="https://eu.qualtrics.com/WRQualtricsShared/">
+        <link rel="preconnect" href="https://eu.qualtrics.com/WRQualtricsShared/">
+    
+    <meta name="description" content="Qualtrics sophisticated online survey software solutions make creating online surveys easy. Learn more about Research Suite and get a free account today.">
+    <meta name="robots" content="noindex">
+    <meta id="meta-viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2.5">
+    <meta property="og:title" content="Online Survey Software | Qualtrics Survey Solutions">
+    <meta property="og:description" content="Qualtrics sophisticated online survey software solutions make creating online surveys easy. Learn more about Research Suite and get a free account today.">
+    
+    <script>(function(w) {
+  'use strict';
+  if (w.history && w.history.replaceState) {
+    var path = w.location.pathname;
+    var jfePathRegex = /^\/jfe\d+\//;
+
+    if (jfePathRegex.test(path)) {
+      w.history.replaceState(null, null, w.location.href.replace(path, path.replace(jfePathRegex, '/jfe/')));
+    }
+  }
+})(window);
+</script>
+<link rel="apple-touch-icon" href="https://qdemo.ca1.qualtrics.com/brand-management/apple-touch-icon"><link type="image/x-icon" rel="icon" href="https://qdemo.ca1.qualtrics.com/brand-management/brand-assets/qdemo/favicon.ico"><script type="text/javascript" charset="utf-8" async="" src="./focus-handler.51957fb9144981ed0e8b.js"></script><script type="text/javascript" charset="utf-8" async="" src="./mp.8ff82210df973b5a7ca8.js"></script><script type="text/javascript" charset="utf-8" async="" src="./mc.19204e8370ced59d9cdb.js"></script><script type="text/javascript" charset="utf-8" async="" src="./jsApi.9280391dff50a2a432ef.js"></script><script type="text/javascript" charset="utf-8" async="" src="./prototype.53cc12e39c138e5e551a.js"></script><script data-runid="6929584287934822">
+Qualtrics.SurveyEngine.addOnReady(function () {
+    (function () {
+        if (!window.CS_CONF){
+           window._cs_integration_qualtrics_csid = "";
+		     
+           var mt = document.createElement("script");
+           mt.type = "text/javascript";
+           mt.async = true;
+           mt.src = "https://t.contentsquare.net/uxa/87fe7310f8cc5.js";
+           document.getElementsByTagName("head")[0].appendChild(mt);
+        }
+    })();
+});
+</script><script data-runid="6929584287934822">window.Q_CustomJSContextQID = "QID9";window.Q_CustomJSContextQID = "QID9";
+Qualtrics.SurveyEngine.addOnload(function()
+{
+	this.questionclick = function(event,element)
+    {
+        //by default you get the click event as the first parameter and the clicked element as the second parameter
+        console.log(event, element);
+        if (element.type == 'radio')
+        {
+            var choiceNum = element.id.split('~')[2];
+            if (choiceNum == 3)
+            {
+                window.parent.location = "https://demoqualtrics.github.io/finance-retail/contact.html";
+            }
+        }
+    }
+});
+
+Qualtrics.SurveyEngine.addOnReady(function()
+{
+	/*Place your JavaScript here to run when the page is fully displayed*/
+
+});
+
+Qualtrics.SurveyEngine.addOnUnload(function()
+{
+	/*Place your JavaScript here to run when the page is unloaded*/
+
+});;delete window.Q_CustomJSContextQID;; delete window.Q_CustomJSContextQID;</script><script data-runid="6929584287934822">Qualtrics.SurveyEngine.addOnload(Qualtrics.uniformLabelHeight);</script><script data-runid="6929584287934822">
+//TM6 Question Text Cell Padding
+	//JFE
+	Page.on('ready:imagesLoaded',function() {
+		var t = jQuery(".QuestionText table");
+	  for (i=0; i<t.length; i++) {
+	    if (t[i].cellPadding != undefined) {
+	      var p = t[i].cellPadding + "px";
+	      t.eq(i).find("th").css("padding",p);
+	      t.eq(i).find("td").css("padding",p);
+	    }
+	  }
+	});
+	//SE
+	jQuery(window).on('load',function() {
+		if (jQuery("div").hasClass("JFE") == false) {
+	    var t = jQuery(".QuestionText table");
+	    for (i=0; i<t.length; i++) {
+	      if (t[i].cellPadding != undefined) {
+	        var p = t[i].cellPadding + "px";
+	        t.eq(i).find("th").css("padding",p);
+	        t.eq(i).find("td").css("padding",p);
+	      }
+	    }
+		};
+	});
+//TM21 iOS Text Box Width Fix
+//JFE
+Page.on('ready:imagesLoaded',function() {
+	function isIE () {
+  	var myNav = navigator.userAgent.toLowerCase();
+  	return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+	}
+	if (!isIE()) {
+		var mq = window.matchMedia( "(max-width: 480px)" );
+		if (mq.matches == true) {
+			jQuery(".Skin .MC .TextEntryBox").css("width","100%");
+			jQuery(".Skin .TE .ESTB .InputText").css("width","100%");
+			jQuery(".Skin .TE .FORM .InputText").css("width","100%");
+			jQuery(".Skin .TE .ML .InputText").css("width","100%");
+			jQuery(".Skin .TE .PW .InputText").css("width","100%");
+			jQuery(".Skin .TE .SL .InputText").css("width","100%");
+			jQuery(".Skin .TE .FollowUp .InputText").css("width","100%");
+		};
+	};
+});
+//SE
+jQuery(window).on('load',function() {
+	function isIE () {
+  	var myNav = navigator.userAgent.toLowerCase();
+  	return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+	}
+	if (!isIE()) {
+		var mq = window.matchMedia( "(max-width: 480px)" );
+		if (jQuery("div").hasClass("JFE") == false && mq.matches == true) {
+			jQuery(".Skin .MC .TextEntryBox").css("width","100%");
+			jQuery(".Skin .TE .ESTB .InputText").css("width","100%");
+			jQuery(".Skin .TE .FORM .InputText").css("width","100%");
+			jQuery(".Skin .TE .ML .InputText").css("width","100%");
+			jQuery(".Skin .TE .PW .InputText").css("width","100%");
+			jQuery(".Skin .TE .SL .InputText").css("width","100%");
+			jQuery(".Skin .TE .FollowUp .InputText").css("width","100%");
+		};
+	};
+});
+</script><script type="text/javascript" async="" src="./87fe7310f8cc5.js"></script></head>
+    <body id="SurveyEngineBody" style="direction: ltr;">
+    <noscript><style>#pace{display: none;}</style><div style="padding:8px 15px;font-family:Helvetica,Arial,sans-serif;background:#fcc;border:1px solid #c55">Javascript is required to load this page.</div></noscript>
+    
+        <style type="text/css">#pace{background:#fff;position:absolute;top:0;bottom:0;left:0;right:0;z-index:1}#pace::before{content:'';display:block;position:fixed;top:30%;right:50%;width:50px;height:50px;border:6px solid transparent;border-top-color:#0b6ed0;border-left-color:#0b6ed0;border-radius:80px;animation:q 1s linear infinite;margin:-33px -33px 0 0;box-sizing:border-box}@keyframes q{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+</style>
+        
+    
+    <script type="text/javascript">
+      window.QSettings = {
+          
+        jfeVersion: "14e555732542c4e8d1f45f5027692654378ab13f",
+        publicPath: "/jfe/static/dist/",
+        cbs: [], bootstrapSkin: null, ab: false,
+        getPT: function(cb) {
+          if (this.pt !== undefined) {
+            cb(this.success, this.pt);
+          } else {
+            this.cbs.push(cb);
+          }
+        },
+        setPT: function(s, pt) {
+          this.success = s;
+          this.pt = pt;
+          if (this.cbs.length) {
+            for (var i = 0; i < this.cbs.length; i++) {
+              this.cbs[i](s, pt);
+            }
+          }
+        }
+      };
+    </script>
+    
+    <script>!function(e){function a(c){if(r[c])return r[c].exports;var t=r[c]={i:c,l:!1,exports:{}};return e[c].call(t.exports,t,t.exports,a),t.l=!0,t.exports}var c=window.webpackJsonp;window.webpackJsonp=function(r,n,f){for(var o,d,b,i=0,u=[];i<r.length;i++)d=r[i],t[d]&&u.push(t[d][0]),t[d]=0;for(o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o]);for(c&&c(r,n,f);u.length;)u.shift()();if(f)for(i=0;i<f.length;i++)b=a(a.s=f[i]);return b};var r={},t={40:0};a.e=function(e){function c(){o.onerror=o.onload=null,clearTimeout(d);var a=t[e];0!==a&&(a&&a[1](new Error("Loading chunk "+e+" failed.")),t[e]=void 0)}var r=t[e];if(0===r)return new Promise(function(e){e()});if(r)return r[2];var n=new Promise(function(a,c){r=t[e]=[a,c]});r[2]=n;var f=document.getElementsByTagName("head")[0],o=document.createElement("script");o.type="text/javascript",o.charset="utf-8",o.async=!0,o.timeout=12e4,a.nc&&o.setAttribute("nonce",a.nc),o.src=a.p+"c/"+({0:"slidercontrol-jfe",1:"timing",2:"fileupload",3:"relevantid",4:"matrix",5:"slider",6:"mc",7:"scoring",8:"te",9:"hotspot",10:"hl",11:"cs",12:"ro",13:"fancybox",14:"toc",15:"ss",16:"db",17:"recaptchav3",18:"draw",19:"hmap",20:"pgr",21:"meta",22:"captcha",23:"response-summary",24:"mp",25:"preview",26:"mockForm",27:"sbs",28:"dd",29:"jsApi",30:"slide",31:"flip",32:"fade",33:"barrel-roll",34:"focus-handler",38:"prototype",39:"advance-button-template"}[e]||e)+"."+{0:"ca12677e5273e3d16fcc",1:"f67f827a4207049b94c2",2:"79cd6b56b060670f0aaf",3:"c375115d03adee97fe4c",4:"f8c4525fe3865da56ef7",5:"a39e8bd84793dce762ec",6:"19204e8370ced59d9cdb",7:"94f152c84bbcdb744962",8:"c3f7ad4abeb97c347074",9:"55463b1bf8522a2f90bd",10:"c229a2a8198e1d6caf69",11:"b2a9e486d893e05bb973",12:"aa1d281ff5d6ef525015",13:"4b7c9830c7109e613ca8",14:"f975a02b511c74261cb2",15:"5a7ad13a3bfff589bebc",16:"dac06806287b3a202c9b",17:"03222b8c33a33c08ac40",18:"6bdc3c60ff36a464f52c",19:"12bbb94de11877c96447",20:"4b16eea17dd4a6f031eb",21:"0fd1f1c0bbcc013f3c91",22:"5992820432bce9b77d15",23:"523ffc96b4a767463c1d",24:"8ff82210df973b5a7ca8",25:"0c32e05edbd7b2e5b509",26:"b2a37a4e32c868c906aa",27:"5af74cbf1108c7b3ba97",28:"969982665e06903f4729",29:"9280391dff50a2a432ef",30:"c017188f78b01d552bf5",31:"5e27603f5f99ea370f70",32:"76027710e54af08dd56d",33:"72213efc74279de2b336",34:"51957fb9144981ed0e8b",38:"53cc12e39c138e5e551a",39:"530a4e8c5c1d103b5873"}[e]+".js";var d=setTimeout(c,12e4);return o.onerror=o.onload=c,f.appendChild(o),n},a.m=e,a.c=r,a.d=function(e,c,r){a.o(e,c)||Object.defineProperty(e,c,{configurable:!1,enumerable:!0,get:r})},a.n=function(e){var c=e&&e.__esModule?function(){return e.default}:function(){return e};return a.d(c,"a",c),c},a.o=function(e,a){return Object.prototype.hasOwnProperty.call(e,a)},a.p="",a.oe=function(e){throw console.error(e),e}}([]);</script>
+    <script src="./vendor.944ec92fd0786e9660e8.js" crossorigin="anonymous"></script>
+    <script src="./jfe.6c1dddf223a09f5d5a39.js" crossorigin="anonymous"></script>
+
+    <link href="./stylesheet.css" rel="stylesheet">
+
+    <link id="rtlStyles" rel="stylesheet" type="text/css">
+    <style id="customStyles"></style>
+
+    <style>
+      .JFEScope .questionFocused   .advanceButtonContainer {transition:opacity .3s!important;visibility:unset;opacity:1}
+      .JFEScope .questionUnfocused .advanceButtonContainer, .advanceButtonContainer {transition:opacity .3s!important;visibility:hidden;opacity:0}
+      .Skin .Bipolar .bipolar-mobile-header, .Skin .Bipolar .desktop .bipolar-mobile-header, .Skin .Bipolar .mobile .ColumnLabelHeader {display: none}
+
+      /* Change color of question validation warnings */
+      .Skin .ValidationError.Warn {color: #e9730c;}
+
+      /* Hide mobile preview scrollbar for Chrome, Safari and Opera */
+      html.MobilePreviewFrame::-webkit-scrollbar { display: none; }
+
+      /* Hide mobile preview scrollbar for IE and Edge */
+      html.MobilePreviewFrame { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    <style type="text/css">.accessibility-hidden{height:0;width:0;overflow:hidden;position:absolute;left:-999px}</style>
+    <div id="polite-announcement" class="accessibility-hidden" aria-live="polite" aria-atomic="true">Page Loaded</div>
+    <div id="assertive-announcement" class="accessibility-hidden" aria-live="assertive" role="alert" aria-atomic="true"></div>
+    <script type="text/javascript">
+      (function () {
+        var o = {};
+        try {
+          Object.defineProperty(o,'compat',{value:true,writable:true,enumerable:true,configurable:true});
+        } catch (e) {};
+        if (o.compat !== true || document.addEventListener === undefined) {
+          window.location.pathname = '/jfe/incompatibleBrowser';
+        }
+
+        var fv = document.createElement('link');
+        fv.rel = 'apple-touch-icon';
+        fv.href = "/brand-management/apple-touch-icon";
+        document.getElementsByTagName('head')[0].appendChild(fv);
+      })();
+      QSettings.ab = false;
+      document.title = "Online Survey Software | Qualtrics Survey Solutions";
+      
+      (function(s) {
+        QSettings.bootstrapSkin = s;
+        var sp = document.getElementById('skinPrefetch');
+        if (sp) {
+          sp.innerHTML = s;
+        }
+      })("<meta name=\"HandheldFriendly\" content=\"true\" />\n<meta name = \"viewport\" content = \"user-scalable = yes, maximum-scale=10, minimum-scale=1, initial-scale = 1, width = device-width\" />\n<div class='Skin'>\n\t<div id=\"Overlay\"></div>\n\t<div id=\"Wrapper\">\n\t\t<div id='ProgressBar'>{~ProgressBar~}</div>\n\t\t<div class='SkinInner'>\n\t\t\t<div id='LogoContainer'>\n\t\t\t\t<div id='Logo'><img src=\"https://qdemo.ca1.qualtrics.com/CP/Graphic.php?IM=IM_823B0VLjNvegSOO\" /></div>\n\t\t\t</div>\n\t\t\t<div id='HeaderContainer'>\n\t\t\t\t\n\t\t\t\t<div id='Header'>{~Header~}</div>\n\t\t\t</div>\n\t\t\t<div id='SkinContent'>\n\t\t\t\t<div id='Questions'>{~Question~}</div>\n\t\t\t\t<div id='Buttons'>{~Buttons~}</div>\n\t\t\t\t\n\t\t\t</div>\n\t\t</div>\n\t\t<div id='Footer'>{~Footer~}</div>\n\t\t\n\t\t<div id='PushStickyFooter'></div>\n\t</div>\n\t<div id=\"Plug\" style=\"display:block !important;\"><a href=\"https://www.qualtrics.com/powered-by-qualtrics/?utm_source=internal%2Binitiatives&utm_medium=survey%2Bpowered%2Bby%2Bqualtrics&utm_content={~BrandID~}&utm_survey_id={~SurveyID~}\" target=\"_blank\" aria-label=\"{~PlugLabel~}\">{~Plug~}</a></div>\n</div>\n<script>Qualtrics.SurveyEngine.addOnload(Qualtrics.uniformLabelHeight);<\/script>\n\n<script>\n//TM6 Question Text Cell Padding\n\t//JFE\n\tPage.on('ready:imagesLoaded',function() {\n\t\tvar t = jQuery(\".QuestionText table\");\n\t  for (i=0; i<t.length; i++) {\n\t    if (t[i].cellPadding != undefined) {\n\t      var p = t[i].cellPadding + \"px\";\n\t      t.eq(i).find(\"th\").css(\"padding\",p);\n\t      t.eq(i).find(\"td\").css(\"padding\",p);\n\t    }\n\t  }\n\t});\n\t//SE\n\tjQuery(window).on('load',function() {\n\t\tif (jQuery(\"div\").hasClass(\"JFE\") == false) {\n\t    var t = jQuery(\".QuestionText table\");\n\t    for (i=0; i<t.length; i++) {\n\t      if (t[i].cellPadding != undefined) {\n\t        var p = t[i].cellPadding + \"px\";\n\t        t.eq(i).find(\"th\").css(\"padding\",p);\n\t        t.eq(i).find(\"td\").css(\"padding\",p);\n\t      }\n\t    }\n\t\t};\n\t});\n//TM21 iOS Text Box Width Fix\n//JFE\nPage.on('ready:imagesLoaded',function() {\n\tfunction isIE () {\n  \tvar myNav = navigator.userAgent.toLowerCase();\n  \treturn (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;\n\t}\n\tif (!isIE()) {\n\t\tvar mq = window.matchMedia( \"(max-width: 480px)\" );\n\t\tif (mq.matches == true) {\n\t\t\tjQuery(\".Skin .MC .TextEntryBox\").css(\"width\",\"100%\");\n\t\t\tjQuery(\".Skin .TE .ESTB .InputText\").css(\"width\",\"100%\");\n\t\t\tjQuery(\".Skin .TE .FORM .InputText\").css(\"width\",\"100%\");\n\t\t\tjQuery(\".Skin .TE .ML .InputText\").css(\"width\",\"100%\");\n\t\t\tjQuery(\".Skin .TE .PW .InputText\").css(\"width\",\"100%\");\n\t\t\tjQuery(\".Skin .TE .SL .InputText\").css(\"width\",\"100%\");\n\t\t\tjQuery(\".Skin .TE .FollowUp .InputText\").css(\"width\",\"100%\");\n\t\t};\n\t};\n});\n//SE\njQuery(window).on('load',function() {\n\tfunction isIE () {\n  \tvar myNav = navigator.userAgent.toLowerCase();\n  \treturn (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;\n\t}\n\tif (!isIE()) {\n\t\tvar mq = window.matchMedia( \"(max-width: 480px)\" );\n\t\tif (jQuery(\"div\").hasClass(\"JFE\") == false && mq.matches == true) {\n\t\t\tjQuery(\".Skin .MC .TextEntryBox\").css(\"width\",\"100%\");\n\t\t\tjQuery(\".Skin .TE .ESTB .InputText\").css(\"width\",\"100%\");\n\t\t\tjQuery(\".Skin .TE .FORM .InputText\").css(\"width\",\"100%\");\n\t\t\tjQuery(\".Skin .TE .ML .InputText\").css(\"width\",\"100%\");\n\t\t\tjQuery(\".Skin .TE .PW .InputText\").css(\"width\",\"100%\");\n\t\t\tjQuery(\".Skin .TE .SL .InputText\").css(\"width\",\"100%\");\n\t\t\tjQuery(\".Skin .TE .FollowUp .InputText\").css(\"width\",\"100%\");\n\t\t};\n\t};\n});\n<\/script>\n<style>@font-face {font-display:swap;font-family:Lloyds Jack Regular;font-style:normal;src:local(\"Lloyds Jack Regular\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackRegular/lloyds_bank_jack-regularWEB.woff2\") format(\"woff2\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackRegular/lloyds_bank_jack-regularWEB.woff\") format(\"woff\");text-rendering:optimizeLegibility}\n@font-face{font-display:swap;font-family:Lloyds Jack Medium;font-style:normal;src:local(\"Lloyds Jack Medium\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackMedium/lloyds_bank_jack-mediumWEB.woff2\") format(\"woff2\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackMedium/lloyds_bank_jack-mediumWEB.woff\") format(\"woff\");text-rendering:optimizeLegibility}\n@font-face{font-display:swap;font-family:Lloyds Jack Light;font-style:normal;src:local(\"Lloyds Jack Light\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackLight/lloyds_bank_jack-lightWEB.woff2\") format(\"woff2\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackLight/lloyds_bank_jack-lightWEB.woff\") format(\"woff\");text-rendering:optimizeLegibility}\n@font-face{font-display:swap;font-family:Lloyds Jack Bold;font-style:normal;src:local(\"loyds Jack Bold\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackBold/lloyds_bank_jack-boldWEB.woff2\") format(\"woff2\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackBold/lloyds_bank_jack-boldWEB.woff\") format(\"woff\");text-rendering:optimizeLegibility}\n\n* {\n   font-family: Lloyds Jack Regular;\n}</style>\n");
+      
+      
+      (function() {
+        var fv = document.createElement('link');
+        fv.type = 'image/x-icon';
+        fv.rel = 'icon';
+        fv.href = "https://qdemo.ca1.qualtrics.com/brand-management/brand-assets/qdemo/favicon.ico";
+        document.getElementsByTagName('head')[0].appendChild(fv);
+      }());
+      
+      
+    </script>
+        <script type="text/javascript">
+          (function(appData) {
+            if (appData && typeof appData === 'object' && '__jfefeRenderDocument' in appData) {
+              var doc = appData.__jfefeRenderDocument
+
+              if (doc === 'incompatible') {
+                window.location = '/jfe/incompatibleBrowser';
+                return
+              }
+
+              window.addEventListener('load', function() {
+                // farewell jfe
+                delete window.QSettings
+                delete window.webpackJsonp
+                delete window.jQuery
+                delete window.ErrorWatcher
+                delete window.onLoadCaptcha
+                delete window.experimental
+                delete window.Page
+
+                var keys = Object.keys(window);
+                for (let i in keys) {
+                  var name = keys[i];
+                  if (name.indexOf('jQuery') === 0) {
+                    delete window[name];
+                    break;
+                  }
+                }
+
+                document.open();
+                document.write(doc);
+                document.close();
+              })
+            } else {
+              // prevent document.write from replacing the entire page
+              window.document.write = function() {
+                log.error('document.write is not allowed and has been disabled.');
+              };
+
+              QSettings.setPT(true, appData);
+            }
+          })({"FormSessionID":"FS_805BJTY1bOZof08","QuestionIDs":["QID9"],"QuestionDefinitions":{"QID9":{"DataExportTag":"Q9","QuestionType":"MC","Selector":"SAHR","SubSelector":"TX","Configuration":{"QuestionDescriptionOption":"UseText","LabelPosition":"BELOW"},"Choices":{"1":{"Display":"<img height=\"50\" src=\"https://techsalesemea.eu.qualtrics.com/CP/Graphic.php?IM=IM_9sLU3pyxDmBRCGq\" style=\"width: 50px; height: 50px;\" width=\"50\" /><br />\nReport a website bug"},"2":{"Display":"<img height=\"50\" src=\"https://techsalesemea.eu.qualtrics.com/CP/Graphic.php?IM=IM_3Cpr7A0A2qBgfQy\" style=\"width: 50px; height: 50px;\" width=\"50\" /><br />\nGive feedback about our service"},"3":{"Display":"<img height=\"50\" src=\"https://techsalesemea.eu.qualtrics.com/CP/Graphic.php?IM=IM_20kDBLfchrYHAd8\" style=\"width: 50px; height: 50px;\" width=\"50\" /><br />\nI would like to contact support"}},"ChoiceOrder":["1","2","3"],"Validation":{"Settings":{"ForceResponse":"OFF","ForceResponseType":"ON","Type":"None"}},"Language":{"EN":{"QuestionText":"What can we help you with?","Choices":{"1":{"Display":"<img height=\"50\" src=\"https://techsalesemea.eu.qualtrics.com/CP/Graphic.php?IM=IM_9sLU3pyxDmBRCGq\" style=\"width: 50px; height: 50px;\" width=\"50\" /><br />\nReport a website bug"},"2":{"Display":"<img height=\"50\" src=\"https://techsalesemea.eu.qualtrics.com/CP/Graphic.php?IM=IM_3Cpr7A0A2qBgfQy\" style=\"width: 50px; height: 50px;\" width=\"50\" /><br />\nGive feedback about our service"},"3":{"Display":"<img height=\"50\" src=\"https://techsalesemea.eu.qualtrics.com/CP/Graphic.php?IM=IM_20kDBLfchrYHAd8\" style=\"width: 50px; height: 50px;\" width=\"50\" /><br />\nI would like to contact support"}}}},"NextChoiceId":5,"NextAnswerId":1,"QuestionID":"QID9","DataVisibility":{"Private":false,"Hidden":false},"QuestionJS":"Qualtrics.SurveyEngine.addOnload(function()\n{\n\tthis.questionclick = function(event,element)\n    {\n        //by default you get the click event as the first parameter and the clicked element as the second parameter\n        console.log(event, element);\n        if (element.type == 'radio')\n        {\n            var choiceNum = element.id.split('~')[2];\n            if (choiceNum == 3)\n            {\n                window.parent.location = \"https://demoqualtrics.github.io/finance-retail/contact.html\";\n            }\n        }\n    }\n});\n\nQualtrics.SurveyEngine.addOnReady(function()\n{\n\t/*Place your JavaScript here to run when the page is fully displayed*/\n\n});\n\nQualtrics.SurveyEngine.addOnUnload(function()\n{\n\t/*Place your JavaScript here to run when the page is unloaded*/\n\n});","SurveyLanguage":"EN"}},"NextButton":null,"PreviousButton":false,"Count":1,"Skipped":0,"NotDisplayed":0,"LanguageSelector":null,"Messages":{"ModalDialogMessages":{"UnansweredQuestion":"There is 1 unanswered question on this page","UnansweredQuestions":"There are %1 unanswered questions on this page","ContinueQuestion":"Would you like to continue?","AnswerQuestion":"Answer the Question","AnswerQuestions":"Answer the Questions","ContinueWithoutAnswering":"Continue Without Answering","RequestResponseTitle":"Response Requested","Continue":"Continue","ModifyAnswers":"Modify Answers","PDPQuestionDialogSingle":"It looks like you may have entered some sensitive information in a question","PDPQuestionDialogMultiple":"It looks like you may have entered some sensitive information in %1 questions"},"PoweredByQualtrics":"Powered by Qualtrics","PoweredByQualtricsLabel":"Powered by Qualtrics: Learn more about Qualtrics in a new tab","A11yNextPage":"You are on the next page","A11yPageLoaded":"Page Loaded","A11yPageLoading":"Page is loading","A11yPrevPage":"You are on the previous page","FailedToReachServer":"We were unable to connect to our servers. Please check your internet connection and try again.","ConnectionError":"Connection Error","IPDLError":"Sorry, an unexpected error occurred.","Retry":"Retry","Cancel":"Cancel","Language":"Language","Done":"Done","AutoAdvanceLabel":"or press Enter","DecimalSeparator":"Please exclude commas and if necessary use a point as a decimal separator.","IE11Body":"You are using an unsupported browser. Qualtrics surveys will no longer load in Internet Explorer 11 after March 15, 2024.","BipolarPreference":"Select this answer if you prefer %1 over %2 by %3 points.","BipolarNoPreference":"Select this answer if you have no preference between %1 and %2.","Blank":"Blank","CaptchaRequired":"Answering the captcha is required to proceed","MCMSB_Instructions":"To select multiple options in a row, click and drag your mouse or hold down Shift when selecting. To select non-sequential options, hold down Control (on a PC) or Command (on a Mac) when clicking. To deselect an option, hold down Control or Command and click on a selected option.","MLDND_Instructions":"Drag and drop each item from the list into a bucket.","PGR_Instructions":"Drag and drop items into groups. Within each group, rank items by dragging and dropping them into place.","ROSB_Instructions":"Select items and then rank them by clicking the arrows to move each item up and down.","PDPQuestionDialogGlobal":""},"IsPageMessage":false,"ErrorCode":null,"PageMessageTranslations":{},"CurrentLanguage":"EN","FallbackLanguage":"EN","QuestionRuntimes":{"QID9":{"Highlight":false,"ID":"QID9","Type":"MC","Selector":"SAHR","SubSelector":"TX","ErrorMsg":null,"TerminalAuthError":false,"Valid":false,"MobileFirst":false,"QuestionTypePluginProperties":null,"CurrentMultiPageQuestionIndex":0,"Displayed":true,"PreValidation":{"Settings":{"ForceResponse":"OFF","ForceResponseType":"ON","Type":"None"}},"Choices":{"1":{"ID":"1","RecodeValue":"1","VariableName":"1","Text":"","Display":"<img height=\"50\" src=\"https://techsalesemea.eu.qualtrics.com/CP/Graphic.php?IM=IM_9sLU3pyxDmBRCGq\" style=\"width: 50px; height: 50px;\" width=\"50\" /><br />\nReport a website bug","InputWidth":null,"Exclusive":false,"Selected":false,"Password":false,"TextEntry":false,"TextEntrySize":"Small","TextEntryLength":null,"InputHeight":null,"Error":null,"ErrorMsg":null,"PDPErrorMsg":null,"PDPError":null,"Displayed":true},"2":{"ID":"2","RecodeValue":"2","VariableName":"2","Text":"","Display":"<img height=\"50\" src=\"https://techsalesemea.eu.qualtrics.com/CP/Graphic.php?IM=IM_3Cpr7A0A2qBgfQy\" style=\"width: 50px; height: 50px;\" width=\"50\" /><br />\nGive feedback about our service","InputWidth":null,"Exclusive":false,"Selected":false,"Password":false,"TextEntry":false,"TextEntrySize":"Small","TextEntryLength":null,"InputHeight":null,"Error":null,"ErrorMsg":null,"PDPErrorMsg":null,"PDPError":null,"Displayed":true},"3":{"ID":"3","RecodeValue":"3","VariableName":"3","Text":"","Display":"<img height=\"50\" src=\"https://techsalesemea.eu.qualtrics.com/CP/Graphic.php?IM=IM_20kDBLfchrYHAd8\" style=\"width: 50px; height: 50px;\" width=\"50\" /><br />\nI would like to contact support","InputWidth":null,"Exclusive":false,"Selected":false,"Password":false,"TextEntry":false,"TextEntrySize":"Small","TextEntryLength":null,"InputHeight":null,"Error":null,"ErrorMsg":null,"PDPErrorMsg":null,"PDPError":null,"Displayed":true}},"ChoiceOrder":["1","2","3"],"ChoiceTextPosition":"Left","Selected":null,"LabelPosition":"BELOW","IsAutoAuthFailure":false,"ErrorSeverity":null,"PDPErrorMsg":null,"PDPError":null,"QuestionText":"What can we help you with?","CustomJS":"Qualtrics.SurveyEngine.addOnload(function()\n{\n\tthis.questionclick = function(event,element)\n    {\n        //by default you get the click event as the first parameter and the clicked element as the second parameter\n        console.log(event, element);\n        if (element.type == 'radio')\n        {\n            var choiceNum = element.id.split('~')[2];\n            if (choiceNum == 3)\n            {\n                window.parent.location = \"https://demoqualtrics.github.io/finance-retail/contact.html\";\n            }\n        }\n    }\n});\n\nQualtrics.SurveyEngine.addOnReady(function()\n{\n\t/*Place your JavaScript here to run when the page is fully displayed*/\n\n});\n\nQualtrics.SurveyEngine.addOnUnload(function()\n{\n\t/*Place your JavaScript here to run when the page is unloaded*/\n\n});","ExistingChoices":{},"ProcessedDisplayChoiceOrder":["1","2","3"],"ChoiceOrderSetup":true,"Active":true}},"IsEOS":false,"FailedValidation":false,"PDPValidationFailureQuestionIDs":[],"BlockID":"BL_aaS99ixnGQpqRfv","FormTitle":"Online Survey Software | Qualtrics Survey Solutions","SurveyMetaDescription":"Qualtrics sophisticated online survey software solutions make creating online surveys easy. Learn more about Research Suite and get a free account today.","TableOfContents":null,"UseTableOfContents":false,"SM":{"BaseServiceURL":"https://qdemo.ca1.qualtrics.com","SurveyVersionID":"9223370317965700953","IsBrandEncrypted":false,"JFEVersionID":"712a3114c06458387e099551e67e910280741e15","BrandDataCenterURL":"https://yul1.qualtrics.com","XSRFToken":"53OQzU7Dxw8J4al2kGj4fA","StartDate":"2024-06-20 14:52:06","StartDateRaw":1718895126550,"BrandID":"qdemo","SurveyID":"SV_aXJGbZUnSVVx6su","BrowserName":"Chrome","BrowserVersion":"126.0.0.0","OS":"Macintosh","UserAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36","LastUserAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36","QueryString":"Q_CHL=si&Q_CanScreenCapture=1","IP":"149.22.237.26","URL":"https://qdemo.ca1.qualtrics.com/jfe/form/SV_aXJGbZUnSVVx6su?Q_CHL=si&Q_CanScreenCapture=1","BaseHostURL":"https://qdemo.ca1.qualtrics.com","ProxyURL":"https://qdemo.ca1.qualtrics.com/jfe/form/SV_aXJGbZUnSVVx6su?Q_CHL=si&Q_CanScreenCapture=1","JFEDataCenter":"jfe8","dataCenterPath":"jfe8","IsPreview":false,"LinkType":"anonymous","geoIPLocation":{"IPAddress":"149.22.237.26","City":"Mitcham","CountryName":"United Kingdom","CountryCode":"GB","Region":"MRT","RegionName":"Merton","PostalCode":"CR4","Latitude":51.3873,"Longitude":-0.1596,"MetroCode":0,"Private":false},"geoIPV2Enabled":true,"EDFromRequest":["Q_CHL","Q_CanScreenCapture","operatingSystem","browser","deviceType","funnelName","Q_AA_PARAMS"],"FormSessionID":"FS_805BJTY1bOZof08"},"ED":{"SID":"SV_aXJGbZUnSVVx6su","SurveyID":"SV_aXJGbZUnSVVx6su","Q_CHL":"si","Q_CanScreenCapture":"1","Q_URL":"https://qdemo.ca1.qualtrics.com/jfe/form/SV_aXJGbZUnSVVx6su?Q_CHL=si&Q_CanScreenCapture=1","UserAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36","Q_LastModified":1718889074,"Q_Language":"EN"},"PostToStartED":{},"FormRuntime":null,"RuntimePayload":"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","TransactionID":1,"ReplacesOutdated":false,"EOSRedirectURL":null,"RedirectURL":null,"SaveOnPageUnload":true,"ProgressPercent":0,"ProgressBarText":"Survey Completion","ProgressAccessibleText":"Current Progress","FormOptions":{"BackButton":false,"SaveAndContinue":false,"SurveyProtection":"PublicSurvey","BallotBoxStuffingPrevention":false,"NoIndex":"Yes","SecureResponseFiles":true,"SurveyExpiration":null,"SurveyTermination":"DefaultMessage","Header":"<script>\nQualtrics.SurveyEngine.addOnReady(function () {\n    (function () {\n        if (!window.CS_CONF){\n           window._cs_integration_qualtrics_csid = \"${e://Field/CSID}\";\n\t\t     \n           var mt = document.createElement(\"script\");\n           mt.type = \"text/javascript\";\n           mt.async = true;\n           mt.src = \"https://t.contentsquare.net/uxa/87fe7310f8cc5.js\";\n           document.getElementsByTagName(\"head\")[0].appendChild(mt);\n        }\n    })();\n});\n<\/script>","Footer":"","ProgressBarDisplay":"None","PartialData":"+1 week","ValidationMessage":null,"PreviousButton":{"Display":"←"},"NextButton":{"Display":"→"},"SkinLibrary":"qdemo","SkinType":"templated","Skin":"qualtrics.2014:qdemo.3313675517:a830226b4ebc0662b8892f48fad2fcc08f1f07ed","NewScoring":1,"libraryId":"","nextButtonMid":"","previousButtonMid":"","headerMid":"","footerMid":"","QuestionsPerPage":"","PageTransition":"Fade","Autofocus":false,"Autoadvance":true,"AutoadvancePages":true,"CustomStyles":{"customCSS":""},"HighlightQuestions":"off","ProtectSelectionIds":true,"ShowExportTags":false,"CollectGeoLocation":false,"SurveyTitle":"Online Survey Software | Qualtrics Survey Solutions","SurveyMetaDescription":"Qualtrics sophisticated online survey software solutions make creating online surveys easy. Learn more about Research Suite and get a free account today.","PasswordProtection":"No","AnonymizeResponse":"No","RefererCheck":"No","RelevantID":false,"UseCustomSurveyLinkCompletedMessage":null,"SurveyLinkCompletedMessage":"","SurveyLinkCompletedMessageLibrary":"","ResponseSummary":"No","EOSRedirectURL":"https://","EmailThankYou":false,"ThankYouEmailMessageLibrary":null,"ThankYouEmailMessage":null,"ValidateMessage":false,"ValidationMessageLibrary":null,"InactiveSurvey":"DefaultMessage","PartialDataCloseAfter":"LastActivity","ActiveResponseSet":"RS_cuOmmQ68tJfxyqa","InactiveMessageLibrary":"","InactiveMessage":"","AvailableLanguages":{"EN":[]},"AutoadvanceHideButton":true,"BallotBoxStuffingPreventionBehavior":null,"BallotBoxStuffingPreventionMessage":null,"BallotBoxStuffingPreventionMessageLibrary":null,"BallotBoxStuffingPreventionURL":null,"RecaptchaV3":false,"ConfirmStart":false,"AutoConfirmStart":false,"PartialDeletion":null,"SurveyName":"Digital - Lloyds - Passive Feedback","SurveyLanguage":"EN","SurveyStartDate":"-0001-11-30 06:59:56","SurveyExpirationDate":"-0001-11-30 06:59:56","SurveyCreationDate":"2024-06-20 10:59:01","SkinOptions":{"Version":3,"AnyDeviceSupport":true,"Icons":{"favicon":"https://qdemo.ca1.qualtrics.com/brand-management/brand-assets/qdemo/favicon.ico","appleTouchIcon":"/brand-management/apple-touch-icon","ogImage":""},"BrandingOnly":{"header":"","footer":"","css":"@font-face {font-display:swap;font-family:Lloyds Jack Regular;font-style:normal;src:local(\"Lloyds Jack Regular\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackRegular/lloyds_bank_jack-regularWEB.woff2\") format(\"woff2\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackRegular/lloyds_bank_jack-regularWEB.woff\") format(\"woff\");text-rendering:optimizeLegibility}\n@font-face{font-display:swap;font-family:Lloyds Jack Medium;font-style:normal;src:local(\"Lloyds Jack Medium\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackMedium/lloyds_bank_jack-mediumWEB.woff2\") format(\"woff2\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackMedium/lloyds_bank_jack-mediumWEB.woff\") format(\"woff\");text-rendering:optimizeLegibility}\n@font-face{font-display:swap;font-family:Lloyds Jack Light;font-style:normal;src:local(\"Lloyds Jack Light\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackLight/lloyds_bank_jack-lightWEB.woff2\") format(\"woff2\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackLight/lloyds_bank_jack-lightWEB.woff\") format(\"woff\");text-rendering:optimizeLegibility}\n@font-face{font-display:swap;font-family:Lloyds Jack Bold;font-style:normal;src:local(\"loyds Jack Bold\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackBold/lloyds_bank_jack-boldWEB.woff2\") format(\"woff2\"),url(\"https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackBold/lloyds_bank_jack-boldWEB.woff\") format(\"woff\");text-rendering:optimizeLegibility}\n\n* {\n   font-family: Lloyds Jack Regular;\n}","html":""},"ProgressBarPosition":"top","Logo":"https://qdemo.ca1.qualtrics.com/CP/Graphic.php?IM=IM_823B0VLjNvegSOO","LogoPosition":"center","LogoBanner":true,"QuestionsContainer":true,"MCButtonChoices":true,"NPSMobileVertical":true,"LayoutSpacing":0,"FallbackSkin":false},"SkinBaseCss":"/jfe/themes/templated-skins/qualtrics.2014:qdemo.3313675517:a830226b4ebc0662b8892f48fad2fcc08f1f07ed/version-1718890464993-96e316/stylesheet.css","Favicon":"https://qdemo.ca1.qualtrics.com/brand-management/brand-assets/qdemo/favicon.ico","CustomLanguages":null,"SurveyTimezone":"America/Denver","LinkType":"anonymous","Language":"EN","Languages":null,"DefaultLanguages":{"AR":"العربية","ASM":"অসমীয়া","AZ-AZ":"Azərbaycan dili","BEL":"Беларуская","BG":"Български","BS":"Bosanski","BN":"বাংলা","CA":"Català","CEB":"Bisaya","CKB":"كوردي","CS":"Čeština","CY":"Cymraeg","DA":"Dansk","DE":"Deutsch","EL":"Ελληνικά","EN":"English","EN-GB":"English (United Kingdom)","EN_GB":"English (Great Britain)","EO":"Esperanto","ES":"Español (América Latina)","ES-ES":"Español","ET":"Eesti","FA":"فارسی","FI":"Suomi","FR":"Français","FR-CA":"Français (Canada)","GU":"ગુજરાતી ","HE":"עברית","HI":"हिन्दी","HIL":"Hiligaynon","HR":"Hrvatski","HU":"Magyar","HYE":"Հայերեն","ID":"Bahasa Indonesia","ISL":"Íslenska","IT":"Italiano","JA":"日本語","KAN":"ಕನ್ನಡ","KAT":"ქართული","KAZ":"Қазақ","KM":"ភាសាខ្មែរ","KO":"한국어","LV":"Latviešu","LT":"Lietuviškai","MAL":"മലയാളം","MAR":"मराठी","MK":"Mакедонски","MN":"Монгол","MS":"Bahasa Malaysia","MY":"မြန်မာဘာသာ","NE":"नेपाली","NL":"Nederlands","NO":"Norsk","ORI":"ଓଡ଼ିଆ ଭାଷା","PA-IN":"ਪੰਜਾਬੀ (ਗੁਰਮੁਖੀ)","PL":"Polski","PT":"Português","PT-BR":"Português (Brasil)","RI-GI":"Rigi","RO":"Română","RU":"Русский","SIN":"සිංහල","SK":"Slovenčina","SL":"Slovenščina","SO":"Somali","SQI":"Shqip","SR":"Srpski","SR-ME":"Crnogorski","SV":"Svenska","SW":"Kiswahili","TA":"தமிழ்","TEL":"తెలుగు","TGL":"Tagalog","TH":"ภาษาไทย","TR":"Tϋrkçe","UK":"Українська","UR":"اردو","VI":"Tiếng Việt","ZH-S":"简体中文","ZH-T":"繁體中文","Q_DEV":"Developer"},"ThemeURL":"//eu.qualtrics.com/WRQualtricsShared/"},"Header":"<script>\nQualtrics.SurveyEngine.addOnReady(function () {\n    (function () {\n        if (!window.CS_CONF){\n           window._cs_integration_qualtrics_csid = \"\";\n\t\t     \n           var mt = document.createElement(\"script\");\n           mt.type = \"text/javascript\";\n           mt.async = true;\n           mt.src = \"https://t.contentsquare.net/uxa/87fe7310f8cc5.js\";\n           document.getElementsByTagName(\"head\")[0].appendChild(mt);\n        }\n    })();\n});\n<\/script>","HeaderMessages":{},"Footer":"","FooterMessages":{},"HasJavaScript":true,"IsSystemMessage":false,"FeatureFlags":{"JFE_BlockPrototypeJS":false},"TransformData":{},"AllowJavaScript":true,"NextButtonAriaLabel":"Next","PreviousButtonAriaLabel":"Previous","BrandType":"Corporate","FilteredEDKeys":[],"CookieActions":{"Set":[],"Clear":[]}})
+        </script>
+    <div class="JFE" id="P_1718895126696"><div class="JFEContent SkinV2 webkit CSS3"><form id="Page" name="Page" class="Page ActivePage" data-testid="page-ready"><meta name="HandheldFriendly" content="true">
+<meta name="viewport" content="user-scalable = yes, maximum-scale=10, minimum-scale=1, initial-scale = 1, width = device-width">
+<div class="Skin">
+	<div id="Overlay"></div>
+	<div id="Wrapper">
+		<div id="ProgressBar"></div>
+		<div class="SkinInner">
+			<div id="LogoContainer">
+				<div id="Logo"><img src="./Logo+lloydsbank+green+genuinely+cropped" data-image-state="ready"></div>
+			</div>
+			<div id="HeaderContainer">
+				
+				<div id="Header" role="banner"></div>
+			</div>
+			<div id="SkinContent">
+				<div id="Questions" role="main"><div id="QID9Separator" class="Separator" data-runtime-show="runtime.SeparatorDisplayed"></div><div class="QuestionOuter BorderColor MC  QID9 questionFocused" id="QID9" questionid="QID9" posttag="QID9" data-runtime-remove-class-hidden="runtime.Displayed"> <div id="QR~QID9~VALIDATION" class="ValidationError" role="alert" data-runtime-show="runtime.ErrorMsg" data-runtime-html="runtime.ErrorMsg" style="display: none;"></div> <div id="QR~QID9~SDPVALIDATION" class="ValidationError" role="alert" data-runtime-show="runtime.PDPErrorMsg" data-runtime-html="runtime.PDPErrorMsg" style="display: none;"></div> <div class="Inner BorderColor SAHR"> <div class="InnerInner BorderColor TX"> <fieldset aria-describedby="QR~QID9~VALIDATION QR~QID9~SDPVALIDATION"> <!-- BEGIN PARTIALS --><!-- Partial for defining the ControlContainerContent --><!-- END PARTIALS --><legend> <div class="QuestionText BorderColor">What can we help you with?</div></legend><div class="QuestionBody">   <table role="presentation" class="ChoiceStructure" cellpadding="0" cellspacing="0" border="0"> <tbody> <tr>   <!-- LabelContainer needs to have both for now because there's a misspelling in the CSS --> <td width="33.333333333333336%" class="LabelContainer LabelContatiner ">  <span class="LabelWrapper"> <label for="QR~QID9~1" id="QID9-1-label" class="SingleAnswer LabelPositionBELOW ChoiceTextPositionLeft" data-runtime-class-q-checked="runtime.Choices.1.Selected" style="height: 95px;"><span style="padding-bottom: 0px;"><img height="50" src="./Website+feedback" style="width: 50px; height: 50px;" width="50" data-image-state="ready"><br>
+Report a website bug</span></label></span> <label for="QR~QID9~1" class="q-radio" aria-hidden="true" data-runtime-class-q-checked="runtime.Choices.1.Selected"></label> <div class="ControlContainer " style="margin: 0 auto"> <input choiceid="1" class="radio QR-QID9-1 QWatchTimer" type="radio" name="QR~QID9" id="QR~QID9~1" value="1" data-runtime-checked="runtime.Selected" aria-labelledby="QID9-1-label"> </div> </td>   <!-- LabelContainer needs to have both for now because there's a misspelling in the CSS --> <td width="33.333333333333336%" class="LabelContainer LabelContatiner alt">  <span class="LabelWrapper"> <label for="QR~QID9~2" id="QID9-2-label" class="SingleAnswer LabelPositionBELOW ChoiceTextPositionLeft" data-runtime-class-q-checked="runtime.Choices.2.Selected" style="height: 95px;"><span style="padding-bottom: 0px;"><img height="50" src="./Feedback" style="width: 50px; height: 50px;" width="50" data-image-state="ready"><br>
+Give feedback about our service</span></label></span> <label for="QR~QID9~2" class="q-radio" aria-hidden="true" data-runtime-class-q-checked="runtime.Choices.2.Selected"></label> <div class="ControlContainer alt" style="margin: 0 auto"> <input choiceid="2" class="radio QR-QID9-2 QWatchTimer" type="radio" name="QR~QID9" id="QR~QID9~2" value="2" data-runtime-checked="runtime.Selected" aria-labelledby="QID9-2-label"> </div> </td>   <!-- LabelContainer needs to have both for now because there's a misspelling in the CSS --> <td width="33.333333333333336%" class="LabelContainer LabelContatiner ">  <span class="LabelWrapper"> <label for="QR~QID9~3" id="QID9-3-label" class="SingleAnswer LabelPositionBELOW ChoiceTextPositionLeft" data-runtime-class-q-checked="runtime.Choices.3.Selected" style="height: 95px;"><span style="padding-bottom: 0px;"><img height="50" src="./Online+support" style="width: 50px; height: 50px;" width="50" data-image-state="ready"><br>
+I would like to contact support</span></label></span> <label for="QR~QID9~3" class="q-radio" aria-hidden="true" data-runtime-class-q-checked="runtime.Choices.3.Selected"></label> <div class="ControlContainer " style="margin: 0 auto"> <input choiceid="3" class="radio QR-QID9-3 QWatchTimer" type="radio" name="QR~QID9" id="QR~QID9~3" value="3" data-runtime-checked="runtime.Selected" aria-labelledby="QID9-3-label"> </div> </td>  </tr> </tbody></table> </div> </fieldset> </div> </div>  </div></div>
+				<div id="Buttons" role="navigation"><input id="NextButton" class="NextButton Button" title="→" type="button" name="NextButton" value="→" data-runtime-disabled="runtime.Disabled" data-runtime-aria-label="runtime.ariaLabel" data-runtime-hide="runtime.Hide" page-id="P_1718895126696" aria-label="Next"></div>
+				
+			</div>
+		</div>
+		<div id="Footer" role="contentinfo"></div>
+		
+		<div id="PushStickyFooter"></div>
+	</div>
+	<div id="Plug" style="display:block !important;"><a href="https://www.qualtrics.com/powered-by-qualtrics/?utm_source=internal%2Binitiatives&amp;utm_medium=survey%2Bpowered%2Bby%2Bqualtrics&amp;utm_content=qdemo&amp;utm_survey_id=SV_aXJGbZUnSVVx6su" target="_blank" aria-label="Powered by Qualtrics: Learn more about Qualtrics in a new tab">Powered by Qualtrics</a></div>
+</div>
+
+
+
+<style>@font-face {font-display:swap;font-family:Lloyds Jack Regular;font-style:normal;src:local("Lloyds Jack Regular"),url("https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackRegular/lloyds_bank_jack-regularWEB.woff2") format("woff2"),url("https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackRegular/lloyds_bank_jack-regularWEB.woff") format("woff");text-rendering:optimizeLegibility}
+@font-face{font-display:swap;font-family:Lloyds Jack Medium;font-style:normal;src:local("Lloyds Jack Medium"),url("https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackMedium/lloyds_bank_jack-mediumWEB.woff2") format("woff2"),url("https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackMedium/lloyds_bank_jack-mediumWEB.woff") format("woff");text-rendering:optimizeLegibility}
+@font-face{font-display:swap;font-family:Lloyds Jack Light;font-style:normal;src:local("Lloyds Jack Light"),url("https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackLight/lloyds_bank_jack-lightWEB.woff2") format("woff2"),url("https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackLight/lloyds_bank_jack-lightWEB.woff") format("woff");text-rendering:optimizeLegibility}
+@font-face{font-display:swap;font-family:Lloyds Jack Bold;font-style:normal;src:local("loyds Jack Bold"),url("https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackBold/lloyds_bank_jack-boldWEB.woff2") format("woff2"),url("https://www.lloydsbank.com/etc/designs/lloyds/clientlibs/fonts/LloydsBankJackBold/lloyds_bank_jack-boldWEB.woff") format("woff");text-rendering:optimizeLegibility}
+
+* {
+   font-family: Lloyds Jack Regular;
+}</style>
+</form></div></div>
+
+<cs-native-frame-holder hidden=""><template shadowrootmode="closed"><iframe id="cs-native-frame" hidden="" title="Intentionally blank" sandbox="allow-same-origin"></iframe></template></cs-native-frame-holder></body><style type="text/css" id="stylebot-css-qdemo.ca1.qualtrics.com">#angular-dashboard-app > div.q-container.viewMode > div > div.header-container.ng-scope > div > div.ng-isolate-scope.genesis-header.enable-dashboard-context > div > global-wrapper-react-header > global-wrapper-top-nav > nav > div.top-level-nav_leftSection__33J4M {
+  background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/RSA_Insurance_Group_%28emblem%29.svg/1280px-RSA_Insurance_Group_%28emblem%29.svg.png') !important;
+}</style></html>

@@ -1,0 +1,2 @@
+//tealium universal tag - utag.16 ut4.0.202406201336, Copyright 2024 Tealium.com Inc. All Rights Reserved.
+if(!window.clova2&&!window.utag){(function(u,t,a,g,m,e){t="utag.sync.js";window.useUtagFile=16;a="https://tags.tiqcdn.com/utag/lbg/main/prod/"+t;m="script";e=u.createElement(m);e.src=a;e.type="text/java"+m;e.async=false;g=u.getElementsByTagName(m)[0];g.parentNode.insertBefore(e,g);})(document);}
