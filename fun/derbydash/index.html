@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Derby Dash - An exciting horse racing arcade game. Fire balls into holes to advance your horse to the finish line!">
+  <title>Derby Dash – Horse Racing Arcade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Start Screen -->
+  <div id="start-screen" class="screen active">
+    <div class="start-content">
+      <div class="logo-container">
+        <div class="horseshoe-icon">🏇</div>
+        <h1 class="game-title">DERBY<br><span>DASH</span></h1>
+        <p class="game-subtitle">ARCADE HORSE RACING</p>
+      </div>
+      <div class="start-instructions">
+        <div class="instruction-card">
+          <div class="instruction-icon">🎯</div>
+          <p>Aim and fire balls into the target holes</p>
+        </div>
+        <div class="instruction-card">
+          <div class="instruction-icon">🐎</div>
+          <p>Each hole advances your horse at different speeds</p>
+        </div>
+        <div class="instruction-card">
+          <div class="instruction-icon">🏆</div>
+          <p>First horse to cross the finish line wins!</p>
+        </div>
+      </div>
+      <button id="start-btn" class="btn-primary">
+        <span class="btn-text">START RACE</span>
+        <span class="btn-glow"></span>
+      </button>
+      <p class="controls-hint">Click/Tap to aim • Click/Tap to fire</p>
+    </div>
+    <div class="particles" id="start-particles"></div>
+  </div>
+
+  <!-- Game Screen -->
+  <div id="game-screen" class="screen">
+    <!-- Race Track Section -->
+    <div id="race-track">
+      <div class="track-header">
+        <div class="race-title">🏁 RACE IN PROGRESS</div>
+        <div id="lap-indicator" class="lap-indicator">FIRE TO ADVANCE!</div>
+      </div>
+      <div class="track-area">
+        <div class="finish-line"></div>
+        <div class="lane" data-lane="0">
+          <div class="lane-label">
+            <span class="player-tag">YOU</span>
+            <span class="horse-name">Thunder Bolt</span>
+          </div>
+          <div class="horse-container" id="horse-0">
+            <div class="horse-sprite player-horse">🏇</div>
+            <div class="dust-trail"></div>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" id="progress-0"></div></div>
+        </div>
+        <div class="lane" data-lane="1">
+          <div class="lane-label">
+            <span class="ai-tag">AI</span>
+            <span class="horse-name">Silver Arrow</span>
+          </div>
+          <div class="horse-container" id="horse-1">
+            <div class="horse-sprite ai-horse">🏇</div>
+            <div class="dust-trail"></div>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" id="progress-1"></div></div>
+        </div>
+        <div class="lane" data-lane="2">
+          <div class="lane-label">
+            <span class="ai-tag">AI</span>
+            <span class="horse-name">Midnight Star</span>
+          </div>
+          <div class="horse-container" id="horse-2">
+            <div class="horse-sprite ai-horse">🏇</div>
+            <div class="dust-trail"></div>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" id="progress-2"></div></div>
+        </div>
+        <div class="lane" data-lane="3">
+          <div class="lane-label">
+            <span class="ai-tag">AI</span>
+            <span class="horse-name">Golden Fury</span>
+          </div>
+          <div class="horse-container" id="horse-3">
+            <div class="horse-sprite ai-horse">🏇</div>
+            <div class="dust-trail"></div>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" id="progress-3"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ball Launcher Section -->
+    <div id="launcher-section">
+      <div class="launcher-header">
+        <div class="score-display">
+          <span class="score-label">SHOTS</span>
+          <span class="score-value" id="shots-count">0</span>
+        </div>
+        <div class="power-display">
+          <span class="power-label">READY</span>
+          <div class="power-bar-container">
+            <div class="power-bar" id="power-bar"></div>
+          </div>
+        </div>
+        <div class="score-display">
+          <span class="score-label">POSITION</span>
+          <span class="score-value" id="position-display">—</span>
+        </div>
+      </div>
+
+      <div id="game-canvas-container">
+        <canvas id="game-canvas"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result Screen -->
+  <div id="result-screen" class="screen">
+    <div class="result-content">
+      <div id="result-icon" class="result-icon">🏆</div>
+      <h2 id="result-title" class="result-title">YOU WIN!</h2>
+      <p id="result-subtitle" class="result-subtitle">Thunder Bolt crosses the finish line first!</p>
+
+      <div id="final-standings" class="final-standings">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="result-stats">
+        <div class="stat-card">
+          <span class="stat-value" id="final-shots">0</span>
+          <span class="stat-label">Total Shots</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="final-accuracy">0%</span>
+          <span class="stat-label">Accuracy</span>
+        </div>
+      </div>
+
+      <button id="play-again-btn" class="btn-primary">
+        <span class="btn-text">RACE AGAIN</span>
+        <span class="btn-glow"></span>
+      </button>
+    </div>
+  </div>
+
+  <script src="audio.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
